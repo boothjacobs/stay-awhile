@@ -14,11 +14,11 @@ function App() {
 
   useEffect(() => {
     (async() => {
-      await dispatch(authenticate());
+      dispatch(authenticate());
       //prevents page load if user is unauthorized
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -31,10 +31,10 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
-        <Route path="/sign-up" exact={true}>
+        <Route path="/signup" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/users/:userId" exact={true} >
+        <ProtectedRoute path="/user/dashboard" exact={true} >
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/" exact={true} >

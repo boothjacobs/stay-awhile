@@ -70,7 +70,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     if (data.errors) {
         return data;
     }
-    dispatch(setUser(user));
+    dispatch(setUser(data));
 };
 
 const initialState = {};

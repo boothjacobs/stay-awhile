@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -33,8 +33,8 @@ def login():
     """
     Logs a user in
     """
-    #auto populates the instance of the form with the user input
     form = LoginForm()
+    print(request.get_json())
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -61,18 +61,31 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
+
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
             email=form.data['email'],
-            password=form.data['password']
+            password=form.data['password'],
         )
         db.session.add(user)
         db.session.commit()
         login_user(user)
         return user.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+
+@auth_routes.route('/demo', methods=['POST'])
+def demo():
+    """
+    Logs a user in as demo user
+    """
+    user = User.query.filter_by(username="Demo1").first()
+    login_user(user)
+    return user.to_dict()
 
 
 @auth_routes.route('/unauthorized')

@@ -8,7 +8,6 @@ const NavBar = () => {
 
     const onLogout = async (e) => {
         dispatch(logout());
-        setAuthenticated(false);
     };
 
   return (
