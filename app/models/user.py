@@ -6,9 +6,14 @@ class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(40), nullable = False, unique = True)
+    full_name = db.Column(db.String(100), nullable = False)
     email = db.Column(db.String(255), nullable = False, unique = True)
     hashed_password = db.Column(db.String(255), nullable = False)
+    age = db.Column(db.Integer)
+    phone_number = db.Column(db.String(15))
+    dietary_restrictions = db.Column(db.String(100))
+    emergency_contact = db.Column(db.String(255))
+    staff = db.Column(db.Boolean, nullable = False, default = False)
 
 
     @property
@@ -28,6 +33,11 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.username,
-            "email": self.email
+            "full_name": self.full_name,
+            "email": self.email,
+            "age": self.age,
+            "phone_number": self.phone_number,
+            "dietary_restrictions": self.dietary_restrictions,
+            "emergency_contact": self.emergency_contact,
+            "staff": self.staff
         }

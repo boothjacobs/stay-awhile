@@ -20,9 +20,11 @@ export const authenticate = () => async (dispatch) => {
     });
     const data = await response.json(); //returns user
     if (data.errors) {
+        console.log("Authenticate thunk errors:", data);
         return;
     }
     dispatch(setUser(data));
+    return data;
 };
 
 export const login = (email, password) => async (dispatch)  => {
@@ -38,9 +40,11 @@ export const login = (email, password) => async (dispatch)  => {
     });
     const data = await response.json();
     if (data.errors) {
-        return data;
+        console.log("Login thunk errors: ", data);
+        return;
     }
     dispatch(setUser(data));
+    return data;
 };
 
 export const logout = () => async (dispatch) => {
@@ -68,9 +72,11 @@ export const signUp = (username, email, password) => async (dispatch) => {
     });
     const data = await response.json();
     if (data.errors) {
-        return data;
+        console.log("SignUp thunk errors: ", data);
+        return;
     }
     dispatch(setUser(data));
+    return data;
 };
 
 const initialState = {};
