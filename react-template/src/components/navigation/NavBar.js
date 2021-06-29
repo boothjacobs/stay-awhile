@@ -1,10 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../store/session';
+import { logout } from '../../store/session';
 
 const NavBar = () => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    console.log("nav bar user from selector", user)
 
     const onLogout = async (e) => {
         dispatch(logout());
@@ -33,9 +35,9 @@ const NavBar = () => {
             Users
           </NavLink>
         </li>
-        <li>
+        {(user !== null) ? (<li>
         <button onClick={onLogout}>Logout</button>
-        </li>
+        </li>) : null}
       </ul>
     </nav>
   );

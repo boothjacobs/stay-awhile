@@ -20,3 +20,6 @@ class SignUpForm(FlaskForm):
     dietary_restrictions = SelectField(choices=["None", "Vegetarian", "Vegan", "Gluten-Free", "Allergy"])
     emergency_contact = StringField('Emergency Contact')
     staff = BooleanField('Staff or Guest')
+    ranch_name = StringField('Ranch Name')
+    ranch_rate = IntegerField('Base Nightly Rate')
+    # csrf_token = StringField()

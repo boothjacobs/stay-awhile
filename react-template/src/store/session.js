@@ -58,17 +58,13 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (username, email, password) => async (dispatch) => {
+export const signUp = (formData) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-            username,
-            email,
-            password,
-        }),
+        body: JSON.stringify(formData),
     });
     const data = await response.json();
     if (data.errors) {
@@ -79,7 +75,7 @@ export const signUp = (username, email, password) => async (dispatch) => {
     return data;
 };
 
-const initialState = {};
+const initialState = { user: null };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
