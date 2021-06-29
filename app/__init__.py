@@ -37,12 +37,7 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-# Since we are deploying with Docker and Flask,
-# we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any 
-# request made over http is redirected to https.
-# Well.........
-
+#For Heroku purposes, guarantees that every URL is HTTPS
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
@@ -51,7 +46,7 @@ def https_redirect():
             code = 301
             return redirect(url, code=code)
 
-
+#CSRF shortcut--automatically applies CSRF token to every response
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie('csrf_token',
@@ -63,7 +58,7 @@ def inject_csrf_token(response):
                         httponly=True)
     return response
 
-
+#send HTML in production
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def react_root(path):
