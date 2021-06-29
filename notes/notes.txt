@@ -1,0 +1,41 @@
+StayAwhile is a browser-based, intuitive update of Lodge-ical
+
+GENERAL USE
+Add booking (form)
+Search
+From guest page, generate documents/update info, see current and past bookings
+
+SEARCH
+View bookings by week
+View all
+View guest
+View bookings by cabin
+View bookings by dietary restriction
+View bookings by kids
+View bookings by deposit
+View bookings by balance
+View bookings by returning guest
+Past bookings
+Past income
+
+GENERATE DOCUMENTS
+Generate invoice
+Generate confirmation letter
+
+ADMIN FEATURES
+CLIENT MODIFICATIONS
+Create/edit/delete lodging
+Create/edit/delete guest
+Create/delete activity
+Create/edit/delete booking rate
+Create/edit/delete documents (lots of text with interpolated guest details)
+
+MOBILE VERSION
+Search only
+
+
+As an admin user, I want to create/edit/delete the hotel features
+    plus all staff capabilities
+As a staff user, I want to view bookings and search for guests
+    I want to create new bookings
+    I want to generate paperwork
