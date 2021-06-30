@@ -6,7 +6,9 @@ import LoginForm from "./components/user-auth/LoginForm";
 import SignUpForm from "./components/user-auth/SignUpForm";
 import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
-import User from "./components/User";
+import User from "./components/GuestSide/User";
+import GuestHome from "./components/GuestSide/GuestHome";
+import RanchHome from "./components/RanchSide/RanchHome";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -38,11 +40,13 @@ function App() {
         <Route path="/signup" exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path="/user/dashboard" exact={true} >
+        {/* <ProtectedRoute path="/user/dashboard" exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path="/home" exact={true} >
           <h1>My Home Page</h1>
+          <RanchHome />
+          <GuestHome />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

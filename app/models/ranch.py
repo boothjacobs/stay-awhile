@@ -8,6 +8,9 @@ class Ranch(db.Model):
     location = db.Column(db.String(100), nullable = False)
     description = db.Column(db.String(255))
     nightly_rate = db.Column(db.Integer)
+    users = db.relationship("User", back_populates="ranch")
+    cabins = db.relationship("Cabin", back_populates="ranch")
+    bookings = db.relationship("Booking", back_populates="ranch")
 
 
     def to_dict(self):
@@ -16,5 +19,7 @@ class Ranch(db.Model):
             "ranch_name": self.ranch_name,
             "location": self.location,
             "description": self.description,
-            "rate": self.nightly_rate
+            "rate": self.nightly_rate,
+            "cabins": self.cabins,
+            "bookings": self.bookings
         }

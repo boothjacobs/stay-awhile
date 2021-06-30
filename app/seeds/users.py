@@ -10,7 +10,8 @@ def seed_users():
                 phone_number='18005555555',
                 dietary_restrictions='None',
                 emergency_contact=None,
-                staff=False)
+                staff=False,
+                ranch_id=None)
 
     demo2 = User(full_name='Frank Azaria',
                 email='frank@aa.io',
@@ -19,7 +20,8 @@ def seed_users():
                 phone_number='18005555555',
                 dietary_restrictions='Vegan',
                 emergency_contact=None,
-                staff=False)
+                staff=False,
+                ranch_id=None)
 
     demo3 = User(full_name='Han Solo',
                 email='solo@aa.io',
@@ -28,7 +30,8 @@ def seed_users():
                 phone_number='18005555555',
                 dietary_restrictions='None',
                 emergency_contact=None,
-                staff=True)
+                staff=True,
+                ranch_id='4')
 
     demo4 = User(full_name='Bebe Neuwirth',
                 email='beebs@aa.io',
@@ -37,7 +40,8 @@ def seed_users():
                 phone_number='18005555555',
                 dietary_restrictions='None',
                 emergency_contact=None,
-                staff=False)
+                staff=False,
+                ranch_id=None)
 
 
     db.session.add(demo)

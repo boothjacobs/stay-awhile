@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
     dietary_restrictions = db.Column(db.String(100))
     emergency_contact = db.Column(db.String(255))
     staff = db.Column(db.Boolean, nullable = False, default = False)
+    ranch_id = db.Column(db.Integer, db.ForeignKey('ranches.id'))
+    ranch = db.relationship("Ranch", back_populates="users")
+    invoices = db.relationship("Invoice", back_populates="guest")
+    bookings = db.relationship("Booking", back_populates="guest")
+    reviews = db.relationship("Review", back_populates="guest")
 
 
     @property
@@ -39,5 +44,6 @@ class User(db.Model, UserMixin):
             "phone_number": self.phone_number,
             "dietary_restrictions": self.dietary_restrictions,
             "emergency_contact": self.emergency_contact,
-            "staff": self.staff
+            "staff": self.staff,
+            "ranch": self.ranch.ranch_name
         }
