@@ -7,13 +7,13 @@ import "./auth.css";
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const [fullName, setFullname] = useState("");
+  const [full_name, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
   const [phone, setPhone] = useState("");
-  const [dietary, setDietary] = useState("");
+  const [dietary_restrictions, setDietary] = useState("None");
   const [eContact, setEContact] = useState("");
   const [staff, setStaff] = useState(false);
   const [ranchName, setRanchName] = useState("");
@@ -22,25 +22,23 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      // const formData = new FormData();
-      // console.log(fullName, email, password, age, phone, dietary, eContact, staff)
-      // formData.append("full_name", fullName);
-      // formData.append("email", email);
-      // formData.append("password", password);
-      // formData.append("age", age);
-      // formData.append("phone", phone);
-      // formData.append("dietary_restrictions", dietary);
-      // formData.append("eContact", eContact);
-      // formData.append("staff", staff);
-      dispatch(signUp(fullName, email, password, age, phone, dietary, eContact, staff));
+      dispatch(signUp(full_name, email, password, age, phone, dietary_restrictions, eContact, staff));
     }
   };
 
-  const updateFullname = (e) => { setFullname(e.target.value) };
+  const updateFullname = (e) => {
+    // console.log("inside update Full Name function", e.target.value)
+    setFullname(e.target.value)
+    // console.log(fullName, user)
+  };
 
   const updateEmail = (e) => { setEmail(e.target.value) };
 
-  const updatePassword = (e) => { setPassword(e.target.value) };
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+    console.log("event target value from updatePssword", e.target.value)
+    console.log("value of password state var", password)
+   };
 
   const updateConfirmPassword = (e) => { setConfirmPassword(e.target.value) };
 
@@ -70,7 +68,7 @@ const SignUpForm = () => {
             type="text"
             name="full_name"
             onChange={updateFullname}
-            value={fullName}
+            value={full_name}
           ></input></label>
           <label>Email
           <input
@@ -112,7 +110,7 @@ const SignUpForm = () => {
           <select
             name="dietary_restrictions"
             onChange={updateDietary}
-            value={dietary}>
+            value={dietary_restrictions}>
               <option value="None">None</option>
               <option value="Vegetarian">Vegetarian</option>
               <option value="Vegan">Vegan</option>

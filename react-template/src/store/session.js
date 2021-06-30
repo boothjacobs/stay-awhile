@@ -58,15 +58,17 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (formData) => async (dispatch) => {
+export const signUp = (full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff) => async (dispatch) => {
+    console.log("signup Thunk", password)
     const response = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff}),
     });
     const data = await response.json();
+    // console.log(data)
     if (data.errors) {
         console.log("SignUp thunk errors: ", data);
         return;
