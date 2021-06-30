@@ -27,5 +27,4 @@ class Booking(db.Model):
             "interests": self.interests,
             "start_date": self.start_date,
             "end_date": self.end_date,
-            "invoice": self.invoice.to_dict()
         }

@@ -5,6 +5,13 @@ const setRanch = (ranch) => ({
     payload: ranch
 });
 
+export const getRanch = (ranchId) => async (dispatch) => {
+    const response = await fetch(`/api/ranch/${ranchId}`);
+    if (response.ok) {
+        const ranch = await response.json()
+        dispatch(setRanch(ranch))
+    }
+}
 
 const initialState = {};
 

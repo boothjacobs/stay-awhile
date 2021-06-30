@@ -45,5 +45,6 @@ class User(db.Model, UserMixin):
             "dietary_restrictions": self.dietary_restrictions,
             "emergency_contact": self.emergency_contact,
             "staff": self.staff,
-            "ranch": self.ranch.ranch_name
+            "ranch_id": self.ranch_id,
+            # "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
         }

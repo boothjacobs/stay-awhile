@@ -25,6 +25,12 @@ def new_ranch():
     db.session.commit()
     return ranch.to_dict()
 
+
+@ranch_routes.route('/<id>', methods=['GET'])
+def get_ranch(id):
+    ranch = Ranch.query.get(id)
+    return ranch.to_dict()
+
 # image_routes = Blueprint("images", __name__)
 # @image_routes.route("", methods=["POST"])
 # @login_required
