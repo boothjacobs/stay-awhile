@@ -9,7 +9,6 @@ class Invoice(db.Model):
     additional_charges = db.Column(db.Integer)
     deposit = db.Column(db.Boolean, nullable = False)
     rollover_payment = db.Column(db.Boolean)
-    total = db.Column(db.Integer, nullable = False)
     amount_paid = db.Column(db.Integer)
 
 
@@ -21,6 +20,5 @@ class Invoice(db.Model):
             "additional_charges": self.additional_charges,
             "deposit": self.deposit,
             "rollover_payment": self.rollover_payment,
-            "total": self.total,
             "amount_paid": self.amount_paid
         }
