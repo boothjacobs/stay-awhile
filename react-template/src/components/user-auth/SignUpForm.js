@@ -16,13 +16,20 @@ const SignUpForm = () => {
   const [dietary_restrictions, setDietary] = useState("None");
   const [eContact, setEContact] = useState("");
   const [staff, setStaff] = useState(false);
-  const [ranchName, setRanchName] = useState("");
+  const [ranch_name, setRanchName] = useState("");
+  const [location, setLocation] = useState("");
+  const [description, setDescription] = useState("");
   const [rate, setRate] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
-      dispatch(signUp(full_name, email, password, age, phone, dietary_restrictions, eContact, staff));
+      dispatch(signUp(full_name,
+        email,
+        password,
+        age, phone, dietary_restrictions, eContact, staff, //nullable fields
+        ranch_name, location, description, rate   //conditional fields for staff accounts only, to create Ranch
+      ));
     }
   };
 
@@ -33,27 +40,16 @@ const SignUpForm = () => {
   };
 
   const updateEmail = (e) => { setEmail(e.target.value) };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-    console.log("event target value from updatePssword", e.target.value)
-    console.log("value of password state var", password)
-   };
-
+  const updatePassword = (e) => { setPassword(e.target.value) };
   const updateConfirmPassword = (e) => { setConfirmPassword(e.target.value) };
-
   const updateAge = (e) => { setAge(e.target.value) };
-
   const updatePhone = (e) => { setPhone(e.target.value) };
-
   const updateDietary = (e) => { setDietary(e.target.value) };
-
   const updateEContact = (e) => { setEContact(e.target.value) };
-
   const updateStaff = (e) => { setStaff(e.target.value) };
-
   const updateRanchName = (e) => { setRanchName(e.target.value) };
-
+  const updateLocation = (e) => { setLocation(e.target.value) };
+  const updateDescription = (e) => { setDescription(e.target.value) };
   const updateRate = (e) => { setRate(e.target.value) };
 
   if (user) {
@@ -134,19 +130,33 @@ const SignUpForm = () => {
         {(staff) ? (
           <div className="ranch-fields">
               <label>Ranch Name
-              <input
-                type="text"
-                name="ranch_name"
-                onChange={updateRanchName}
-                value={ranchName}
-              ></input></label>
-                <label>Base Nightly Rate
                 <input
-                  type="number"
-                  name="ranch_rate"
-                  onChange={updateRate}
-                  value={rate}
+                  type="text"
+                  name="ranch_name"
+                  onChange={updateRanchName}
+                  value={ranch_name}
                 ></input></label>
+              <label>Ranch Location
+                <input
+                  type="text"
+                  name="location"
+                  onChange={updateLocation}
+                  value={location}
+                ></input></label>
+              <label>Description
+                <input
+                  type="text"
+                  name="description"
+                  onChange={updateDescription}
+                  value={description}
+                ></input></label>
+              <label>Base Nightly Rate
+                  <input
+                    type="number"
+                    name="ranch_rate"
+                    onChange={updateRate}
+                    value={rate}
+                  ></input></label>
           </div>
         ) : null}
         <button type="submit">Sign Up</button>

@@ -1,3 +1,4 @@
+import { SET_RANCH } from "./ranch-store";
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
@@ -10,6 +11,11 @@ const removeUser = () => ({
     type: REMOVE_USER
     //no payload needed for the logout action creator
 });
+
+const setRanch = (ranch) => ({
+    type: SET_RANCH,
+    payload: ranch
+}); //for staff account creation with Ranch create
 
 //THUNKS
 export const authenticate = () => async (dispatch) => {
@@ -58,23 +64,44 @@ export const logout = () => async (dispatch) => {
 };
 
 
-export const signUp = (full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff) => async (dispatch) => {
-    console.log("signup Thunk", password)
-    const response = await fetch("/api/auth/signup", {
+export const signUp = (full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff,
+                        //extra fields for staff account/Ranch create
+                        ranch_name, location, description, nightly_rate) => async (dispatch) => {
+
+    const userResponse = await fetch("/api/auth/signup", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff}),
     });
-    const data = await response.json();
-    // console.log(data)
-    if (data.errors) {
-        console.log("SignUp thunk errors: ", data);
+    const userData = await userResponse.json();
+
+    if (userData.errors) {
+        console.log("SignUp thunk errors from user: ", userData);
         return;
-    }
-    dispatch(setUser(data));
-    return data;
+    };
+
+    dispatch(setUser(userData));
+
+    if (ranch_name) {
+        const ranchResponse = await fetch("/api/ranch", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ranch_name, location, description, nightly_rate}),
+        });
+        const ranchData = await ranchResponse.json();
+        dispatch(setRanch(ranchData));
+
+        if (ranchData.errors) {
+            console.log("SignUp thunk errors from ranch: ", ranchData);
+            return;
+        }
+    };
+
+    return userData;
 };
 
 const initialState = { user: null };
@@ -85,6 +112,8 @@ export default function reducer(state=initialState, action) {
             return {user: action.payload}
         case REMOVE_USER:
             return {user: null}
+        case SET_RANCH:
+            return {...state, "ranch": action.payload}
         default:
             return state;
     }

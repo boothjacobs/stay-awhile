@@ -4,15 +4,17 @@ class Ranch(db.Model):
     __tablename__ = 'ranches'
 
     id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100), nullable = False)
+    ranch_name = db.Column(db.String(100), nullable = False)
     location = db.Column(db.String(100), nullable = False)
+    description = db.Column(db.String(255))
     nightly_rate = db.Column(db.Integer)
 
 
     def to_dict(self):
         return {
             "id": self.id,
-            "name": self.name,
+            "ranch_name": self.name,
             "location": self.location,
+            "description": self.description,
             "rate": self.nightly_rate
         }

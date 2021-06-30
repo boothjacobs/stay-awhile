@@ -77,14 +77,6 @@ def sign_up():
             emergency_contact=form['emergency_contact'],
             staff=form['staff']
         )
-        if (form['ranchName']):
-            ranch = Ranch(
-                name=form['ranch_name'],
-                rate=form['ranch_rate']
-            )
-            db.session.add(ranch)
-            print(ranch)
-            db.session.commit()
         print("SignUp Route ============================", user)
         db.session.add(user)
         db.session.commit()
