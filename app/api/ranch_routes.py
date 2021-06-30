@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Ranch
+from app.forms import SignUpForm
 from flask_login import current_user, login_required
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
@@ -10,9 +11,14 @@ ranch_routes = Blueprint('ranch', __name__)
 def new_ranch():
     form = SignUpForm()
 
+    print("*************post ranch route*********")
+    print(form['ranch_name'].data)
+
     ranch = Ranch(
-        name=form['ranch_name'],
-        rate=form['ranch_rate']
+        ranch_name=form['ranch_name'].data,
+        location=form['location'].data,
+        description=form['description'].data,
+        nightly_rate=form['nightly_rate'].data
     )
     db.session.add(ranch)
     print(ranch)

@@ -13,7 +13,7 @@ class Ranch(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "ranch_name": self.name,
+            "ranch_name": self.ranch_name,
             "location": self.location,
             "description": self.description,
             "rate": self.nightly_rate

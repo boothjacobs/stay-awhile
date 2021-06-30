@@ -19,7 +19,7 @@ const SignUpForm = () => {
   const [ranch_name, setRanchName] = useState("");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const [rate, setRate] = useState("");
+  const [nightly_rate, setRate] = useState("");
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ const SignUpForm = () => {
         email,
         password,
         age, phone, dietary_restrictions, eContact, staff, //nullable fields
-        ranch_name, location, description, rate   //conditional fields for staff accounts only, to create Ranch
+        ranch_name, location, description, nightly_rate   //conditional fields for staff accounts only, to create Ranch
       ));
     }
   };
@@ -153,9 +153,9 @@ const SignUpForm = () => {
               <label>Base Nightly Rate
                   <input
                     type="number"
-                    name="ranch_rate"
+                    name="nightly_rate"
                     onChange={updateRate}
-                    value={rate}
+                    value={nightly_rate}
                   ></input></label>
           </div>
         ) : null}

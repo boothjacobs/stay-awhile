@@ -61,21 +61,20 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
-    print("SignUpRoute *************************", form['password'])
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print("form validated*****************", form['password'].data)
+        print("form validated*****************", form['full_name'].data)
         user = User(
-            full_name=form['full_name'],
-            email=form['email'],
+            full_name=form['full_name'].data,
+            email=form['email'].data,
             password=form['password'].data,
-            age=form['age'],
-            phone_number=form['phone_number'],
-            dietary_restrictions=form['dietary_restrictions'],
-            emergency_contact=form['emergency_contact'],
-            staff=form['staff']
+            age=form['age'].data,
+            phone_number=form['phone_number'].data,
+            dietary_restrictions=form['dietary_restrictions'].data,
+            emergency_contact=form['emergency_contact'].data,
+            staff=form['staff'].data
         )
         print("SignUp Route ============================", user)
         db.session.add(user)

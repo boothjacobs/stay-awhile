@@ -21,4 +21,6 @@ class SignUpForm(FlaskForm):
     emergency_contact = StringField('Emergency Contact')
     staff = BooleanField('Staff or Guest')
     ranch_name = StringField('Ranch Name')
-    ranch_rate = IntegerField('Base Nightly Rate')
+    location = StringField('Location')
+    description = StringField('Description')
+    nightly_rate = IntegerField('Base Nightly Rate')

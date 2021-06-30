@@ -84,7 +84,8 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
 
     dispatch(setUser(userData));
 
-    if (ranch_name) {
+    if (ranch_name !== "") {
+        console.log("RANCH CONDITIONAL INSIDE SIGNUP THUNK")
         const ranchResponse = await fetch("/api/ranch", {
             method: "POST",
             headers: {
@@ -93,6 +94,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
             body: JSON.stringify({ranch_name, location, description, nightly_rate}),
         });
         const ranchData = await ranchResponse.json();
+        console.log("RANCH DATA", ranchData)
         dispatch(setRanch(ranchData));
 
         if (ranchData.errors) {
