@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Ranch
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user
@@ -61,20 +61,30 @@ def sign_up():
     Creates a new user and logs them in
     """
     form = SignUpForm()
+    print("SignUpRoute *************************", form)
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form['csrf_token'] = request.cookies['csrf_token']
 
     if form.validate_on_submit():
         user = User(
-            full_name=form.data['full_name'],
-            email=form.data['email'],
-            password=form.data['password'],
-            age=form.data['age'],
-            phone_number=form.data['phone_number'],
-            dietary_restrictions=form.data['dietary_restrictions'],
-            emergency_contact=form.data['emergency_contact'],
-            staff=form.data['staff']
+            full_name=form['fullName'],
+            email=form['email'],
+            password=form['password'],
+            age=form['age'],
+            phone_number=form['phone'],
+            dietary_restrictions=form['dietary'],
+            emergency_contact=form['eContact'],
+            staff=form['staff']
         )
+        if (form['ranchName']):
+            ranch = Ranch(
+                name=form['ranch_name'],
+                rate=form['ranch_rate']
+            )
+            db.session.add(ranch)
+            print(ranch)
+            db.session.commit()
+        print("SignUp Route ============================", user)
         db.session.add(user)
         db.session.commit()
         login_user(user)
