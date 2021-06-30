@@ -1,3 +1,10 @@
+#splash-page {
+    display: flex;
+    justify-content: space-around;
+    background-image: url(../../background-img/driveway.jpg);
+    background-clip: border-box;
+}
+
 .form-box {
     border: 1px solid darkgrey;
     width: 400px;
@@ -29,4 +36,5 @@ label > select {
 
 .auth-form > button {
     margin-left: 20px;
+    margin-bottom: 20px;
 }

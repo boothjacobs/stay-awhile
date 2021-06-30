@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { logout } from '../../store/session';
+import "./nav.css";
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -14,20 +15,10 @@ const NavBar = () => {
 
   return (
     <nav>
-      <ul>
+      <ul id="nav-list">
         <li>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <NavLink to="/home" exact={true} activeClassName="active">
             Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/signup" exact={true} activeClassName="active">
-            Sign Up
           </NavLink>
         </li>
         <li>
@@ -37,7 +28,18 @@ const NavBar = () => {
         </li>
         {(user !== null) ? (<li>
         <button onClick={onLogout}>Logout</button>
-        </li>) : null}
+        </li>) : (<>
+            <li>
+              <NavLink to="/login" exact={true} activeClassName="active">
+                Login
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/signup" exact={true} activeClassName="active">
+                Sign Up
+              </NavLink>
+            </li>
+        </>)}
       </ul>
     </nav>
   );
