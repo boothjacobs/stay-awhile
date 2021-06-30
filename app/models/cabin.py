@@ -9,6 +9,8 @@ class Cabin(db.Model):
     total_capacity = db.Column(db.Integer, nullable = False)
     img_url = db.Column(db.String)
     ranch_id = db.Column(db.Integer, db.ForeignKey('ranches.id'))
+    ranch = db.relationship("Ranch", back_populates="cabins")
+    bookings = db.relationship("Booking", back_populates="cabin")
 
     def to_dict(self):
         return {
@@ -17,5 +19,6 @@ class Cabin(db.Model):
             "beds": self.beds,
             "total_capacity": self.total_capacity,
             "img_url": self.img_url,
-            "ranch": self.ranches.name
+            "ranch": self.ranch.ranch_name,
+            "bookings": self.bookings
         }

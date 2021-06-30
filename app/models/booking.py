@@ -1,3 +1,4 @@
+from app.models import ranch
 from .db import db
 
 class Booking(db.Model):
@@ -10,15 +11,20 @@ class Booking(db.Model):
     interests = db.Column(db.String)
     start_date = db.Column(db.Date, nullable = False)
     end_date = db.Column(db.Date, nullable = False)
+    ranch = db.relationship("Ranch", back_populates="bookings")
+    guest = db.relationship("User", back_populates="bookings")
+    cabin = db.relationship("Cabin", back_populates="bookings")
+    invoice = db.relationship("Invoice", back_populates="booking")
+    review = db.relationship("Review", back_populates="booking")
 
 
     def to_dict(self):
         return {
             "id": self.id,
-            "ranch": self.ranches.name,
-            "guest": self.guests.full_name,
-            "cabin": self.cabins.name,
+            "ranch": self.ranch.ranch_name,
+            "guest": self.guest.full_name,
+            "cabin": self.cabin.name,
             "interests": self.interests,
             "start_date": self.start_date,
-            "end_date": self.end_date
+            "end_date": self.end_date,
         }

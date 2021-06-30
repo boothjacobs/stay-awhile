@@ -30,6 +30,7 @@ const LoginForm = () => {
 
   return (
     <div className="form-box">
+      <h3 className="auth-head">Log in to an existing account</h3>
       <form className="auth-form" onSubmit={onLogin}>
         <div>
           {errors?.map((error) => (

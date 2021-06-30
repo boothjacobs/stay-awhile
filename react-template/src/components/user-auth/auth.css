@@ -1,13 +1,37 @@
+body {
+    background-image:url(../../background-img/driveway.jpg);
+background-origin: border-box;
+background-clip: border-box;
+background-size: cover;
+}
+/* linear-gradient(rgba(0, 0, 0, 0.5), rgba(105, 68, 0, 0.5)), */
+
 #splash-page {
     display: flex;
     justify-content: space-around;
-    background-image: url(../../background-img/driveway.jpg);
+    width: 100vw;
+    height: 100vh;
+    /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(105, 68, 0, 0.5)),
+        url(../../background-img/driveway.jpg);
+    background-origin: border-box;
     background-clip: border-box;
+    background-size: cover; */
+    /* background-position:center; */
 }
 
 .form-box {
-    border: 1px solid darkgrey;
+    /* border: 1px solid darkgrey; */
     width: 400px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 5px;
+}
+
+.auth-head {
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
 }
 
 .auth-form {

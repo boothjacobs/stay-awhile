@@ -10,15 +10,17 @@ class Invoice(db.Model):
     deposit = db.Column(db.Boolean, nullable = False)
     rollover_payment = db.Column(db.Boolean)
     amount_paid = db.Column(db.Integer)
+    guest = db.relationship("User", back_populates="invoices")
+    booking = db.relationship("Booking", back_populates="invoice")
 
 
     def to_dict(self):
         return {
             "id": self.id,
-            "guest": self.guests.full_name,
-            "booking": self.bookings.name,
+            "guest": self.guest.full_name,
+            "booking": self.booking.to_dict(),
             "additional_charges": self.additional_charges,
             "deposit": self.deposit,
             "rollover_payment": self.rollover_payment,
-            "amount_paid": self.amount_paid
+            "amount_paid": self.amount_paid,
         }

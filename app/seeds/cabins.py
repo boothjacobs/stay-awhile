@@ -28,10 +28,10 @@ def seed_cabins():
                 img_url='https://www.lazylb.com/wp-content/uploads/2020/02/LB-Rooms_10.jpg',
                 ranch_id='2')
     cabin6 = Cabin(name='West',
-            beds='2',
-            total_capacity='4',
-            img_url='https://www.lazylb.com/wp-content/uploads/2020/02/LB-Rooms_04.jpg',
-            ranch_id='2')
+                beds='2',
+                total_capacity='4',
+                img_url='https://www.lazylb.com/wp-content/uploads/2020/02/LB-Rooms_04.jpg',
+                ranch_id='2')
     cabin7 = Cabin(name='South',
                 beds='1',
                 total_capacity='2',

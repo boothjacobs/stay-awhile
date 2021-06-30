@@ -2,40 +2,49 @@ from app.models import db, Ranch
 
 def seed_ranches():
 
-    ranch_one = Ranch(name='7D Ranch',
+    ranch_one = Ranch(ranch_name='7D Ranch',
                     location='Cody, Wyoming',
+                    description=None,
                     nightly_rate='398')
 
-    ranch_two = Ranch(name='Lazy L and B Ranch',
+    ranch_two = Ranch(ranch_name='Lazy L and B Ranch',
                     location='Dubois, Wyoming',
+                    description=None,
                     nightly_rate='400')
 
-    ranch_3 = Ranch(name='The Hideout',
+    ranch_3 = Ranch(ranch_name='The Hideout',
                     location='Shell, Wyoming',
+                    description=None,
                     nightly_rate='595')
 
-    ranch_4 = Ranch(name='VeeBar Guest Ranch',
+    ranch_4 = Ranch(ranch_name='VeeBar Guest Ranch',
                     location='Laramie, Wyoming',
+                    description=None,
                     nightly_rate='466')
 
-    ranch_5 = Ranch(name='Crossed Sabres Ranch',
+    ranch_5 = Ranch(ranch_name='Crossed Sabres Ranch',
                     location='Cody, Wyoming',
+                    description=None,
                     nightly_rate='415')
 
-    ranch_6 = Ranch(name='R Lazy S Ranch',
+    ranch_6 = Ranch(ranch_name='R Lazy S Ranch',
                     location='Teton Village, Wyoming',
+                    description=None,
                     nightly_rate='475')
 
-    ranch_7 = Ranch(name='Diamond 4 Ranch',
+    ranch_7 = Ranch(ranch_name='Diamond 4 Ranch',
                     location='Lander, Wyoming',
+                    description=None,
                     nightly_rate='345')
 
-    ranch_8 = Ranch(name='Absaroka Ranch',
+    ranch_8 = Ranch(ranch_name='Absaroka Ranch',
                     location='Dubois, Wyoming',
+                    description=None,
                     nightly_rate='365')
 
-    ranch_9 = Ranch(name='Moose Head Ranch',
+    ranch_9 = Ranch(ranch_name='Moose Head Ranch',
                     location='Jackson Hole, Wyoming',
+                    description=None,
                     nightly_rate='460')
 
     db.session.add(ranch_one)
