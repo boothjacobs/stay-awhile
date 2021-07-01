@@ -20,5 +20,5 @@ class Cabin(db.Model):
             "total_capacity": self.total_capacity,
             "img_url": self.img_url,
             "ranch": self.ranch.ranch_name,
-            "bookings": self.bookings
+            "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
         }

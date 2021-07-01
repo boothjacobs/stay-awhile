@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
-
 
 import "./ranchSide.css";
 
@@ -27,7 +27,7 @@ const RanchHome = () => {
             <div className="ranch-dashboard">
                 <div id="dashboard-one">
                     <p className="dashboard-p">{user?.full_name}</p>
-                    <p className="dashboard-p">{ranch?.ranch_name}</p>
+                    <p className="dashboard-p"><NavLink to={{pathname:'/staff/profile', state: {ranch:ranch}}}>{ranch?.ranch_name}</NavLink></p>
                 </div>
                 <div id="dashboard-two">
                     <p>Upcoming Bookings</p>
@@ -37,7 +37,7 @@ const RanchHome = () => {
                         if (Date.parse(start) < Date.now()) {
                             return null;
                         };
-                        return ( <div>
+                        return ( <div key={booking?.id}>
                             <p className="dashboard-p">{booking?.guest}</p>
                             <p className="dashboard-p">{booking?.cabin}</p>
                             <p className="dashboard-p">{booking?.interests}</p>

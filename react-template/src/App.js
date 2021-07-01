@@ -7,6 +7,7 @@ import SignUpForm from "./components/user-auth/SignUpForm";
 import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
+import RanchProfile from "./components/RanchSide/RanchProfile";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -40,6 +41,9 @@ function App() {
         </Route>
         <ProtectedRoute path="/home" exact={true} >
           <Home />
+        </ProtectedRoute>
+        <ProtectedRoute path="/staff/profile" exact={true} >
+          <RanchProfile />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
