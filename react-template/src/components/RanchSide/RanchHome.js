@@ -32,12 +32,17 @@ const RanchHome = () => {
                 <div id="dashboard-two">
                     <p>Upcoming Bookings</p>
                     {(bookings) ? bookings?.map((booking) => {
+                        let start = new Date(booking?.start_date);
+                        let end = new Date(booking?.end_date);
+                        if (Date.parse(start) < Date.now()) {
+                            return null;
+                        };
                         return ( <div>
                             <p className="dashboard-p">{booking?.guest}</p>
                             <p className="dashboard-p">{booking?.cabin}</p>
                             <p className="dashboard-p">{booking?.interests}</p>
-                            <p className="dashboard-p">{booking?.start_date}</p>
-                            <p className="dashboard-p">{booking?.end_date}</p>
+                            <p className="dashboard-p">{start?.toDateString()}</p>
+                            <p className="dashboard-p">{end?.toDateString()}</p>
                         </div> )
                     }) : null}
                 </div>
