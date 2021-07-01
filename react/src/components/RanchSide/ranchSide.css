@@ -1,0 +1,40 @@
+.ranch-dashboard {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 5px solid white;
+    display: grid;
+    grid-template-areas: "one one"
+                            "two three"
+                            "four four";
+}
+
+#dashboard-one {
+    grid-area: one;
+    display: flex;
+    justify-content: center;
+    border: 5px solid white;
+}
+
+#dashboard-two {
+    grid-area: two;
+    display: flex;
+    justify-content: center;
+    border: 5px solid white;
+}
+
+#dashboard-three {
+    grid-area: three;
+    display: flex;
+    justify-content: center;
+    border: 5px solid white;
+}
+
+#dashboard-four {
+    grid-area: four;
+    display: flex;
+    justify-content: center;
+    border: 5px solid white;
+}
+
+.dashboard-p {
+    margin: 20px;
+}

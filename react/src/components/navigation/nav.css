@@ -1,0 +1,26 @@
+nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 68px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#nav-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav-li {
+    list-style-type: none;
+    background-color: white;
+    padding: 15px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.nav-li > button {
+    background-color: transparent;
+    border: none;
+}
