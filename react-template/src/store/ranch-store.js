@@ -17,10 +17,8 @@ export const editRanch = (ranchId, formData) => async (dispatch) => {
 
     const ranchResponse = await fetch(`/api/ranch/${ranchId}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        //KeyError means get rid of fetch headers I guess????
+        body: formData,
     });
     const ranchData = await ranchResponse.json();
     // console.log("RANCH DATA", ranchData)

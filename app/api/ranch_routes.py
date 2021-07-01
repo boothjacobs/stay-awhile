@@ -34,10 +34,12 @@ def get_ranch(id):
 @ranch_routes.route('/<id>', methods=["PUT"])
 def edit_ranch(id):
     ranch = Ranch.query.get(id)
-    ranch.ranch_name = request.form['ranch_name'].data
-    ranch.location = request.form['location'].data
-    ranch.description = request.form['description'].data
-    ranch.nightly_rate = request.form['nightly_rate'].data
+    # print("****************** edit route", ranch)
+    # print("****************** edit route", request.form["location"])
+    ranch.ranch_name = request.form['ranch_name']
+    ranch.location = request.form['location']
+    ranch.description = request.form['description']
+    ranch.nightly_rate = request.form['nightly_rate']
 
     db.session.add(ranch)
     db.session.commit()
