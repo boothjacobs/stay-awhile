@@ -15,7 +15,7 @@ const EditRanchModal = ({ranch}) => {
     useEffect(() => {
         dispatch(getRanch(ranch.id));
         setShowModal(false);
-    }, [dispatch, ranch])
+    }, [dispatch])
 
     const handleSubmit = (e) => {
         // e.preventDefault(); //should be unnecessary
@@ -41,28 +41,28 @@ const EditRanchModal = ({ranch}) => {
                             <input
                             type="text"
                             name="ranch_name"
-                            onChange={() => setRanchName(e.target.value)}
+                            onChange={(e) => setRanchName(e.target.value)}
                             value={ranch_name}
                             ></input></label>
                         <label>Ranch Location
                             <input
                             type="text"
                             name="location"
-                            onChange={() => setLocation(e.target.value)}
+                            onChange={(e) => setLocation(e.target.value)}
                             value={location}
                             ></input></label>
                         <label>Description
                             <input
                             type="text"
                             name="description"
-                            onChange={() => setDescription(e.target.value)}
+                            onChange={(e) => setDescription(e.target.value)}
                             value={description}
                             ></input></label>
                         <label>Base Nightly Rate
                             <input
                             type="number"
                             name="nightly_rate"
-                            onChange={() => setRate(e.target.value)}
+                            onChange={(e) => setRate(e.target.value)}
                             value={nightly_rate}
                             ></input></label>
                             <div className="modal-buttons">

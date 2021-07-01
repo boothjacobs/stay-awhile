@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getRanch } from '../../store/ranch-store';
-import { EditRanchModal } from '../RanchSide/EditRanchModal';
+import EditRanchModal from '../RanchSide/EditRanchModal';
 
 import "./ranchSide.css";
 
