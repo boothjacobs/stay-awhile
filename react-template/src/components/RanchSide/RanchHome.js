@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { getRanch } from '../../store/ranch-store';
 
+
 import "./ranchSide.css";
 
 const RanchHome = () => {
@@ -13,8 +14,12 @@ const RanchHome = () => {
     }, [dispatch, user])
 
     const ranch = useSelector(state => state.ranch.ranch);
-    console.log(ranch.ranch_name)
-    console.log(ranch.bookings[3].cabin)
+    let bookings;
+    if (ranch) {
+        bookings = Object.values(ranch?.bookings);
+    }
+    console.log("from ranch object", ranch?.bookings)
+    console.log("variable bookings", bookings)
 
     return (
         <>
@@ -26,8 +31,15 @@ const RanchHome = () => {
                 </div>
                 <div id="dashboard-two">
                     <p>Upcoming Bookings</p>
-                    <p>Booking One</p>
-                    <p className="dashboard-p">{ranch?.bookings[3].cabin}</p>
+                    {(bookings) ? bookings?.map((booking) => {
+                        return ( <div>
+                            <p className="dashboard-p">{booking?.guest}</p>
+                            <p className="dashboard-p">{booking?.cabin}</p>
+                            <p className="dashboard-p">{booking?.interests}</p>
+                            <p className="dashboard-p">{booking?.start_date}</p>
+                            <p className="dashboard-p">{booking?.end_date}</p>
+                        </div> )
+                    }) : null}
                 </div>
                 <div id="dashboard-three">
                     <p>Open Invoices</p>
