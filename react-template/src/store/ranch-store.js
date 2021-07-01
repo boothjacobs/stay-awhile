@@ -11,6 +11,26 @@ export const getRanch = (ranchId) => async (dispatch) => {
         const ranch = await response.json()
         dispatch(setRanch(ranch))
     }
+};
+
+export const editRanch = (ranchId, formData) => async (dispatch) => {
+
+    const ranchResponse = await fetch(`/api/ranch/${ranchId}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+    });
+    const ranchData = await ranchResponse.json();
+    // console.log("RANCH DATA", ranchData)
+    if (ranchData.errors) {
+        console.log("SignUp thunk errors from ranch: ", ranchData);
+        return;
+    }
+
+    dispatch(setRanch(ranchData));
+    return ranchData;
 }
 
 const initialState = {};
@@ -22,4 +42,4 @@ export default function reducer(state=initialState, action) {
         default:
             return state;
     }
-}
+};

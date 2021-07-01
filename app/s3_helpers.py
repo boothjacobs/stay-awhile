@@ -3,6 +3,9 @@ import botocore
 import os
 import uuid
 
+#s3_helpers and related code relied heavily on Juliet Shafto's "Using S3 for image upload with Flask"
+# https://hackmd.io/@jpshafto/SyWY45KGu
+
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
 
