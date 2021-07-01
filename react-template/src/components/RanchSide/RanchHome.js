@@ -13,7 +13,8 @@ const RanchHome = () => {
     }, [dispatch, user])
 
     const ranch = useSelector(state => state.ranch.ranch);
-    // console.log(ranch.ranch_name)
+    console.log(ranch.ranch_name)
+    console.log(ranch.bookings[3].cabin)
 
     return (
         <>
@@ -25,6 +26,8 @@ const RanchHome = () => {
                 </div>
                 <div id="dashboard-two">
                     <p>Upcoming Bookings</p>
+                    <p>Booking One</p>
+                    <p className="dashboard-p">{ranch?.bookings[3].cabin}</p>
                 </div>
                 <div id="dashboard-three">
                     <p>Open Invoices</p>

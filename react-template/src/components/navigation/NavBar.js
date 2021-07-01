@@ -7,7 +7,7 @@ import "./nav.css";
 const NavBar = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
-    console.log("nav bar user from selector", user)
+    // console.log("nav bar user from selector", user)
 
     const onLogout = async (e) => {
         dispatch(logout());

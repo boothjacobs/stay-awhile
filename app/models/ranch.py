@@ -21,5 +21,5 @@ class Ranch(db.Model):
             "description": self.description,
             "rate": self.nightly_rate,
             # "cabins": self.cabins,
-            # "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
+            "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
         }

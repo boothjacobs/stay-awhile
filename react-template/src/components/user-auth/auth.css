@@ -1,22 +1,13 @@
-body {
-    background-image:url(../../background-img/driveway.jpg);
-background-origin: border-box;
-background-clip: border-box;
-background-size: cover;
-}
-/* linear-gradient(rgba(0, 0, 0, 0.5), rgba(105, 68, 0, 0.5)), */
 
 #splash-page {
     display: flex;
     justify-content: space-around;
     width: 100vw;
     height: 100vh;
-    /* background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(105, 68, 0, 0.5)),
-        url(../../background-img/driveway.jpg);
+    background-image: url(../../background-img/driveway.jpg);
     background-origin: border-box;
     background-clip: border-box;
-    background-size: cover; */
-    /* background-position:center; */
+    background-size: cover;
 }
 
 .form-box {

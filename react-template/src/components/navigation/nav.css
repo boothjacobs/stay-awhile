@@ -1,9 +1,12 @@
 nav {
-    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    margin-top: 0px;
     height: 68px;
+    width: 100%;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 #nav-list {

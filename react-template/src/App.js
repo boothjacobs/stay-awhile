@@ -7,8 +7,6 @@ import SignUpForm from "./components/user-auth/SignUpForm";
 import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
-import GuestHome from "./components/GuestSide/GuestHome";
-import RanchHome from "./components/RanchSide/RanchHome";
 import { authenticate } from "./store/session";
 
 function App() {
