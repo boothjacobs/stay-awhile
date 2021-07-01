@@ -8,6 +8,7 @@ import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
 import RanchProfile from "./components/RanchSide/RanchProfile";
+import AddCabin from "./components/RanchSide/AddCabin";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -44,6 +45,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/staff/profile" exact={true} >
           <RanchProfile />
+        </ProtectedRoute>
+        <ProtectedRoute path="/staff/lodgings" exact={true}>
+          <AddCabin />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

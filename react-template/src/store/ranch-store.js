@@ -1,4 +1,5 @@
 export const SET_RANCH = "ranch/SET_RANCH";
+const SET_CABIN = "ranch/SET_CABIN";
 
 const setRanch = (ranch) => ({
     type: SET_RANCH,
@@ -14,22 +15,35 @@ export const getRanch = (ranchId) => async (dispatch) => {
 };
 
 export const editRanch = (ranchId, formData) => async (dispatch) => {
-
     const ranchResponse = await fetch(`/api/ranch/${ranchId}`, {
         method: "PUT",
         //KeyError means get rid of fetch headers I guess????
         body: formData,
     });
     const ranchData = await ranchResponse.json();
-    // console.log("RANCH DATA", ranchData)
+    // console.log("editRanch RANCH DATA", ranchData)
     if (ranchData.errors) {
-        console.log("SignUp thunk errors from ranch: ", ranchData);
+        console.log("editRanch thunk errors from ranch-store: ", ranchData);
         return;
     }
-
     dispatch(setRanch(ranchData));
     return ranchData;
-}
+};
+
+export const addCabin = (ranchId, formData) => async (dispatch) => {
+    const ranchResponse = await fetch(`/api/ranch/${ranchId}/cabins`, {
+        method: "POST",
+        body: formData,
+    });
+    const ranchData = await ranchResponse.json();
+    // console.log("addCabin RANCH DATA", ranchData)
+    if (ranchData.errors) {
+        console.log("addCabin thunk errors from ranch-store: ", ranchData);
+        return;
+    }
+    dispatch(setRanch(ranchData));
+    return ranchData;
+};
 
 const initialState = {};
 

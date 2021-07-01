@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Ranch
+from app.models import db, Ranch, Cabin, User
 from app.forms import SignUpForm
 from flask_login import current_user, login_required
 
@@ -31,6 +31,7 @@ def get_ranch(id):
     ranch = Ranch.query.get(id)
     return ranch.to_dict()
 
+
 @ranch_routes.route('/<id>', methods=["PUT"])
 def edit_ranch(id):
     ranch = Ranch.query.get(id)
@@ -45,6 +46,41 @@ def edit_ranch(id):
     db.session.commit()
 
     return ranch.to_dict()
+
+
+@ranch_routes.route('/<id>/cabins', methods=["POST"])
+def add_cabin(id):
+    ranch = Ranch.query.get(id)
+
+    if "image" not in request.files:
+        url = None
+
+    image_file = request.files["image"]
+    if not allowed_file(image_file.filename):
+        return {"errors": "file type not permitted"}, 400
+
+    image_file.filename = get_unique_filename(image_file.filename)
+
+    upload = upload_file_to_s3(image_file)
+    if "url" not in upload:
+        #upload will have its own error messages if it didn't bring back a URL
+        return upload, 400
+
+    url = upload["url"]
+
+    cabin = Cabin(
+        name=request.form['name'],
+        beds=request.form['beds'],
+        total_capacity=request.form['total_capacity'],
+        img_url=url,
+        ranch_id=ranch.id
+        )
+    db.session.add(cabin)
+    print("******************", cabin)
+    db.session.commit()
+    #refreshing the associated ranch in store should provide access to cabins
+    return ranch.to_dict()
+
 # image_routes = Blueprint("images", __name__)
 # @image_routes.route("", methods=["POST"])
 # @login_required
