@@ -54,13 +54,14 @@ const AddCabin = () => {
     };
 
     const editButton = (e) => {
+        window.alert("This button doesn't do anything yet")
         console.log(e.target.id)
     }
 
     return (
-        <>
+        <div className="under-nav">
             <div className="form-box">
-                <h3>New Lodging</h3>
+                <h3 className="auth-head">New Lodging</h3>
                 <form className="cabin-form" onSubmit={submitHandler}>
                     <label>Cabin or Room Name
                         <input
@@ -111,7 +112,7 @@ const AddCabin = () => {
                     })}
                 </ul>
             </div>
-        </>
+        </div>
     )
 }
 

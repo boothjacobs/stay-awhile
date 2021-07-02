@@ -23,7 +23,7 @@ const RanchHome = () => {
     // console.log("variable bookings", bookings)
 
     return (
-        <>
+        <div className="under-nav">
             <h1>Ranch Dashboard</h1>
             <div className="ranch-dashboard">
                 <div id="dashboard-one">
@@ -54,7 +54,7 @@ const RanchHome = () => {
                     <p>Available Cabins</p>
                 </div>
             </div>
-        </>
+        </div>
     )
  }
 
