@@ -20,9 +20,10 @@ const RanchProfile = () => {
     if (ranch) {
         cabins = Object.values(ranch?.cabins);
     };
+    // console.log("cabins from ranh profile.js", cabins)
 
     return (
-        <>
+        <div className="under-nav">
             <h1>{ranch?.ranch_name}</h1>
             <EditRanchModal ranch={ranch}/>
             <ul>
@@ -32,13 +33,13 @@ const RanchProfile = () => {
                 <li> Cabins and Rooms:
                     <ul>
                         {cabins?.map((cabin) => {
-                            return ( <li>{cabin.name}</li> )
+                            return ( <li key={cabin.id}>{cabin.name}</li> )
                         })}
                         <li><NavLink to="/staff/lodgings">Add or Edit Lodging</NavLink></li>
                     </ul>
                 </li>
             </ul>
-        </>
+        </div>
     )
 }
 

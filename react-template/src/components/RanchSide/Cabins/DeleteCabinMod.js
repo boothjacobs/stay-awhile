@@ -13,8 +13,9 @@ const DeleteCabinModal = ({cabin}) => {
     }, [dispatch, cabin?.ranch_id]);
 
     const deleteButton = (e) => {
-        dispatch(deleteCabin(cabin?.id));
-        console.log("deleted")
+        dispatch(deleteCabin(cabin?.ranch_id, cabin?.id));
+        setShowModal(false);
+        console.log("delete TEST MODE")
     };
 
     return (

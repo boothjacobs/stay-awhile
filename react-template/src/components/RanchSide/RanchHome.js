@@ -18,8 +18,8 @@ const RanchHome = () => {
     if (ranch) {
         bookings = Object.values(ranch?.bookings);
     }
-    console.log("from ranch object", ranch?.bookings)
-    console.log("variable bookings", bookings)
+    // console.log("from ranch object", ranch?.bookings)
+    // console.log("variable bookings", bookings)
 
     return (
         <>

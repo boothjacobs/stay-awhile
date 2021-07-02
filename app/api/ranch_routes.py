@@ -28,6 +28,8 @@ def new_ranch():
 
 @ranch_routes.route('/<id>', methods=['GET'])
 def get_ranch(id):
+    print("*******************************************************")
+    print("attempting to GET ranch", id)
     ranch = Ranch.query.get(id)
     return ranch.to_dict()
 
@@ -46,6 +48,13 @@ def edit_ranch(id):
     db.session.commit()
 
     return ranch.to_dict()
+
+
+@ranch_routes.route('/<id>/cabins', methods=['GET'])
+def get_cabins(id):
+    cabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
+    print(cabins)
+    return {"cabins": [cabin.to_dict() for cabin in cabins]}
 
 
 @ranch_routes.route('/<id>/cabins', methods=["POST"])
@@ -78,15 +87,15 @@ def add_cabin(id):
     db.session.add(cabin)
     print("******************", cabin)
     db.session.commit()
-    #refreshing the associated ranch in store should provide access to cabins
-    return ranch.to_dict()
+    return cabin.to_dict()
 
 
-@ranch_routes.route('/cabins/<id>', methods=["DELETE"])
-def delete_cabin(id):
-    cabin = Cabin.query.get(id)
-    ranch = Ranch.query.get(cabin.ranch_id)
-    # print(ranch)
-    db.session.delete(cabin)
-    db.session.commit()
-    return ranch.to_dict()
+@ranch_routes.route('/<id>/cabins/<cabinId>', methods=["DELETE"])
+def delete_cabin(id, cabinId):
+    cabin = Cabin.query.get(cabinId)
+    allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
+    print("DELETE ROUTE IN TEST MODE", allCabins)
+    print(cabin)
+    # db.session.delete(cabin)
+    # db.session.commit()
+    return {"cabins": [cabin.to_dict() for cabin in allCabins]}

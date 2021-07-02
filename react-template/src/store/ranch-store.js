@@ -1,11 +1,18 @@
 export const SET_RANCH = "ranch/SET_RANCH";
+const SET_CABINS = "ranch/SET_CABINS";
 
 const setRanch = (ranch) => ({
     type: SET_RANCH,
     payload: ranch
 });
 
+const setCabins = (cabins) => ({
+    type: SET_CABINS,
+    payload: cabins
+});
+
 export const getRanch = (ranchId) => async (dispatch) => {
+    console.log("getRanch thunk", ranchId)
     const response = await fetch(`/api/ranch/${ranchId}`);
     if (response.ok) {
         const ranch = await response.json()
@@ -20,7 +27,6 @@ export const editRanch = (ranchId, formData) => async (dispatch) => {
         body: formData,
     });
     const ranchData = await ranchResponse.json();
-    // console.log("editRanch RANCH DATA", ranchData)
     if (ranchData.errors) {
         console.log("editRanch thunk errors from ranch-store: ", ranchData);
         return;
@@ -29,23 +35,36 @@ export const editRanch = (ranchId, formData) => async (dispatch) => {
     return ranchData;
 };
 
+export const getCabins = (ranchId) => async (dispatch) => {
+    console.log("getCabins thunk", ranchId)
+    const cabinsRes = await fetch(`/api/ranch/${ranchId}/cabins`);
+    if (cabinsRes.errors) {
+        console.log("getCabins thunk errors from ranch-store: ", cabinsRes);
+        return;
+    };
+    const cabinData = await cabinsRes.json()
+    dispatch(setCabins(cabinData));
+    return cabinData;
+}
+
 export const addCabin = (ranchId, formData) => async (dispatch) => {
     const ranchResponse = await fetch(`/api/ranch/${ranchId}/cabins`, {
         method: "POST",
         body: formData,
     });
     const ranchData = await ranchResponse.json();
-    // console.log("addCabin RANCH DATA", ranchData)
     if (ranchData.errors) {
         console.log("addCabin thunk errors from ranch-store: ", ranchData);
         return;
-    }  // because of association, store can be updated with ranch info and that will render cabin changes
+    };
+    // because of association, store can be updated with ranch info and that will render cabin changes
     dispatch(setRanch(ranchData));
     return ranchData;
 };
 
-export const deleteCabin = (cabinId) => async (dispatch) => {
-    const res = await fetch(`/api/ranch/cabins/${cabinId}`, {
+export const deleteCabin = (ranchId, cabinId) => async (dispatch) => {
+    console.log("deleteCabin thunk", ranchId, cabinId)
+    const res = await fetch(`/api/ranch/${ranchId}/cabins/${cabinId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -56,7 +75,7 @@ export const deleteCabin = (cabinId) => async (dispatch) => {
         return;
     }
     const data = await res.json()
-    dispatch(setRanch(data));
+    dispatch(setCabins(data));
     return data;
 }
 
@@ -66,6 +85,11 @@ export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
             return {ranch: action.payload}
+        case SET_CABINS:
+            const cabinState = {...state};
+            console.log(cabinState, "and payload", action.payload)
+            cabinState["cabins"] = action.payload;
+            return cabinState;
         default:
             return state;
     }
