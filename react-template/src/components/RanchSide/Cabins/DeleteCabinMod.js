@@ -9,8 +9,9 @@ const DeleteCabinModal = ({cabin}) => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        showModal && dispatch(getRanch(cabin?.ranch_id));
-    }, [dispatch, cabin?.ranch_id, showModal]);
+        console.log("delete cabin modal useEffect", ranch, cabin)
+        showModal && dispatch(getCabins(ranch.id));
+    }, [dispatch, ranch.id, showModal]);
 
     const deleteButton = (e) => {
         dispatch(deleteCabin(cabin.id));
