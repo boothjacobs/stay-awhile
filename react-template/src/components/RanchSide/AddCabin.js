@@ -82,6 +82,8 @@ const AddCabin = () => {
                                 <li>Beds: {cabin.beds}</li>
                                 <li>Capacity: {cabin.total_capacity}</li>
                                 <li><img className="cabin-thumbnail" src={`${cabin.img_url}`}/></li>
+                                <li>Edit Button</li>
+                                <li>Delete Button</li>
                             </ul>
                         </li> )
                     })}
