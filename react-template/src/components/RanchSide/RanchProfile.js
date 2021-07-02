@@ -11,6 +11,7 @@ const RanchProfile = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
+        console.log("RanchProfile.js dispatch of getRanch")
         dispatch(getRanch(user.ranch_id))
     }, [dispatch, user])
 

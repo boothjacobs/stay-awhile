@@ -10,7 +10,7 @@ const AddCabin = () => {
 
     useEffect(() => {
         console.log("dispatching getRanch from useEffect", user, ranch, user.ranch_id)
-        dispatch(getRanch(user?.ranch_id))
+        dispatch(getRanch(user.ranch_id))
     }, [dispatch, user])
 
     let cabins;
@@ -103,9 +103,9 @@ const AddCabin = () => {
                             <ul id="cabin-deets">
                                 <li>Beds: {cabin.beds}</li>
                                 <li>Capacity: {cabin.total_capacity}</li>
-                                <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>
+                                {cabin.img_url && <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>}
                                 <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li>
-                                <li><DeleteCabinModal /></li>
+                                <li><DeleteCabinModal cabin={cabin} /></li>
                             </ul>
                         </li> )
                     })}

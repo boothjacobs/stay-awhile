@@ -10,6 +10,7 @@ const RanchHome = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
+        console.log("Ranch Home.js dispatch of getRanch")
         dispatch(getRanch(user.ranch_id))
     }, [dispatch, user])
 
@@ -27,7 +28,7 @@ const RanchHome = () => {
             <div className="ranch-dashboard">
                 <div id="dashboard-one">
                     <p className="dashboard-p">{user?.full_name}</p>
-                    <p className="dashboard-p"><NavLink to={{pathname:'/staff/profile', state: {ranch:ranch}}}>{ranch?.ranch_name}</NavLink></p>
+                    <p className="dashboard-p"><NavLink to='/staff/profile'>{ranch?.ranch_name}</NavLink></p>
                 </div>
                 <div id="dashboard-two">
                     <p>Upcoming Bookings</p>
