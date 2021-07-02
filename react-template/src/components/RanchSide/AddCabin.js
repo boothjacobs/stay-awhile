@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCabin, getRanch } from "../../store/ranch-store";
+import { addCabin, deleteCabin } from "../../store/ranch-store";
 
 const AddCabin = () => {
     const dispatch = useDispatch();
@@ -34,6 +34,15 @@ const AddCabin = () => {
         const imgFile = e.target.files[0];
         setImage(imgFile);
     };
+
+    const deleteButton = (e) => {
+        dispatch(deleteCabin(e.target.id));
+        console.log("deleted")
+    };
+
+    const editButton = (e) => {
+        console.log(e.target.id)
+    }
 
     return (
         <>
@@ -77,13 +86,13 @@ const AddCabin = () => {
                 <ul>
                     {cabins?.map((cabin) => {
                         // console.log("map", cabin);
-                        return ( <li>{cabin.name}
+                        return ( <li key={cabin.id}>{cabin.name}
                             <ul id="cabin-deets">
                                 <li>Beds: {cabin.beds}</li>
                                 <li>Capacity: {cabin.total_capacity}</li>
                                 <li><img className="cabin-thumbnail" src={`${cabin.img_url}`}/></li>
-                                <li>Edit Button</li>
-                                <li>Delete Button</li>
+                                <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li>
+                                <li><button type="button" id={cabin.id} onClick={deleteButton}>Delete</button></li>
                             </ul>
                         </li> )
                     })}

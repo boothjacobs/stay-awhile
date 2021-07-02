@@ -32,7 +32,6 @@ const RanchProfile = () => {
                 <li> Cabins and Rooms:
                     <ul>
                         {cabins?.map((cabin) => {
-                            console.log("map", cabin);
                             return ( <li>{cabin.name}</li> )
                         })}
                         <li><NavLink to="/staff/lodgings">Add or Edit Lodging</NavLink></li>

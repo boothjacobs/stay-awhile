@@ -40,10 +40,26 @@ export const addCabin = (ranchId, formData) => async (dispatch) => {
     if (ranchData.errors) {
         console.log("addCabin thunk errors from ranch-store: ", ranchData);
         return;
-    }
+    }  // because of association, store can be updated with ranch info and that will render cabin changes
     dispatch(setRanch(ranchData));
     return ranchData;
 };
+
+export const deleteCabin = (cabinId) => async (dispatch) => {
+    const res = await fetch(`/api/ranch/cabins/${cabinId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    });
+    if (res.errors) {
+        console.log("deleteCabin thunk errors from ranch-store: ", res);
+        return;
+    }
+    const data = await res.json()
+    dispatch(setRanch(data));
+    return data;
+}
 
 const initialState = {};
 
