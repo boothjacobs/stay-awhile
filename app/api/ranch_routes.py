@@ -28,6 +28,8 @@ def new_ranch():
 
 @ranch_routes.route('/<id>', methods=['GET'])
 def get_ranch(id):
+    print("*******************************************************")
+    print("attempting to GET ranch", id)
     ranch = Ranch.query.get(id)
     return ranch.to_dict()
 
@@ -48,25 +50,34 @@ def edit_ranch(id):
     return ranch.to_dict()
 
 
+@ranch_routes.route('/<id>/cabins', methods=['GET'])
+def get_cabins(id):
+    print("============================== get_cabins +++++++++++++++++++++++")
+    print(id)
+    cabins = Cabin.query.filter(Cabin.ranch_id == id)
+    print("::::::::::::::::::::::::::::::::::::::::", cabins)
+    return {"cabins": [cabin.to_dict() for cabin in cabins]}
+
+
 @ranch_routes.route('/<id>/cabins', methods=["POST"])
 def add_cabin(id):
     ranch = Ranch.query.get(id)
 
     if "image" not in request.files:
         url = None
+    else:
+        image_file = request.files["image"]
+        if not allowed_file(image_file.filename):
+            return {"errors": "file type not permitted"}, 400
 
-    image_file = request.files["image"]
-    if not allowed_file(image_file.filename):
-        return {"errors": "file type not permitted"}, 400
+        image_file.filename = get_unique_filename(image_file.filename)
 
-    image_file.filename = get_unique_filename(image_file.filename)
+        upload = upload_file_to_s3(image_file)
+        if "url" not in upload:
+            #upload will have its own error messages if it didn't bring back a URL
+            return upload, 400
 
-    upload = upload_file_to_s3(image_file)
-    if "url" not in upload:
-        #upload will have its own error messages if it didn't bring back a URL
-        return upload, 400
-
-    url = upload["url"]
+        url = upload["url"]
 
     cabin = Cabin(
         name=request.form['name'],
@@ -78,15 +89,14 @@ def add_cabin(id):
     db.session.add(cabin)
     print("******************", cabin)
     db.session.commit()
-    #refreshing the associated ranch in store should provide access to cabins
-    return ranch.to_dict()
+    return cabin.to_dict()
 
 
-@ranch_routes.route('/cabins/<id>', methods=["DELETE"])
-def delete_cabin(id):
-    cabin = Cabin.query.get(id)
-    ranch = Ranch.query.get(cabin.ranch_id)
-    # print(ranch)
+@ranch_routes.route('/cabins/<int:cabinId>', methods=["DELETE"])
+def delete_cabin(cabinId):
+    cabin = Cabin.query.get(cabinId)
+    # allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
+    print("===========================DELETE ROUTE For Real", cabin)
     db.session.delete(cabin)
     db.session.commit()
-    return ranch.to_dict()
+    return {"yes": "delete successful"}

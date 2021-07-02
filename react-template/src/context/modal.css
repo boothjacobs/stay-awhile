@@ -21,3 +21,38 @@
 #modal-content {
     position: absolute;
 }
+
+.modal-head {
+    text-align: center;
+    padding: 10px;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-form label {
+    margin: 10px;
+}
+
+.modal-buttons {
+    margin-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.confirm-modal-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.modal-confirmation-msg {
+    color: white;
+}

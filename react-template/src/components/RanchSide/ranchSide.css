@@ -1,3 +1,8 @@
+.under-nav {
+    margin-top: 70px;
+    /* background-color: red; */
+}
+
 .ranch-dashboard {
     background-color: rgba(0, 0, 0, 0.5);
     border: 5px solid white;
@@ -46,4 +51,20 @@
 .cabin-thumbnail {
     max-width: 400px;
     height: auto;
+}
+
+.cabin-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.cabin-form label {
+    margin: 10px;
+}
+
+.cabin-form > button {
+    margin: auto;
+    margin-bottom: 20px;
 }
