@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
-import EditRanchModal from '../RanchSide/EditRanchModal';
+import EditRanchModal from './EditRanchModal';
 
 import "./ranchSide.css";
 
-const RanchProfile = () => {
+const RanchDetails = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
@@ -44,4 +44,4 @@ const RanchProfile = () => {
     )
 }
 
-export default RanchProfile;
+export default RanchDetails;

@@ -46,5 +46,7 @@ class User(db.Model, UserMixin):
             "emergency_contact": self.emergency_contact,
             "staff": self.staff,
             "ranch_id": self.ranch_id,
-            # "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
+            "bookings": {booking.id: booking.to_dict() for booking in self.bookings},
+            "invoices": {invoice.id: invoice.to_dict() for invoice in self.invoices},
+            "reviews": {review.id: review.to_dict() for review in self.reviews}
         }

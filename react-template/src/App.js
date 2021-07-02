@@ -7,7 +7,8 @@ import SignUpForm from "./components/user-auth/SignUpForm";
 import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
-import RanchProfile from "./components/RanchSide/RanchProfile";
+import RanchDetails from "./components/RanchSide/RanchDetails";
+import RanchProfile from "./components/GuestSide/RanchProfile";
 import AddCabin from "./components/RanchSide/Cabins/AddCabin";
 import { authenticate } from "./store/session";
 
@@ -44,11 +45,14 @@ function App() {
           <Home />
         </ProtectedRoute>
         <ProtectedRoute path="/staff/profile" exact={true} >
-          <RanchProfile />
+          <RanchDetails />
         </ProtectedRoute>
         <ProtectedRoute path="/staff/lodgings" exact={true}>
           <AddCabin />
         </ProtectedRoute>
+        <Route path="/destination/:id" exact={true} >
+          <RanchProfile />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
