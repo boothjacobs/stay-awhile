@@ -13,7 +13,7 @@ const EditRanchModal = ({ranch}) => {
     const [nightly_rate, setRate] = useState("");
 
     useEffect(() => {
-        console.log("Edit Ranch Modal dispatch of getRanch")
+        // console.log("Edit Ranch Modal dispatch of getRanch")
         showModal && dispatch(getRanch(ranch.id));
     }, [dispatch, ranch.id, showModal])
 

@@ -62,9 +62,9 @@ export const addCabin = (ranchId, formData) => async (dispatch) => {
     return ranchData;
 };
 
-export const deleteCabin = (ranchId, cabinId) => async (dispatch) => {
-    console.log("deleteCabin thunk", ranchId, cabinId)
-    const res = await fetch(`/api/ranch/${ranchId}/cabins/${cabinId}`, {
+export const deleteCabin = (cabinId) => async (dispatch) => {
+    console.log("deleteCabin thunk", cabinId)
+    const res = await fetch(`/api/ranch/cabins/${cabinId}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -75,7 +75,6 @@ export const deleteCabin = (ranchId, cabinId) => async (dispatch) => {
         return;
     }
     const data = await res.json()
-    dispatch(setCabins(data));
     return data;
 }
 

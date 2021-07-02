@@ -52,8 +52,10 @@ def edit_ranch(id):
 
 @ranch_routes.route('/<id>/cabins', methods=['GET'])
 def get_cabins(id):
-    cabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
-    print(cabins)
+    print("============================== get_cabins +++++++++++++++++++++++")
+    print(id)
+    cabins = Cabin.query.filter(Cabin.ranch_id == id)
+    print("::::::::::::::::::::::::::::::::::::::::", cabins)
     return {"cabins": [cabin.to_dict() for cabin in cabins]}
 
 
@@ -90,12 +92,11 @@ def add_cabin(id):
     return cabin.to_dict()
 
 
-@ranch_routes.route('/<id>/cabins/<cabinId>', methods=["DELETE"])
-def delete_cabin(id, cabinId):
+@ranch_routes.route('/cabins/<int:cabinId>', methods=["DELETE"])
+def delete_cabin(cabinId):
     cabin = Cabin.query.get(cabinId)
-    allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
-    print("DELETE ROUTE IN TEST MODE", allCabins)
-    print(cabin)
-    # db.session.delete(cabin)
-    # db.session.commit()
-    return {"cabins": [cabin.to_dict() for cabin in allCabins]}
+    # allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
+    print("===========================DELETE ROUTE For Real", cabin)
+    db.session.delete(cabin)
+    db.session.commit()
+    return {"yes": "delete successful"}
