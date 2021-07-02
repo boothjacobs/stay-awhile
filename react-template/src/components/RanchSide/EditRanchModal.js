@@ -7,10 +7,10 @@ const EditRanchModal = ({ranch}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
-    const [ranch_name, setRanchName] = useState("");
-    const [location, setLocation] = useState("");
-    const [description, setDescription] = useState("");
-    const [nightly_rate, setRate] = useState("");
+    const [ranch_name, setRanchName] = useState(ranch.ranch_name);
+    const [location, setLocation] = useState(ranch.location);
+    const [description, setDescription] = useState(ranch.description);
+    const [nightly_rate, setRate] = useState(ranch.nightly_rate);
 
     useEffect(() => {
         // console.log("Edit Ranch Modal dispatch of getRanch")

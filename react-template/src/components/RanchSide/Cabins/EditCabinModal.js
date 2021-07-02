@@ -7,9 +7,9 @@ const EditCabinModal = ({cabin}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
-    const [name, setName] = useState("");
-    const [beds, setBeds] = useState("");
-    const [total_capacity, setCapacity] = useState("");
+    const [name, setName] = useState(cabin.name);
+    const [beds, setBeds] = useState(cabin.beds);
+    const [total_capacity, setCapacity] = useState(cabin.total_capacity);
     const [image, setImage] = useState("");
 
     useEffect(() => {
@@ -68,7 +68,7 @@ const EditCabinModal = ({cabin}) => {
                                 onChange={(e) => setCapacity(e.target.value)}
                                 value={total_capacity}
                             ></input></label>
-                        <label>Optional Photo
+                        <label>{(cabin.img_url) ? ("Replace Photo--leave blank to keep current file") : ("Add Photo")}
                             <input
                                 type="file"
                                 name="image"
