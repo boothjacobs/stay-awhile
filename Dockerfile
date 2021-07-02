@@ -1,7 +1,7 @@
 FROM node:12 AS build-stage
 
-WORKDIR /react-app
-COPY react-app/. .
+WORKDIR /react-template
+COPY react-template/. .
 
 # You have to set this because it should be set during build time.
 ENV REACT_APP_BASE_URL=https://stay-awhile.herokuapp.com/
