@@ -1,5 +1,4 @@
 export const SET_RANCH = "ranch/SET_RANCH";
-const SET_CABIN = "ranch/SET_CABIN";
 
 const setRanch = (ranch) => ({
     type: SET_RANCH,

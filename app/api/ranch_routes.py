@@ -54,19 +54,19 @@ def add_cabin(id):
 
     if "image" not in request.files:
         url = None
+    else:
+        image_file = request.files["image"]
+        if not allowed_file(image_file.filename):
+            return {"errors": "file type not permitted"}, 400
 
-    image_file = request.files["image"]
-    if not allowed_file(image_file.filename):
-        return {"errors": "file type not permitted"}, 400
+        image_file.filename = get_unique_filename(image_file.filename)
 
-    image_file.filename = get_unique_filename(image_file.filename)
+        upload = upload_file_to_s3(image_file)
+        if "url" not in upload:
+            #upload will have its own error messages if it didn't bring back a URL
+            return upload, 400
 
-    upload = upload_file_to_s3(image_file)
-    if "url" not in upload:
-        #upload will have its own error messages if it didn't bring back a URL
-        return upload, 400
-
-    url = upload["url"]
+        url = upload["url"]
 
     cabin = Cabin(
         name=request.form['name'],

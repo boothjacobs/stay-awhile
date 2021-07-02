@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editRanch, getRanch } from "../../store/ranch-store";
 
 const EditRanchModal = ({ranch}) => {
@@ -15,7 +15,7 @@ const EditRanchModal = ({ranch}) => {
     useEffect(() => {
         dispatch(getRanch(ranch.id));
         setShowModal(false);
-    }, [dispatch])
+    }, [dispatch, ranch.id])
 
     const handleSubmit = (e) => {
         // e.preventDefault(); //should be unnecessary

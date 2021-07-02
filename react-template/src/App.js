@@ -8,7 +8,7 @@ import NavBar from "./components/navigation/NavBar";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
 import RanchProfile from "./components/RanchSide/RanchProfile";
-import AddCabin from "./components/RanchSide/AddCabin";
+import AddCabin from "./components/RanchSide/Cabins/AddCabin";
 import { authenticate } from "./store/session";
 
 function App() {

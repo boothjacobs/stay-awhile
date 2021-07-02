@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCabin, deleteCabin } from "../../store/ranch-store";
+import { addCabin, getRanch } from "../../../store/ranch-store";
+import DeleteCabinModal from "./DeleteCabinMod";
 
 const AddCabin = () => {
     const dispatch = useDispatch();
@@ -9,6 +10,12 @@ const AddCabin = () => {
     if (ranch) {
         cabins = Object.values(ranch?.cabins);
     };
+
+    // useEffect(() => {
+    //     dispatch(getRanch(ranch?.id));
+    // }, [dispatch, ranch?.id]);
+    //need this to prevent console errors for api call to ranch/undefined,
+    //but where to get stable ranch id from? add to URL?
 
     const [name, setName] = useState("");
     const [beds, setBeds] = useState("");
@@ -26,18 +33,17 @@ const AddCabin = () => {
         formData.append("image", image);
 
         setImageLoading(true);
-        dispatch(addCabin(ranch.id, formData));
+        dispatch(addCabin(ranch?.id, formData));
         setImageLoading(false);
     };
 
     const getImage = (e) => {
-        const imgFile = e.target.files[0];
-        setImage(imgFile);
-    };
-
-    const deleteButton = (e) => {
-        dispatch(deleteCabin(e.target.id));
-        console.log("deleted")
+        if (e.target.files) {
+            const imgFile = e.target.files[0];
+            setImage(imgFile);
+        } else {
+            console.log("no image")
+        }
     };
 
     const editButton = (e) => {
@@ -65,7 +71,7 @@ const AddCabin = () => {
                         ></input></label>
                     <label>Sleeps How Many People?
                         <input
-                            type="text"
+                            type="number"
                             name="total_capacity"
                             onChange={(e) => setCapacity(e.target.value)}
                             value={total_capacity}
@@ -90,9 +96,9 @@ const AddCabin = () => {
                             <ul id="cabin-deets">
                                 <li>Beds: {cabin.beds}</li>
                                 <li>Capacity: {cabin.total_capacity}</li>
-                                <li><img className="cabin-thumbnail" src={`${cabin.img_url}`}/></li>
+                                <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>
                                 <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li>
-                                <li><button type="button" id={cabin.id} onClick={deleteButton}>Delete</button></li>
+                                <li><DeleteCabinModal /></li>
                             </ul>
                         </li> )
                     })}
