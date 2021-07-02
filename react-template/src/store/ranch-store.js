@@ -62,6 +62,20 @@ export const addCabin = (ranchId, formData) => async (dispatch) => {
     return ranchData;
 };
 
+export const editCabin = (cabinId, formData) => async (dispatch) => {
+    const cabinResponse = await fetch(`/api/ranch/cabins/${cabinId}`, {
+        method: "PUT",
+        body: formData,
+    });
+    const cabinData = await cabinResponse.json();
+    if (cabinData.errors) {
+        console.log("editCabin thunk errors from ranch-store: ", cabinData);
+        return;
+    }
+    dispatch(setCabins(cabinData));
+    return cabinData;
+};
+
 export const deleteCabin = (cabinId) => async (dispatch) => {
     console.log("deleteCabin thunk", cabinId)
     const res = await fetch(`/api/ranch/cabins/${cabinId}`, {
@@ -76,7 +90,7 @@ export const deleteCabin = (cabinId) => async (dispatch) => {
     }
     const data = await res.json()
     return data;
-}
+};
 
 const initialState = {};
 

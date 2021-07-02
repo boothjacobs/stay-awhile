@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { addCabin, getRanch } from "../../../store/ranch-store";
 import DeleteCabinModal from "./DeleteCabinMod";
+import EditCabinModal from "./EditCabinModal";
 
 const AddCabin = () => {
     const dispatch = useDispatch();
@@ -53,10 +54,10 @@ const AddCabin = () => {
         }
     };
 
-    const editButton = (e) => {
-        window.alert("This button doesn't do anything yet")
-        console.log(e.target.id)
-    }
+    // const editButton = (e) => {
+    //     window.alert("This button doesn't do anything yet")
+    //     console.log(e.target.id)
+    // }
 
     return (
         <div className="under-nav">
@@ -105,7 +106,8 @@ const AddCabin = () => {
                                 <li>Beds: {cabin.beds}</li>
                                 <li>Capacity: {cabin.total_capacity}</li>
                                 {cabin.img_url && <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>}
-                                <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li>
+                                {/* <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li> */}
+                                <li><EditCabinModal cabin={cabin} /></li>
                                 <li><DeleteCabinModal cabin={cabin} /></li>
                             </ul>
                         </li> )

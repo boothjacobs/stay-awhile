@@ -92,6 +92,33 @@ def add_cabin(id):
     return cabin.to_dict()
 
 
+@ranch_routes.route('/cabins/<int:cabinId>', methods=["PUT"])
+def edit_cabin(cabinId):
+    cabin = Cabin.query.get(cabinId)
+
+    if "image" not in request.files:
+        url = cabin.img_url
+    else:
+        image_file = request.files["image"]
+        if not allowed_file(image_file.filename):
+            return {"errors": "file type not permitted"}, 400
+        image_file.filename = get_unique_filename(image_file.filename)
+        upload = upload_file_to_s3(image_file)
+        if "url" not in upload:
+            return upload, 400
+
+        url = upload["url"]
+
+    cabin.name = request.form['name']
+    cabin.beds = request.form['beds']
+    cabin.total_capacity = request.form['total_capacity']
+    cabin.img_url = url
+
+    db.session.add(cabin)
+    db.session.commit()
+    return cabin.to_dict()
+
+
 @ranch_routes.route('/cabins/<int:cabinId>', methods=["DELETE"])
 def delete_cabin(cabinId):
     cabin = Cabin.query.get(cabinId)
