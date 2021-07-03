@@ -8,7 +8,7 @@ const setRanch = (ranch) => ({
 });
 
 const filterRanches = (ranches) => ({
-    type: SET_RANCH,
+    type: FILTER_RANCHES,
     payload: ranches
 });
 
@@ -26,15 +26,21 @@ export const getRanch = (ranchId) => async (dispatch) => {
     }
 };
 
-export const searchRanches = (formData) => async (dispatch) => {
+export const searchRanches = (searchTerm) => async (dispatch) => {
     console.log("search or browse ranch thunk");
-    const response = await fetch(`/api/ranch/search`);
+    const response = await fetch(`/api/ranch/search`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(searchTerm)
+    });
     if (response.ok) {
         const ranches = await response.json();
         dispatch(filterRanches(ranches));
         return ranches;
     } else {
-        console.log("errors in searchRances thunk", response);
+        console.log("errors in searchRanches thunk", response);
         return;
     }
 }
@@ -117,11 +123,9 @@ export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
             return {ranch: action.payload};
-        case SET_RANCH:
-            const searchResults = {};
-            action.payload.forEach((ranch) => {
-                searchResults[ranch.id] = ranch;
-            });
+        case FILTER_RANCHES:
+            const searchResults = {...action.payload};
+            return searchResults;
         case SET_CABINS:
             const cabinState = {...state};
             console.log(cabinState, "and payload", action.payload)

@@ -58,3 +58,48 @@
 .dashboard-p {
     margin: 20px;
 }
+
+.ranch-profile {
+    display: grid;
+    grid-template-areas: "picture booking"
+                        "description reviews"
+                        "second-desc reviews";
+    margin: 25px;
+}
+
+.ranch-profile-pic {
+    grid-area: picture;
+    border: 1px solid gray;
+}
+
+.ranch-profile-booking-header {
+    grid-area: booking;
+    border: 1px solid gray;
+}
+
+.booking-form-dates {
+    display: flex;
+    flex-direction: row;
+}
+
+.ranch-profile-description {
+    grid-area: description;
+    border: 1px solid gray;
+}
+
+.ranch-profile-details {
+    grid-area: second-desc;
+    border: 1px solid gray;
+}
+
+.ranch-profile-reviews {
+    grid-area: reviews;
+    border: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-thumbnail {
+    border: 1px solid gray;
+    padding: 3px;
+}

@@ -26,10 +26,20 @@ def new_ranch():
     return ranch.to_dict()
 
 
-@ranch_routes.route("/search", methods=['GET'])
+@ranch_routes.route("/search", methods=['POST'])
 def search_ranch():
-    print(request.form["search_term"], "==============================")
+    print("******************************************", request.data)
     ranches = Ranch.query.all()
+    # print("==1111111111111111111111111===", ranches)
+    # if (request.data):
+    #     ranches = []
+    #     if (Ranch.query.filter(Ranch.ranch_name.ilike(f'{request.data}'))):
+    #         ranches.append(Ranch.query.filter(Ranch.ranch_name.ilike(f'{request.data}')).all())
+    #     if (Ranch.query.filter(Ranch.location.ilike(f'{request.data}'))):
+    #         ranches.append(Ranch.query.filter(Ranch.location.ilike(f'{request.data}')).all())
+    #     if (Ranch.query.filter(Ranch.description.ilike(f'{request.data}'))):
+    #         ranches.append(Ranch.query.filter(Ranch.description.ilike(f'{request.data}')).all())
+    # print("=======================================", ranches)
     return {ranch.id: ranch.to_dict() for ranch in ranches}
 
 
