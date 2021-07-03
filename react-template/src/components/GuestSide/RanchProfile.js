@@ -1,22 +1,65 @@
 //ranch details page as seen by a casual visitor
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 
 import "../RanchSide/ranchSide.css";
 
 const RanchProfile = () => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
+    const ranch = useSelector(state => state.ranch.ranch);
 
     const ranchId = useParams().id;
     // console.log(ranchId)
     useEffect(() => {
         dispatch(getRanch(ranchId));
     }, [dispatch]);
-    const ranch = useSelector(state => state.ranch.ranch);
+
     console.log("variable ranch: ", ranch)
+    let cabins;
+    if (ranch?.cabins) {
+        cabins = Object.values(ranch?.cabins);
+    }
+    console.log("variable cabins", cabins)
+
+    const [bookingStart, setBookingStart] = useState("");
+    const [bookingEnd, setBookingEnd] = useState("");
+    const [guestCount, setGuestCount] = useState(0);
+
+    const updateBookingStart = (e) => { setBookingStart(e.target.value) };
+    const updateBookingEnd = (e) => { setBookingEnd(e.target.value) };
+
+    const handleBooking = (e) => {
+        e.preventDefault();
+        if (!user) return <Redirect to="/login" />
+
+        let formData = new FormData();
+
+    };
+
+    const calculateTotal = () => {
+        if (!bookingEnd || !bookingStart) return 0;
+
+        let duration;
+        const start = (new Date(bookingStart)).getDate();
+        const end = (new Date(bookingEnd)).getDate();
+
+        duration = end - start;
+
+        if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
+            if (duration < 1) duration += (30 - start)
+        } else if ((new Date(bookingStart)).getMonth() === 2) {
+            if (duration < 1) duration += (28 - start)
+        } else {
+            if (duration < 1) duration += (31 - start)
+        }
+        // console.log("result of calculateTotal", duration, bookingStart, bookingEnd)
+        return duration * ranch?.rate * guestCount;
+    }
+
 
     return (
         <div className="under-nav">
@@ -27,17 +70,42 @@ const RanchProfile = () => {
                 </div>
                 <div className="ranch-profile-booking-header">
                     <h1>{ranch?.ranch_name}</h1>
-                    <form>
+                    <form className="booking-form" onSubmit={handleBooking}>
                         <div className="booking-form-dates">
                             <label>Arrival Date
-                                <input type="date"/>
+                                <input type="date" required
+                                onChange={updateBookingStart}
+                                value={bookingStart}/>
                             </label>
                             <label>Departure Date
-                                <input type="date"/>
+                                <input type="date" required
+                                onChange={updateBookingEnd}
+                                value={bookingEnd}/>
                             </label>
                         </div>
+                            <label>Choose Cabin or Room:
+                                <select name="cabin_id">
+                                    <option>--Select Preferred Cabin--</option>
+                                    {cabins?.map((cabin) => {
+                                        return (<option value={cabin.id}>{cabin.name}, {cabin.beds} beds</option>)
+                                    })}
+                                </select>
+                            </label>
+                            <label>Activities of Interest:
+                                <select name="interests">
+                                    <option>Hiking</option>
+                                    <option>Horseback Riding</option>
+                                    <option>Fishing</option>
+                                    <option>Shooting</option>
+                                </select>
+                            </label>
+                            <label>Number of Guests:
+                                <input type="number" value={guestCount}
+                                onChange={(e) => setGuestCount(e.target.value)}/>
+                            </label>
                         <h3>Rate per night: ${ranch?.rate}</h3>
-                        <h4>Total: ${}</h4>
+                        <h4>Total: ${calculateTotal()}</h4>
+                        <button >Book Now</button>
                     </form>
                 </div>
                 <div className="ranch-profile-description">
