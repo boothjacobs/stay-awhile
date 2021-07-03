@@ -27,20 +27,34 @@ const RanchProfile = () => {
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");
+    const [cabin_id, setCabinId] = useState("");
+    const [interests, setInterests] = useState("");
     const [guestCount, setGuestCount] = useState(0);
+    const [total, setTotal] = useState(0);
 
     const updateBookingStart = (e) => { setBookingStart(e.target.value) };
     const updateBookingEnd = (e) => { setBookingEnd(e.target.value) };
+    const updateGuestCount = (e) => {
+        setGuestCount(e.target.value);
+        setTotal(calculateTotal(e.target.value));
+    };
 
     const handleBooking = (e) => {
         e.preventDefault();
         if (!user) return <Redirect to="/login" />
 
         let formData = new FormData();
-
+        formData.append("start_date", bookingStart);
+        formData.append("end_date", bookingEnd);
+        formData.append("cabin_id", cabin_id);
+        formData.append("interests", interests);
+        formData.append("guest_count", guestCount);
+        formData.append("total", total);
+        formData.append("guest_id", user.id);
+        formData.append("ranch_id", ranchId);
     };
 
-    const calculateTotal = () => {
+    const calculateTotal = (guestCount) => {
         if (!bookingEnd || !bookingStart) return 0;
 
         let duration;
@@ -58,7 +72,7 @@ const RanchProfile = () => {
         }
         // console.log("result of calculateTotal", duration, bookingStart, bookingEnd)
         return duration * ranch?.rate * guestCount;
-    }
+    };
 
 
     return (
@@ -84,7 +98,7 @@ const RanchProfile = () => {
                             </label>
                         </div>
                             <label>Choose Cabin or Room:
-                                <select name="cabin_id">
+                                <select name="cabin_id" value={cabin_id} onChange={(e) => setCabinId(e.target.value)}>
                                     <option>--Select Preferred Cabin--</option>
                                     {cabins?.map((cabin) => {
                                         return (<option value={cabin.id}>{cabin.name}, {cabin.beds} beds</option>)
@@ -92,7 +106,7 @@ const RanchProfile = () => {
                                 </select>
                             </label>
                             <label>Activities of Interest:
-                                <select name="interests">
+                                <select name="interests" value={interests} onChange={(e) => setInterests(e.target.value)}>
                                     <option>Hiking</option>
                                     <option>Horseback Riding</option>
                                     <option>Fishing</option>
@@ -101,10 +115,10 @@ const RanchProfile = () => {
                             </label>
                             <label>Number of Guests:
                                 <input type="number" value={guestCount}
-                                onChange={(e) => setGuestCount(e.target.value)}/>
+                                onChange={updateGuestCount}/>
                             </label>
                         <h3>Rate per night: ${ranch?.rate}</h3>
-                        <h4>Total: ${calculateTotal()}</h4>
+                        <h4>Total: ${total}</h4>
                         <button >Book Now</button>
                     </form>
                 </div>

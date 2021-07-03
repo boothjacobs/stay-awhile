@@ -9,6 +9,8 @@ class Booking(db.Model):
     guest_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     cabin_id = db.Column(db.Integer, db.ForeignKey('cabins.id'))
     interests = db.Column(db.String)
+    #GUEST COUNT
+    #TOTAL $
     start_date = db.Column(db.Date, nullable = False)
     end_date = db.Column(db.Date, nullable = False)
     ranch = db.relationship("Ranch", back_populates="bookings")
