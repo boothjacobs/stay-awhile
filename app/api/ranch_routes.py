@@ -26,10 +26,15 @@ def new_ranch():
     return ranch.to_dict()
 
 
+@ranch_routes.route("/search", methods=['GET'])
+def search_ranch():
+    print(request.form["search_term"], "==============================")
+    ranches = Ranch.query.all()
+    return {ranch.id: ranch.to_dict() for ranch in ranches}
+
+
 @ranch_routes.route('/<id>', methods=['GET'])
 def get_ranch(id):
-    print("*******************************************************")
-    print("attempting to GET ranch", id)
     ranch = Ranch.query.get(id)
     return ranch.to_dict()
 

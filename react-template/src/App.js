@@ -10,6 +10,7 @@ import Home from "./components/user-auth/Home";
 import RanchDetails from "./components/RanchSide/RanchDetails";
 import RanchProfile from "./components/GuestSide/RanchProfile";
 import AddCabin from "./components/RanchSide/Cabins/AddCabin";
+import SearchResults from "./components/GuestSide/SearchResults";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -45,13 +46,16 @@ function App() {
           <Home />
         </ProtectedRoute>
         <ProtectedRoute path="/staff/profile" exact={true} >
-          <RanchDetails />
+          <RanchDetails />  {/* "back of house" ranch profile page with edit access */}
         </ProtectedRoute>
         <ProtectedRoute path="/staff/lodgings" exact={true}>
           <AddCabin />
         </ProtectedRoute>
         <Route path="/destination/:id" exact={true} >
-          <RanchProfile />
+          <RanchProfile />  {/* guest facing ranch profile page */}
+        </Route>
+        <Route path="/destinations" exact={true} >
+          <SearchResults />
         </Route>
       </Switch>
     </BrowserRouter>

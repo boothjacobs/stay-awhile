@@ -21,11 +21,19 @@ const NavBar = () => {
             Home
           </NavLink>
         </li>
-        <li className="nav-li">
-          <NavLink to="/staff/profile" exact={true} activeClassName="active">
-            Your Ranch
-          </NavLink>
-        </li>
+
+        {(user?.staff) ? (
+            <li className="nav-li">
+              <NavLink to="/staff/profile" exact={true} activeClassName="active">
+                Your Ranch
+              </NavLink>
+            </li>) : (
+              <li className="nav-li">
+                <NavLink to="/destinations" exact={true} activeClassName="active">
+                  Browse Destinations
+                </NavLink></li>
+            )}
+
         {(user !== null) ? (
           <li className="nav-li">
             <button onClick={onLogout}>Logout</button>

@@ -1,0 +1,60 @@
+.under-nav {
+    margin-top: 70px;
+    /* background-color: red; */
+}
+
+.guest-dashboard {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 5px solid white;
+    display: grid;
+    grid-template-areas: "one one"
+                            "two three"
+                            "four four";
+}
+
+.guest-dashboard h3 {
+    margin-right: 10px;
+}
+
+.guest-dashboard #dashboard-one {
+    grid-area: one;
+    display: flex;
+    justify-content: center;
+    /* border: 5px solid white; */
+}
+
+.guest-dashboard #dashboard-two {
+    grid-area: two;
+    display: flex;
+    justify-content: center;
+    /* border: 5px solid white; */
+}
+
+.guest-dashboard #dashboard-three {
+    grid-area: three;
+    display: flex;
+    justify-content: center;
+    /* border: 5px solid white; */
+}
+
+.guest-dashboard #dashboard-four {
+    grid-area: four;
+    display: flex;
+    justify-content: center;
+    /* border: 5px solid white; */
+}
+
+.info-display {
+    background-color: floralwhite;
+    display: flex;
+    justify-content: space-around;
+}
+
+.info-entry {
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.dashboard-p {
+    margin: 20px;
+}

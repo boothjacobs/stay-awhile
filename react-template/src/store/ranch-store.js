@@ -1,9 +1,15 @@
 export const SET_RANCH = "ranch/SET_RANCH";
+const FILTER_RANCHES = "ranch/FILTER_RANCHES";
 const SET_CABINS = "ranch/SET_CABINS";
 
 const setRanch = (ranch) => ({
     type: SET_RANCH,
     payload: ranch
+});
+
+const filterRanches = (ranches) => ({
+    type: SET_RANCH,
+    payload: ranches
 });
 
 const setCabins = (cabins) => ({
@@ -12,13 +18,26 @@ const setCabins = (cabins) => ({
 });
 
 export const getRanch = (ranchId) => async (dispatch) => {
-    console.log("getRanch thunk", ranchId)
+    console.log("getRanch thunk", ranchId);
     const response = await fetch(`/api/ranch/${ranchId}`);
     if (response.ok) {
         const ranch = await response.json()
-        dispatch(setRanch(ranch))
+        dispatch(setRanch(ranch));
     }
 };
+
+export const searchRanches = (formData) => async (dispatch) => {
+    console.log("search or browse ranch thunk");
+    const response = await fetch(`/api/ranch/search`);
+    if (response.ok) {
+        const ranches = await response.json();
+        dispatch(filterRanches(ranches));
+        return ranches;
+    } else {
+        console.log("errors in searchRances thunk", response);
+        return;
+    }
+}
 
 export const editRanch = (ranchId, formData) => async (dispatch) => {
     const ranchResponse = await fetch(`/api/ranch/${ranchId}`, {
@@ -97,7 +116,12 @@ const initialState = {};
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
-            return {ranch: action.payload}
+            return {ranch: action.payload};
+        case SET_RANCH:
+            const searchResults = {};
+            action.payload.forEach((ranch) => {
+                searchResults[ranch.id] = ranch;
+            });
         case SET_CABINS:
             const cabinState = {...state};
             console.log(cabinState, "and payload", action.payload)
