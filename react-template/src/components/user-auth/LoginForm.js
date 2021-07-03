@@ -12,8 +12,9 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const user = dispatch(login(email, password));
-    if (!user.errors) { setErrors(user.errors) };
+    const data = await dispatch(login(email, password));
+    console.log("dispatch mystery data WITH AWAIT", data)
+    if (data) { setErrors(data) };
   };
 
   const updateEmail = (e) => {

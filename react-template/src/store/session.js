@@ -46,8 +46,7 @@ export const login = (email, password) => async (dispatch)  => {
     });
     const data = await response.json();
     if (data.errors) {
-        console.log("Login thunk errors: ", data);
-        return;
+        return data.errors;
     }
     dispatch(setUser(data));
     return data;
@@ -79,7 +78,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
 
     if (userData.errors) {
         console.log("SignUp thunk errors from user: ", userData);
-        return;
+        return userData.errors;
     };
 
     dispatch(setUser(userData));
@@ -99,7 +98,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
 
         if (ranchData.errors) {
             console.log("SignUp thunk errors from ranch: ", ranchData);
-            return;
+            return ranchData.errors;
         }
     };
 
