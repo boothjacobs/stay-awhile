@@ -24,6 +24,7 @@ class Booking(db.Model):
         return {
             "id": self.id,
             "ranch": self.ranch.ranch_name,
+            "ranch_id": self.ranch.id,
             "guest": self.guest.full_name,
             "cabin": self.cabin.name,
             "interests": self.interests,

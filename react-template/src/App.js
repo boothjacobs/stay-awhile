@@ -11,6 +11,9 @@ import RanchDetails from "./components/RanchSide/RanchDetails";
 import RanchProfile from "./components/GuestSide/RanchProfile";
 import AddCabin from "./components/RanchSide/Cabins/AddCabin";
 import SearchResults from "./components/GuestSide/SearchResults";
+import BookingsPage from "./components/GuestSide/Bookings/BookingsPage";
+import MyInvoices from "./components/GuestSide/Invoices/MyInvoicesPage";
+import MyReviews from "./components/GuestSide/Reviews/MyReviews";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -57,6 +60,15 @@ function App() {
         <Route path="/destinations" exact={true} >
           <SearchResults />
         </Route>
+        <ProtectedRoute path="/guest/bookings" exact={true}>
+          <BookingsPage />
+        </ProtectedRoute>
+        <ProtectedRoute path="/guest/invoices" exact={true}>
+          <MyInvoices />
+        </ProtectedRoute>
+        <ProtectedRoute path="/guest/reviews" exact={true}>
+          <MyReviews />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

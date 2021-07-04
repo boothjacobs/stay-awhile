@@ -2,6 +2,7 @@ export const SET_RANCH = "ranch/SET_RANCH";
 const FILTER_RANCHES = "ranch/FILTER_RANCHES";
 const SET_CABINS = "ranch/SET_CABINS";
 
+
 const setRanch = (ranch) => ({
     type: SET_RANCH,
     payload: ranch

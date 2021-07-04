@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { getBookings } from "../../store/booking-store"
 
 import "./guestSide.css";
@@ -24,7 +25,7 @@ const GuestHome = () => {
             <h3>{user?.full_name}</h3>
             <div className="guest-dashboard">
                 <div id="dashboard-one">
-                    <h3>Upcoming Bookings</h3>
+                    <NavLink to="/guest/bookings"><h3>Upcoming Bookings</h3></NavLink>
                     <div className="info-display">
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
@@ -34,8 +35,6 @@ const GuestHome = () => {
                             };
                             return ( <div className="info-entry" key={booking?.id}>
                                 <p className="dashboard-p">{booking?.ranch}</p>
-                                <p className="dashboard-p">{booking?.cabin}</p>
-                                <p className="dashboard-p">{booking?.interests}</p>
                                 <p className="dashboard-p">{start?.toDateString()}</p>
                                 <p className="dashboard-p">{end?.toDateString()}</p>
                             </div> )
@@ -44,7 +43,7 @@ const GuestHome = () => {
 
                 </div>
                 <div id="dashboard-two">
-                    <h3>Your Past Experiences</h3>
+                <NavLink to="/guest/reviews"><h3>Your Past Experiences</h3></NavLink>
                     <div className="info-display">
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
@@ -63,7 +62,7 @@ const GuestHome = () => {
                     </div>
                 </div>
                 <div id="dashboard-three">
-                    <h3>Open Invoices</h3>
+                    <NavLink to="/guest/invoices"><h3>Open Invoices</h3></NavLink>
                 </div>
 
             </div>

@@ -46,4 +46,4 @@ def delete_booking(id):
     booking = Booking.query.get(id)
     db.session.delete(booking)
     db.session.commit()
-    return {"yes": "delete successful"}
+    return {"deleted": id}
