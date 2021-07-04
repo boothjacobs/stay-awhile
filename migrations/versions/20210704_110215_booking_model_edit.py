@@ -1,8 +1,8 @@
-"""more relationship edits
+"""booking model edit
 
-Revision ID: 0ee08d876d26
+Revision ID: 8fd714ff0c58
 Revises: 
-Create Date: 2021-06-30 15:24:50.177309
+Create Date: 2021-07-04 11:02:15.224663
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0ee08d876d26'
+revision = '8fd714ff0c58'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,7 @@ def upgrade():
     sa.Column('location', sa.String(length=100), nullable=False),
     sa.Column('description', sa.String(length=255), nullable=True),
     sa.Column('nightly_rate', sa.Integer(), nullable=True),
+    sa.Column('img_url', sa.String(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cabins',
@@ -59,6 +60,8 @@ def upgrade():
     sa.Column('interests', sa.String(), nullable=True),
     sa.Column('start_date', sa.Date(), nullable=False),
     sa.Column('end_date', sa.Date(), nullable=False),
+    sa.Column('guest_count', sa.Integer(), nullable=False),
+    sa.Column('total', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['cabin_id'], ['cabins.id'], ),
     sa.ForeignKeyConstraint(['guest_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['ranch_id'], ['ranches.id'], ),

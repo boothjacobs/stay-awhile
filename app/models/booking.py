@@ -9,10 +9,10 @@ class Booking(db.Model):
     guest_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     cabin_id = db.Column(db.Integer, db.ForeignKey('cabins.id'))
     interests = db.Column(db.String)
-    #GUEST COUNT
-    #TOTAL $
     start_date = db.Column(db.Date, nullable = False)
     end_date = db.Column(db.Date, nullable = False)
+    guest_count = db.Column(db.Integer, nullable = False)
+    total = db.Column(db.Integer, nullable = False)
     ranch = db.relationship("Ranch", back_populates="bookings")
     guest = db.relationship("User", back_populates="bookings")
     cabin = db.relationship("Cabin", back_populates="bookings")
@@ -29,4 +29,6 @@ class Booking(db.Model):
             "interests": self.interests,
             "start_date": self.start_date,
             "end_date": self.end_date,
+            "guest_count": self.guest_count,
+            "total": self.total
         }

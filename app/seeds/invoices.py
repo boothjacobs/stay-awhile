@@ -24,7 +24,7 @@ def seed_invoices():
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='2796')
+                        amount_paid='8388')
     invoice5 = Invoice(guest_id='4',
                         booking_id='5',
                         additional_charges=None,
@@ -48,7 +48,7 @@ def seed_invoices():
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='2760')
+                        amount_paid='5520')
 
     db.session.add(invoice1)
     db.session.add(invoice2)

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Redirect } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
+import { addBooking } from "../../store/booking-store";
 
 import "../RanchSide/ranchSide.css";
 
@@ -18,12 +19,12 @@ const RanchProfile = () => {
         dispatch(getRanch(ranchId));
     }, [dispatch]);
 
-    console.log("variable ranch: ", ranch)
+    // console.log("variable ranch: ", ranch)
     let cabins;
     if (ranch?.cabins) {
         cabins = Object.values(ranch?.cabins);
     }
-    console.log("variable cabins", cabins)
+    // console.log("variable cabins", cabins)
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");
@@ -44,14 +45,16 @@ const RanchProfile = () => {
         if (!user) return <Redirect to="/login" />
 
         let formData = new FormData();
-        formData.append("start_date", bookingStart);
-        formData.append("end_date", bookingEnd);
+        formData.append("ranch_id", ranchId);
+        formData.append("guest_id", user.id);
         formData.append("cabin_id", cabin_id);
         formData.append("interests", interests);
+        formData.append("start_date", bookingStart);
+        formData.append("end_date", bookingEnd);
         formData.append("guest_count", guestCount);
         formData.append("total", total);
-        formData.append("guest_id", user.id);
-        formData.append("ranch_id", ranchId);
+
+        dispatch(addBooking(formData));
     };
 
     const calculateTotal = (guestCount) => {
@@ -79,8 +82,7 @@ const RanchProfile = () => {
         <div className="under-nav">
             <div className="ranch-profile">
                 <div className="ranch-profile-pic">
-                {/* <img src="/Users/sarahjacobs/Desktop/stay-awhile/react-template/src/background-img/lawn-horses.jpg" /> */}
-                    <img src="../../../background-img/lawn-horses.jpg" alt="ranch-pic" />
+                    <img src={ranch?.img_url} alt="ranch-pic" />
                 </div>
                 <div className="ranch-profile-booking-header">
                     <h1>{ranch?.ranch_name}</h1>
@@ -119,7 +121,7 @@ const RanchProfile = () => {
                             </label>
                         <h3>Rate per night: ${ranch?.rate}</h3>
                         <h4>Total: ${total}</h4>
-                        <button >Book Now</button>
+                        <button>Book Now</button>
                     </form>
                 </div>
                 <div className="ranch-profile-description">

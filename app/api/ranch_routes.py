@@ -18,7 +18,8 @@ def new_ranch():
         ranch_name=form['ranch_name'].data,
         location=form['location'].data,
         description=form['description'].data,
-        nightly_rate=form['nightly_rate'].data
+        nightly_rate=form['nightly_rate'].data,
+        img_url=None
     )
     db.session.add(ranch)
     # print(ranch)
@@ -50,6 +51,7 @@ def get_ranch(id):
 
 
 @ranch_routes.route('/<id>', methods=["PUT"])
+@login_required
 def edit_ranch(id):
     ranch = Ranch.query.get(id)
     # print("****************** edit route", ranch)
@@ -75,6 +77,7 @@ def get_cabins(id):
 
 
 @ranch_routes.route('/<id>/cabins', methods=["POST"])
+@login_required
 def add_cabin(id):
     ranch = Ranch.query.get(id)
 
@@ -108,6 +111,7 @@ def add_cabin(id):
 
 
 @ranch_routes.route('/cabins/<int:cabinId>', methods=["PUT"])
+@login_required
 def edit_cabin(cabinId):
     cabin = Cabin.query.get(cabinId)
 
@@ -135,6 +139,7 @@ def edit_cabin(cabinId):
 
 
 @ranch_routes.route('/cabins/<int:cabinId>', methods=["DELETE"])
+@login_required
 def delete_cabin(cabinId):
     cabin = Cabin.query.get(cabinId)
     # allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
