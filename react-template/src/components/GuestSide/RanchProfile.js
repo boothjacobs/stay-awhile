@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams, Redirect } from 'react-router-dom';
+import { NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 import { addBooking } from "../../store/booking-store";
 
@@ -10,6 +10,8 @@ import "../RanchSide/ranchSide.css";
 
 const RanchProfile = () => {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
 
@@ -55,6 +57,7 @@ const RanchProfile = () => {
         formData.append("total", total);
 
         dispatch(addBooking(formData));
+        history.push("/home");
     };
 
     const calculateTotal = (guestCount) => {

@@ -40,14 +40,6 @@ def edit_booking(id):
     return booking.to_dict()
 
 
-@booking_routes.route("", methods=["GET"])
-@login_required
-def get_bookings():
-    id = request.form["guest_id"]
-    bookings = Booking.query.filter(Booking.guest_id == id).all()
-    return {booking.id: booking.to_dict() for booking in bookings}
-
-
 @booking_routes.route("/<id>", methods=["DELETE"])
 @login_required
 def delete_booking(id):

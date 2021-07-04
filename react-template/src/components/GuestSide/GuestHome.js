@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getBookings } from "../../store/booking-store"
 
 import "./guestSide.css";
 
 const GuestHome = () => {
+    const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
-    let bookings;
-    if (user) {
-        bookings = Object.values(user.bookings);
-    };
+    useEffect(() => {
+        dispatch(getBookings(user?.id))
+    }, [dispatch, user.id]);
+
+    const bookings = Object.values(useSelector(state => state.booking));
+    // let bookings;
+    // if (user) {
+    //     bookings = Object.values(user.bookings);
+    // };
 
     return (
         <div className="under-nav">
