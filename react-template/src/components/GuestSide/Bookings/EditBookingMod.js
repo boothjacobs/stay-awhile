@@ -9,11 +9,25 @@ const EditBookingModal = ({booking}) => {
 
     const [showModal, setShowModal] = useState(false);
 
+    //parsing date values into format usable by HTML input field!!! more trouble than it was worth
+    const sDate = (new Date(booking.start_date)).toISOString();
+    let sT = sDate.indexOf("T");
+    const startDate = sDate.slice(0, sT);
+    const [start_date, setStartDate] = useState(startDate);
+    // console.log("****original start value", booking.start_date)
+    // console.log("both start values", sDate, start_date, startDate)
+
+    const eDate = (new Date(booking.end_date)).toISOString();
+    let eT = eDate.indexOf("T");
+    const endDate = eDate.slice(0, eT);
+    const [end_date, setEndDate] = useState(endDate);
+    // console.log("original end value", booking.end_date)
+    // console.log("both end values", eDate, end_date, endDate)
+
     const [cabin_id, setCabin] = useState(booking.cabin_id);
     const [interests, setInterests] = useState(booking.interests);
-    const [start_date, setStartDate] = useState(booking.start_date);
-    const [end_date, setEndDate] = useState(booking.end_date);
     const [guest_count, setGuestCount] = useState(booking.guest_count);
+    const [total, setTotal] = useState(booking.total);
 
     useEffect(() => {
         showModal && dispatch(getBookings(booking.guest_id));
@@ -21,18 +35,59 @@ const EditBookingModal = ({booking}) => {
     }, [dispatch, booking.guest_id, booking.ranch_id, showModal]);
 
     const ranch = useSelector(state => state.ranch.ranch);
-    console.log(ranch?.cabins)
+    // console.log("edit modal ranch", ranch)
+    let cabins;
+    if (ranch) {
+        cabins = Object.values(ranch.cabins);
+    };
+    // console.log("edit modal cabins", cabins)
+
+    const updateStartDate = (e) => {
+        setStartDate(e.target.value);
+        setTotal(calculateTotal(guest_count));
+    };
+
+    const updateEndDate = (e) => {
+        setEndDate(e.target.value);
+        setTotal(calculateTotal(guest_count));
+    };
+
+    const updateGuestCount = (e) => {
+        setGuestCount(e.target.value);
+        setTotal(calculateTotal(e.target.value));
+    };
+
+    const calculateTotal = (guestCount) => {
+
+        let duration;
+        const start = (new Date(start_date)).getDate();
+        const end = (new Date(end_date)).getDate();
+
+        duration = end - start;
+
+        if ((new Date(start_date)).getMonth() === (9 || 4 || 6 || 11)) {
+            if (duration < 1) duration += (30 - start)
+        } else if ((new Date(start_date)).getMonth() === 2) {
+            if (duration < 1) duration += (28 - start)
+        } else {
+            if (duration < 1) duration += (31 - start)
+        }
+        // console.log("result of calculateTotal", duration, bookingStart, bookingEnd)
+        return duration * ranch?.rate * guest_count;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
-        // formData.append("name", name);
-        // formData.append("beds", beds);
-        // formData.append("total_capacity", total_capacity);
-        // formData.append("image", image);
+        formData.append("cabin_id", cabin_id);
+        formData.append("interests", interests);
+        formData.append("start_date", start_date);
+        formData.append("end_date", end_date);
+        formData.append("guest_count", guest_count);
+        formData.append("total", total);
 
-        dispatch(editBooking(formData));
+        dispatch(editBooking(formData, booking.id));
         setShowModal(false);
     };
 
@@ -44,34 +99,40 @@ const EditBookingModal = ({booking}) => {
                     <div className="form-box">
                         <h3 className="modal-head">Edit Booking Details</h3>
                         <form className="modal-form" onSubmit={handleSubmit}>
-                        {/* <label>Cabin or Room Name
-                            <input
-                                type="text"
-                                name="name"
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
-                                ></input></label>
-                        <label>How Many Beds?
-                            <input
-                                type="number"
-                                name="beds"
-                                onChange={(e) => setBeds(e.target.value)}
-                                value={beds}
-                            ></input></label>
-                        <label>Sleeps How Many People?
-                            <input
-                                type="number"
-                                name="total_capacity"
-                                onChange={(e) => setCapacity(e.target.value)}
-                                value={total_capacity}
-                            ></input></label>
-                        <label>{(cabin.img_url) ? ("Replace Photo--leave blank to keep current file") : ("Add Photo")}
-                            <input
-                                type="file"
-                                name="image"
-                                onChange={getImage}
-                                // value={image}
-                                ></input></label> */}
+                            <div className="booking-form-dates">
+                                <label>Arrival Date
+                                    <input type="date" required
+                                    onChange={updateStartDate}
+                                    value={start_date}/>
+                                </label>
+                                <label>Departure Date
+                                    <input type="date" required
+                                    onChange={updateEndDate}
+                                    value={end_date}/>
+                                </label>
+                            </div>
+                                <label>Choose Cabin or Room:
+                                    <select name="cabin_id" value={cabin_id} onChange={(e) => setCabin(e.target.value)}>
+                                        <option>--Select Preferred Cabin--</option>
+                                        {cabins?.map((cabin) => {
+                                            return (<option value={cabin.id}>{cabin.name}, {cabin.beds} beds</option>)
+                                        })}
+                                    </select>
+                                </label>
+                                <label>Activities of Interest:
+                                    <select name="interests" value={interests} onChange={(e) => setInterests(e.target.value)}>
+                                        <option>Hiking</option>
+                                        <option>Horseback Riding</option>
+                                        <option>Fishing</option>
+                                        <option>Shooting</option>
+                                    </select>
+                                </label>
+                                <label>Number of Guests:
+                                    <input type="number" value={guest_count}
+                                    onChange={updateGuestCount}/>
+                                </label>
+                                <h3>Rate per night: ${ranch?.rate}</h3>
+                                <h4>Total: ${total}</h4>
                             <div className="modal-buttons">
                                 <button type="submit">Save</button>
                                 <button type="button" onClick={() => setShowModal(false)}>Cancel</button>

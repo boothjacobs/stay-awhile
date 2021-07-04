@@ -20,9 +20,6 @@ const delBooking = (bookingId) => ({
 export const addBooking = (formData) => async (dispatch) => {
     const res = await fetch("/api/booking", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: formData
     });
     const bookData = await res.json();
@@ -42,13 +39,9 @@ export const getBookings = (userId) => async (dispatch) => {
     return bookData;
 };
 
-export const editBooking = (formData) => async (dispatch) => {
-    const id = formData.bookingId;
-    const res = await fetch(`/api/booking/${id}`, {
+export const editBooking = (formData, bookingId) => async (dispatch) => {
+    const res = await fetch(`/api/booking/${bookingId}`, {
         method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
         body: formData
     });
     const bookData = await res.json();

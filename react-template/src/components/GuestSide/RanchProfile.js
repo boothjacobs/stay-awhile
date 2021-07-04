@@ -80,7 +80,6 @@ const RanchProfile = () => {
         return duration * ranch?.rate * guestCount;
     };
 
-
     return (
         <div className="under-nav">
             <div className="ranch-profile">

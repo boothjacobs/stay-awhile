@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import { deleteBooking, getBookings } from "../../../store/booking-store";
 
@@ -15,7 +15,7 @@ const DeleteBookingModal = ({booking}) => {
     const deleteButton = (e) => {
         dispatch(deleteBooking(booking.id));
         setShowModal(false);
-        dispatch(getBookings(booking?.id))
+        dispatch(getBookings(booking.guest_id))
     };
 
     return (
