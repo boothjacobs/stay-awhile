@@ -1,9 +1,15 @@
 const SET_BOOKING = "booking/SET_BOOKING";
+const ONE_BOOKING = "booking/ONE_BOOKING";
 const ALL_BOOKINGS = "booking/ALL_BOOKINGS";
 const DELETE_BOOKING = "booking/DELETE_BOOKINGS";
 
 const thisBooking = (booking) => ({
     type: SET_BOOKING,
+    payload: booking
+});
+
+const oneBooking = (booking) => ({
+    type: ONE_BOOKING,
     payload: booking
 });
 
@@ -35,6 +41,15 @@ export const getBookings = (userId) => async (dispatch) => {
     console.log("getBookings thunk", bookData);
     if (res.ok) {
         dispatch(allBookings(bookData));
+    }
+    return bookData;
+};
+
+export const getOneBooking = (bookingId) => async (dispatch) => {
+    const res = await fetch(`/api/booking/${bookingId}`);
+    const bookData = await res.json();
+    if (res.ok) {
+        dispatch(oneBooking(bookData));
     }
     return bookData;
 };
@@ -72,6 +87,8 @@ export default function reducer(state=initialState, action) {
             newState[action.payload.id] = action.payload;
             return newState;
         case ALL_BOOKINGS:
+            return {...action.payload};
+        case ONE_BOOKING:
             return {...action.payload};
         case DELETE_BOOKING:
             const lessState = {...state};

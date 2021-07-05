@@ -3,11 +3,13 @@ import thunk from "redux-thunk";
 import session from "./session"
 import ranch from "./ranch-store";
 import booking from "./booking-store";
+import invoice from "./invoice-store";
 
 const rootReducer = combineReducers({
     session,
     ranch,
-    booking
+    booking,
+    invoice
 });
 
 

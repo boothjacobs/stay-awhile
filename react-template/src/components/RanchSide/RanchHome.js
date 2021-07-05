@@ -43,6 +43,7 @@ const RanchHome = () => {
                             <p className="dashboard-p">{booking?.cabin}</p>
                             <p className="dashboard-p">{start?.toDateString()}</p>
                             <p className="dashboard-p">{end?.toDateString()}</p>
+                            <NavLink to={`/staff/booking/${booking?.id}/invoice`}>View or Create Invoice</NavLink>
                         </div> )
                     }) : null}
                 </div>
