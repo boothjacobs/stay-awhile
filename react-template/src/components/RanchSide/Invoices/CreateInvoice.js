@@ -11,6 +11,7 @@ const CreateInvoice = () => {
 
     useEffect(() => {
         dispatch(getOneBooking(id));
+        dispatch(getInvoice(id));
     }, [dispatch]);
 
     const booking = useSelector(state => state.booking);
@@ -29,10 +30,12 @@ const CreateInvoice = () => {
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append("guest_id", booking.guest_id);
         formData.append("additional_charges", additional_charges);
         formData.append("deposit", deposit);
-        formData.append("rollover", rollover);
+        formData.append("rollover_payment", rollover);
         formData.append("amount_paid", amount_paid);
+        dispatch(newInvoice(id, formData));
     };
 
     return (
@@ -55,7 +58,7 @@ const CreateInvoice = () => {
                     value={additional_charges}
                     onChange={(e) => setAddCharges(e.target.value)}/>
                 </label>
-                <label>Deposit: {}</label> {/* read only: total/4 */}
+                <label>Deposit: {booking.total / 4}</label> {/* read only: total/4 */}
                 <label>Deposit Paid?
                     <input type="checkbox"
                     value={deposit}

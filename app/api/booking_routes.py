@@ -65,13 +65,21 @@ def get_invoice(id):
 
 @booking_routes.route("/<id>/invoice", methods=["POST"])
 @login_required
-def new_invoice():
+def new_invoice(id):
+    if request.form["deposit"] == "false":
+        deposit = False
+    else:
+        deposit = True
+    if request.form["rollover_payment"] == "false":
+        rollover_payment = False
+    else:
+        rollover_payment = True
     invoice = Invoice(
         guest_id=request.form["guest_id"],
-        booking_id=request.form["booking_id"],
+        booking_id=id,
         additional_charges=request.form["additional_charges"],
-        deposit=request.form["deposit"],
-        rollover_payment=request.form["rollover_payment"],
+        deposit=deposit,
+        rollover_payment=rollover_payment,
         amount_paid=request.form["amount_paid"],
     )
     db.session.add(invoice)

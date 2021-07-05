@@ -17,11 +17,11 @@ export const getInvoice = (bookingId) => async (dispatch) => {
 
 export const newInvoice = (bookingId, formData) => async (dispatch) => {
     console.log("new invoice thunk", bookingId)
-    const response = await fetch()
-    const data = await response.json(`/api/booking/${bookingId}/invoice`, {
+    const response = await fetch(`/api/booking/${bookingId}/invoice`, {
         method: "POST",
         body: formData
     });
+    const data = await response.json();
     if (response.ok) {
         dispatch(setInvoice(data));
     }
