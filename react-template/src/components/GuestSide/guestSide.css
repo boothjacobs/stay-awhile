@@ -1,11 +1,10 @@
 .under-nav {
-    margin-top: 70px;
-    /* background-color: red; */
+    margin: 70px 25px;
 }
 
 .guest-dashboard {
-    background-color: rgba(0, 0, 0, 0.5);
-    border: 5px solid white;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    border: 5px solid #5F685A;
     display: grid;
     grid-template-areas: "one one"
                             "two three"
@@ -16,47 +15,83 @@
     margin-right: 10px;
 }
 
-.guest-dashboard #dashboard-one {
+.dashboard-header {
+    margin-left: 50px;
+}
+
+#dashboard-one {
     grid-area: one;
     display: flex;
     justify-content: center;
     /* border: 5px solid white; */
 }
 
-.guest-dashboard #dashboard-two {
+#dashboard-two {
     grid-area: two;
     display: flex;
     justify-content: center;
     /* border: 5px solid white; */
 }
 
-.guest-dashboard #dashboard-three {
+#dashboard-three {
     grid-area: three;
     display: flex;
     justify-content: center;
     /* border: 5px solid white; */
 }
 
-.guest-dashboard #dashboard-four {
+#dashboard-four {
     grid-area: four;
     display: flex;
     justify-content: center;
     /* border: 5px solid white; */
 }
 
+.dashboard-header {
+    padding-left: 30px;
+}
+
 .info-display {
-    background-color: floralwhite;
     display: flex;
     justify-content: space-around;
 }
 
 .info-entry {
-    border: 1px solid black;
+    box-sizing: border-box;
     margin: 10px;
+    padding: 5px;
+    border: 1px solid #5F685A;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .dashboard-p {
     margin: 20px;
+}
+
+.modal-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.search-result {
+    display: grid;
+    grid-template-areas: "image text"
+                        "image text";
+    padding: 10px;
+    width: 600px;
+}
+
+.search-result-avatar {
+    width: 300px;
+    grid-area: image;
+}
+
+.search-result-text {
+    grid-area: text;
 }
 
 .ranch-profile {
@@ -69,12 +104,21 @@
 
 .ranch-profile-pic {
     grid-area: picture;
-    border: 1px solid gray;
+    max-width: 700px;
+    height: auto;
+}
+
+.ranch-profile-pic > img {
+    max-width: 100%;
 }
 
 .ranch-profile-booking-header {
     grid-area: booking;
-    border: 1px solid gray;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
 }
 
 .booking-form {
@@ -85,26 +129,38 @@
 .booking-form-dates {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+}
+
+.booking-form-dates > label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3px;
+}
+
+.booking-form > label {
+    padding: 5px;
 }
 
 .ranch-profile-description {
     grid-area: description;
-    border: 1px solid gray;
+    padding: 10px;
 }
 
 .ranch-profile-details {
     grid-area: second-desc;
-    border: 1px solid gray;
+    padding: 10px;
 }
 
 .ranch-profile-reviews {
     grid-area: reviews;
-    border: 1px solid gray;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    padding: 10px;
 }
 
 .review-thumbnail {
-    border: 1px solid gray;
-    padding: 3px;
+    padding: 10px;
 }

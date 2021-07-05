@@ -1,0 +1,20 @@
+/* https://coolors.co/0a0908-22333b-eae0d5-c6ac8f-5e503f */
+body {
+    background-color: #F8F1F1;
+    color: #362207;
+    font-family:  'Uchen', serif;
+}
+
+a {
+    color: #EA9C1B;
+    text-decoration: none;
+}
+
+button {
+    font-family:  'Uchen', serif;
+    background-color: #5F685A;
+    color: #F8F1F1;
+    border: none;
+    padding: 3px;
+    margin: 3px;
+}

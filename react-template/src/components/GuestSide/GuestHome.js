@@ -14,18 +14,16 @@ const GuestHome = () => {
     }, [dispatch, user.id]);
 
     const bookings = Object.values(useSelector(state => state.booking));
-    // let bookings;
-    // if (user) {
-    //     bookings = Object.values(user.bookings);
-    // };
 
     return (
         <div className="under-nav">
-            <h1>Guest Home</h1>
-            <h3>{user?.full_name}</h3>
+            <div className="dashboard-header">
+                <h1>Guest Home</h1>
+                <h3>{user?.full_name}</h3>
+            </div>
             <div className="guest-dashboard">
                 <div id="dashboard-one">
-                    <NavLink to="/guest/bookings"><h3>Upcoming Bookings</h3></NavLink>
+                    <NavLink to="/guest/bookings" className="dashboard-header"><h3>Upcoming Bookings</h3></NavLink>
                     <div className="info-display">
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
@@ -43,7 +41,7 @@ const GuestHome = () => {
 
                 </div>
                 <div id="dashboard-two">
-                <NavLink to="/guest/reviews"><h3>Your Past Experiences</h3></NavLink>
+                <NavLink to="/guest/reviews" className="dashboard-header"><h3>Your Past Experiences</h3></NavLink>
                     <div className="info-display">
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
@@ -62,7 +60,7 @@ const GuestHome = () => {
                     </div>
                 </div>
                 <div id="dashboard-three">
-                    <NavLink to="/guest/invoices"><h3>Open Invoices</h3></NavLink>
+                    <NavLink to="/guest/invoices" className="dashboard-header"><h3>Open Invoices</h3></NavLink>
                 </div>
 
             </div>

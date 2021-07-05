@@ -19,28 +19,31 @@ const BookingsPage = () => {
 
     return (
         <div className="under-nav">
-        <h1>booking details</h1>
-        <div className="info-display">
-            {(bookings) ? bookings?.map((booking) => {
-                let start = new Date(booking?.start_date);
-                let end = new Date(booking?.end_date);
-                if (Date.parse(start) < Date.now()) {
-                    return null;
-                };
-                return ( <div className="info-entry" key={booking?.id}>
-                    <p className="dashboard-p">{booking?.ranch}</p>
-                    <p className="dashboard-p">{booking?.cabin}</p>
-                    <p className="dashboard-p">{booking?.interests}</p>
-                    <p className="dashboard-p">Arrive {start?.toDateString()}</p>
-                    <p className="dashboard-p">Depart {end?.toDateString()}</p>
-                    <p className="dashboard-p">{booking?.guest_count} guests</p>
-                    <p className="dashboard-p">{booking?.interests}</p>
-                    <p>Link to Invoice {booking?.total} indicate if unpaid</p>
-                    <EditBookingModal booking={booking} />
-                    <DeleteBookingModal booking={booking} />
-                </div> )
-            }) : null}
-                    </div>
+            <div className="dashboard-header">
+                <h1>booking details</h1>
+            </div>
+            <div className="info-display">
+                {bookings?.map((booking) => {
+                    const startDate = new Date(booking?.start_date);
+                    const endDate = new Date(booking?.end_date);
+                    return (
+                        <div className="info-entry" key={booking?.id}>
+                            <p className="dashboard-p">{booking?.ranch}</p>
+                            <p className="dashboard-p">{booking?.cabin}</p>
+                            <p className="dashboard-p"> Arrive {startDate.toDateString()}</p>
+                            <p className="dashboard-p"> Depart {endDate.toDateString()}</p>
+                            <p className="dashboard-p">{booking?.guest_count} guests</p>
+                            <p className="dashboard-p">{booking?.interests}</p>
+                            <p>${booking?.total} indicate if unpaid, link to invoice</p>
+                            <div className="modal-buttons">
+                                <EditBookingModal booking={booking} className="one-modal" />
+                                <DeleteBookingModal booking={booking} className="one-modal" />
+                            </div>
+                        </div>
+                    )
+                })
+            }
+            </div>
         </div>
     )
 }

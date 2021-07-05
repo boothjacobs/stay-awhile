@@ -9,7 +9,7 @@ nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(53, 34, 7, 0.5);
 }
 
 #nav-list {
@@ -28,5 +28,6 @@ nav {
 
 .nav-li > button {
     background-color: transparent;
+    color: #EA9C1B;
     border: none;
 }

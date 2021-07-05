@@ -1,11 +1,10 @@
 .under-nav {
-    margin-top: 70px;
-    /* background-color: red; */
+    margin: 70px 25px;
 }
 
 .ranch-dashboard {
     background-color: rgba(0, 0, 0, 0.5);
-    border: 5px solid white;
+    border: 5px solid #5F685A;
     display: grid;
     grid-template-areas: "one one"
                             "two three"
@@ -16,28 +15,28 @@
     grid-area: one;
     display: flex;
     justify-content: center;
-    border: 5px solid white;
+    border: 5px solid #5F685A;
 }
 
 #dashboard-two {
     grid-area: two;
     display: flex;
     justify-content: center;
-    border: 5px solid white;
+    border: 5px solid #5F685A;
 }
 
 #dashboard-three {
     grid-area: three;
     display: flex;
     justify-content: center;
-    border: 5px solid white;
+    border: 5px solid #5F685A;
 }
 
 #dashboard-four {
     grid-area: four;
     display: flex;
     justify-content: center;
-    border: 5px solid white;
+    border: 5px solid #5F685A;
 }
 
 .dashboard-p {

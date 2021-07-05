@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask_login import login_required
+from sqlalchemy import desc
 from app.models import db, User, Booking, Invoice, Review
 
 user_routes = Blueprint('users', __name__)
@@ -8,7 +9,8 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route("/<id>/bookings", methods=["GET"])
 @login_required
 def get_bookings(id):
-    bookings = Booking.query.filter(Booking.guest_id == id).all()
+    # trying to return in chronological order (getting busted by dictionary?)
+    bookings = Booking.query.filter(Booking.guest_id == id).order_by(desc(Booking.start_date)).all()
     return {booking.id: booking.to_dict() for booking in bookings}
 
 
