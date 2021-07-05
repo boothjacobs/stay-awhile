@@ -1,10 +1,18 @@
 .under-nav {
     margin: 70px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .guest-dashboard {
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    border: 5px solid #5F685A;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 5px solid #2B4162;
     display: grid;
     grid-template-areas: "one one"
                             "two three"
@@ -23,28 +31,28 @@
     grid-area: one;
     display: flex;
     justify-content: center;
-    /* border: 5px solid white; */
+    padding: 5px;
 }
 
 #dashboard-two {
     grid-area: two;
     display: flex;
     justify-content: center;
-    /* border: 5px solid white; */
+    padding: 5px;
 }
 
 #dashboard-three {
     grid-area: three;
     display: flex;
     justify-content: center;
-    /* border: 5px solid white; */
+    padding: 5px;
 }
 
 #dashboard-four {
     grid-area: four;
     display: flex;
     justify-content: center;
-    /* border: 5px solid white; */
+    padding: 5px;
 }
 
 .dashboard-header {
@@ -60,7 +68,7 @@
     box-sizing: border-box;
     margin: 10px;
     padding: 5px;
-    border: 1px solid #5F685A;
+    border: 1px solid #2B4162;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -75,6 +83,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+h1, h2, h4 {
+    color: #721817;
 }
 
 .search-result {

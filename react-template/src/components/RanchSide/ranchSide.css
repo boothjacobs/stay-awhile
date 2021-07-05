@@ -7,8 +7,8 @@
 }
 
 .ranch-dashboard {
-    /* background-color: rgba(75, 50, 50, 0.5); */
-    border: 5px solid #5F685A;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 5px solid #2B4162;
     display: grid;
     grid-template-areas: "one one"
                             "two three"
@@ -19,28 +19,32 @@
     grid-area: one;
     display: flex;
     justify-content: center;
-    border: 5px solid #5F685A;
+    padding: 5px;
+    border: 5px solid #2B4162;
 }
 
 #dashboard-two {
     grid-area: two;
     display: flex;
     justify-content: center;
-    border: 5px solid #5F685A;
+    padding: 5px;
+    border: 5px solid #2B4162;
 }
 
 #dashboard-three {
     grid-area: three;
     display: flex;
     justify-content: center;
-    border: 5px solid #5F685A;
+    padding: 5px;
+    border: 5px solid #2B4162;
 }
 
 #dashboard-four {
     grid-area: four;
     display: flex;
     justify-content: center;
-    border: 5px solid #5F685A;
+    padding: 5px;
+    border: 5px solid #2B4162;
 }
 
 .dashboard-p {
@@ -49,7 +53,7 @@
 
 #ranch-detail {
     text-align: center;
-    border: 1px solid #5F685A;
+    border: 1px solid #2B4162;
 }
 
 #cabin-deets {

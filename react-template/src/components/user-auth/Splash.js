@@ -14,12 +14,14 @@ const Splash = () => {
     }
 
     return (
-        <div id="splash-page">
-            <div id="login">
-                <LoginForm />
-            </div>
-            <div id="signup">
-                <SignUpForm />
+        <div className="under-nav">
+            <div id="splash-page">
+                <div id="login">
+                    <LoginForm />
+                </div>
+                <div id="signup">
+                    <SignUpForm />
+                </div>
             </div>
         </div>
     )

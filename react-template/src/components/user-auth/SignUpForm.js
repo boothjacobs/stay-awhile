@@ -57,111 +57,113 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="form-box">
-      <h3 className="auth-head">Sign up for an account</h3>
-      <form className="auth-form" onSubmit={onSignUp}>
-          <label>Full Name
-          <input
-            type="text"
-            name="full_name"
-            onChange={updateFullname}
-            value={full_name}
-          ></input></label>
-          <label>Email
-          <input
-            type="text"
-            name="email"
-            onChange={updateEmail}
-            value={email}
-          ></input></label>
-          <label>Password
-          <input
-            type="password"
-            name="password"
-            onChange={updatePassword}
-            value={password}
-          ></input></label>
-          <label>Confirm Password
-          <input
-            type="password"
-            name="confirm_password"
-            onChange={updateConfirmPassword}
-            value={confirmPassword}
-            required={true}
-          ></input></label>
-          <label>Age
-          <input
-            type="number"
-            name="age"
-            onChange={updateAge}
-            value={age}
-          ></input></label>
-          <label>Phone Number
-          <input
-            type="tel"
-            name="phone"
-            onChange={updatePhone}
-            value={phone}
-          ></input></label>
-          <label>Dietary Restrictions
-          <select
-            name="dietary_restrictions"
-            onChange={updateDietary}
-            value={dietary_restrictions}>
-              <option value="None">None</option>
-              <option value="Vegetarian">Vegetarian</option>
-              <option value="Vegan">Vegan</option>
-              <option value="Gluten-Free">Gluten-Free</option>
-              <option value="Allergy">Allergy (other)</option>
-          </select></label>
-          <label>Emergency Contact
-          <input
-            type="text"
-            name="eContact"
-            onChange={updateEContact}
-            value={eContact}
-          ></input></label>
-          <label>Ranch Staff?
-          <input
-            type="checkbox"
-            name="staff"
-            onChange={updateStaff}
-            value={staff}
-          ></input></label>
-        {(staff) ? (
-          <div className="ranch-fields">
-              <label>Ranch Name
-                <input
-                  type="text"
-                  name="ranch_name"
-                  onChange={updateRanchName}
-                  value={ranch_name}
-                ></input></label>
-              <label>Ranch Location
-                <input
-                  type="text"
-                  name="location"
-                  onChange={updateLocation}
-                  value={location}
-                ></input></label>
-              <label>Description
-                <input
-                  type="text"
-                  name="description"
-                  onChange={updateDescription}
-                  value={description}
-                ></input></label>
-              <label>Base Nightly Rate
+    <div className="under-nav">
+      <div className="form-box">
+        <h3 className="auth-head">Sign up for an account</h3>
+        <form className="auth-form" onSubmit={onSignUp}>
+            <label>Full Name
+            <input
+              type="text"
+              name="full_name"
+              onChange={updateFullname}
+              value={full_name}
+            ></input></label>
+            <label>Email
+            <input
+              type="text"
+              name="email"
+              onChange={updateEmail}
+              value={email}
+            ></input></label>
+            <label>Password
+            <input
+              type="password"
+              name="password"
+              onChange={updatePassword}
+              value={password}
+            ></input></label>
+            <label>Confirm Password
+            <input
+              type="password"
+              name="confirm_password"
+              onChange={updateConfirmPassword}
+              value={confirmPassword}
+              required={true}
+            ></input></label>
+            <label>Age
+            <input
+              type="number"
+              name="age"
+              onChange={updateAge}
+              value={age}
+            ></input></label>
+            <label>Phone Number
+            <input
+              type="tel"
+              name="phone"
+              onChange={updatePhone}
+              value={phone}
+            ></input></label>
+            <label>Dietary Restrictions
+            <select
+              name="dietary_restrictions"
+              onChange={updateDietary}
+              value={dietary_restrictions}>
+                <option value="None">None</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Gluten-Free">Gluten-Free</option>
+                <option value="Allergy">Allergy (other)</option>
+            </select></label>
+            <label>Emergency Contact
+            <input
+              type="text"
+              name="eContact"
+              onChange={updateEContact}
+              value={eContact}
+            ></input></label>
+            <label>Ranch Staff?
+            <input
+              type="checkbox"
+              name="staff"
+              onChange={updateStaff}
+              value={staff}
+            ></input></label>
+          {(staff) ? (
+            <div className="ranch-fields">
+                <label>Ranch Name
                   <input
-                    type="number"
-                    name="nightly_rate"
-                    onChange={updateRate}
-                    value={nightly_rate}
+                    type="text"
+                    name="ranch_name"
+                    onChange={updateRanchName}
+                    value={ranch_name}
                   ></input></label>
-          </div>
-        ) : null}
-        <button type="submit">Sign Up</button>
-      </form>
+                <label>Ranch Location
+                  <input
+                    type="text"
+                    name="location"
+                    onChange={updateLocation}
+                    value={location}
+                  ></input></label>
+                <label>Description
+                  <input
+                    type="text"
+                    name="description"
+                    onChange={updateDescription}
+                    value={description}
+                  ></input></label>
+                <label>Base Nightly Rate
+                    <input
+                      type="number"
+                      name="nightly_rate"
+                      onChange={updateRate}
+                      value={nightly_rate}
+                    ></input></label>
+            </div>
+          ) : null}
+          <button type="submit">Sign Up</button>
+        </form>
+      </div>
     </div>
   );
 };

@@ -19,7 +19,7 @@ const GuestHome = () => {
         <div className="under-nav">
             <div className="dashboard-header">
                 <h1>Guest Home</h1>
-                <h3>{user?.full_name}</h3>
+                <h2>{user?.full_name}</h2>
             </div>
             <div className="guest-dashboard">
                 <div id="dashboard-one">

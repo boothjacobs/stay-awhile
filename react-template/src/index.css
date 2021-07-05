@@ -1,18 +1,18 @@
-/* https://coolors.co/0a0908-22333b-eae0d5-c6ac8f-5e503f */
+/*https://coolors.co/721817-fa9f42-2b4162-0b6e4f-e0e0e2*/
 body {
-    background-color: #F8F1F1;
+    background-color: #e7e7e7;
     color: #362207;
     font-family:  'Uchen', serif;
 }
 
 a {
-    color: #EA9C1B;
+    color: #FA9F42;
     text-decoration: none;
 }
 
 button {
     font-family:  'Uchen', serif;
-    background-color: #5F685A;
+    background-color: #0b6e4f;
     color: #F8F1F1;
     border: none;
     padding: 3px;

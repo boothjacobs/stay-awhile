@@ -41,7 +41,6 @@ const RanchHome = () => {
                         return ( <div key={booking?.id}>
                             <p className="dashboard-p">{booking?.guest}</p>
                             <p className="dashboard-p">{booking?.cabin}</p>
-                            <p className="dashboard-p">{booking?.interests}</p>
                             <p className="dashboard-p">{start?.toDateString()}</p>
                             <p className="dashboard-p">{end?.toDateString()}</p>
                         </div> )
