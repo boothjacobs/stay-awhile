@@ -25,21 +25,26 @@ const RanchDetails = () => {
 
     return (
         <div className="under-nav">
-            <h1>{ranch?.ranch_name}</h1>
-            <EditRanchModal ranch={ranch}/>
-            <ul>
-                <li>{ranch?.location}</li>
-                {(ranch?.description) ? (<li>{ranch?.description}</li>) : (<li>"Description is blank"</li>)}
-                <li>Nightly Rate: ${ranch?.rate}</li>
-                <li> Cabins and Rooms:
-                    <ul>
-                        {cabins?.map((cabin) => {
-                            return ( <li key={cabin.id}>{cabin.name}</li> )
-                        })}
-                        <li><NavLink to="/staff/lodgings">Add or Edit Lodging</NavLink></li>
-                    </ul>
-                </li>
-            </ul>
+            <table id="ranch-detail">
+                <thead>
+                    <tr className="detail-table"><th colspan="1"> <h1>{ranch?.ranch_name}</h1> </th></tr>
+                </thead>
+                <tbody>
+                    <tr className="detail-table"> <EditRanchModal ranch={ranch}/> </tr>
+                    <tr className="detail-table">{ranch?.location}</tr>
+                    <tr className="detail-table">{(ranch?.description) ? (<p>{ranch?.description}</p>) : (<p>Description is blank</p>)}</tr>
+                    <tr className="detail-table"> Nightly Rate: ${ranch?.rate} </tr>
+                    <tr className="detail-table">Cabins and Rooms:</tr>
+                    <tr className="detail-table">
+
+                            {cabins?.map((cabin) => {
+                                return ( <p key={cabin.id}>{cabin.name}</p> )
+                            })}
+
+                    </tr>
+                    <tr className="detail-table"><NavLink to="/staff/lodgings">Add or Edit Lodging</NavLink></tr>
+                </tbody>
+            </table>
         </div>
     )
 }

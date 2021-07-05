@@ -1,9 +1,13 @@
 .under-nav {
     margin: 70px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .ranch-dashboard {
-    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: rgba(75, 50, 50, 0.5); */
     border: 5px solid #5F685A;
     display: grid;
     grid-template-areas: "one one"
@@ -41,6 +45,11 @@
 
 .dashboard-p {
     margin: 20px;
+}
+
+#ranch-detail {
+    text-align: center;
+    border: 1px solid #5F685A;
 }
 
 #cabin-deets {
