@@ -81,6 +81,7 @@ def new_invoice(id):
         deposit=deposit,
         rollover_payment=rollover_payment,
         amount_paid=request.form["amount_paid"],
+        amount_due=request.form["amount_due"]
     )
     db.session.add(invoice)
     db.session.commit()
@@ -95,6 +96,7 @@ def edit_invoice(id):
     invoice.deposit = request.form["deposit"],
     invoice.rollover_payment = request.form["rollover_payment"],
     invoice.amount_paid = request.form["amount_paid"],
+    invoice.amount_due = request.form["amount_due"]
 
     db.session.add(invoice)
     db.session.commit()

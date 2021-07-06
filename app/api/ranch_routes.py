@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Ranch, Cabin, User
+from app.models import db, Ranch, Cabin, Invoice
 from app.forms import SignUpForm
 from flask_login import current_user, login_required
 
@@ -147,3 +147,11 @@ def delete_cabin(cabinId):
     db.session.delete(cabin)
     db.session.commit()
     return {"yes": "delete successful"}
+
+
+@ranch_routes.route('/<ranchId>/invoices', methods=["GET"])
+@login_required
+def open_invoices(ranchId):
+    ranch = Ranch.query.get(ranchId)
+    open_invoices = ranch.invoices.filter(Invoice.amount_due > 0)
+    return {"open invoices": [invoice.to_dict() for invoice in open_invoices]}

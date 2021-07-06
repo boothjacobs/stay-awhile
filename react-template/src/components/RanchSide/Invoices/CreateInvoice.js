@@ -35,6 +35,7 @@ const CreateInvoice = () => {
         formData.append("deposit", deposit);
         formData.append("rollover_payment", rollover);
         formData.append("amount_paid", amount_paid);
+        formData.append("amount_due", amountDue(booking.total, additional_charges, amount_paid))
         dispatch(newInvoice(id, formData));
     };
 

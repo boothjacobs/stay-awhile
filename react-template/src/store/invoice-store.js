@@ -1,8 +1,14 @@
 const SET_INVOICE = "invoice/SET_INVOICE";
+const OPEN_INVOICES = "invoice/OPEN_INVOICES";
 
 const setInvoice = (invoice) => ({
     type: SET_INVOICE,
     payload: invoice
+});
+
+const openInvoices = (invoices) => ({
+    type: OPEN_INVOICES,
+    payload: invoices
 });
 
 export const getInvoice = (bookingId) => async (dispatch) => {
@@ -14,6 +20,16 @@ export const getInvoice = (bookingId) => async (dispatch) => {
     };
     return data;
 };
+
+export const openInvoices = (ranchId) => async (dispatch) => {
+    console.log("open invoices thunk", ranchId)
+    const invoices = await fetch(`/api/ranch/${ranchId}/invoices`);
+    const invoiceData = await invoices.json();
+    if (invoices.ok) {
+        dispatch(openInvoices(invoiceData));
+    }
+    return invoiceData;
+}
 
 export const newInvoice = (bookingId, formData) => async (dispatch) => {
     console.log("new invoice thunk", bookingId)

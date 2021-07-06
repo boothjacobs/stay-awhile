@@ -6,49 +6,57 @@ def seed_invoices():
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='2850')
+                        amount_paid='2850',
+                        amount_due='0')
     invoice2 = Invoice(guest_id='1',
                         booking_id='2',
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='675')
+                        amount_paid='675',
+                        amount_due='2085')
     invoice3 = Invoice(guest_id='1',
                         booking_id='3',
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='800')
+                        amount_paid='800',
+                        amount_due='1996')
     invoice4 = Invoice(guest_id='4',
                         booking_id='4',
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='8388')
+                        amount_paid='8388',
+                        amount_due='0')
     invoice5 = Invoice(guest_id='4',
                         booking_id='5',
                         additional_charges=None,
                         deposit=False,
                         rollover_payment=False,
-                        amount_paid='0')
+                        amount_paid='0',
+                        amount_due='8388')
     invoice6 = Invoice(guest_id='1',
                         booking_id='6',
                         additional_charges=None,
                         deposit=False,
                         rollover_payment=False,
-                        amount_paid='0')
+                        amount_paid='0',
+                        amount_due='4980')
     invoice7 = Invoice(guest_id='1',
                         booking_id='7',
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='2850')
+                        amount_paid='2850',
+                        amount_due='0')
     invoice8 = Invoice(guest_id='2',
                         booking_id='8',
                         additional_charges=None,
                         deposit=True,
                         rollover_payment=False,
-                        amount_paid='5520')
+                        amount_paid='5520',
+                        amount_due='0')
 
     db.session.add(invoice1)
     db.session.add(invoice2)

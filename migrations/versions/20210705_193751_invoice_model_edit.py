@@ -1,8 +1,8 @@
-"""booking model edit
+"""invoice model edit
 
-Revision ID: 8fd714ff0c58
+Revision ID: e339c22074df
 Revises: 
-Create Date: 2021-07-04 11:02:15.224663
+Create Date: 2021-07-05 19:37:51.762822
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '8fd714ff0c58'
+revision = 'e339c22074df'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -75,6 +75,7 @@ def upgrade():
     sa.Column('deposit', sa.Boolean(), nullable=False),
     sa.Column('rollover_payment', sa.Boolean(), nullable=True),
     sa.Column('amount_paid', sa.Integer(), nullable=True),
+    sa.Column('amount_due', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['booking_id'], ['bookings.id'], ),
     sa.ForeignKeyConstraint(['guest_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
