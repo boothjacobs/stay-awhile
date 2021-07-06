@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
-import { useDispatch } from "react-redux";
-import { editCabin, getCabins, getRanch } from "../../../store/ranch-store";
+import { useDispatch, useSelector } from "react-redux";
+import { editInvoice, getInvoice } from "../../../store/invoice-store";
 
-const EditCabinModal = ({cabin}) => {
+const EditInvoiceModal = ({invoice}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
+    const booking = useSelector(state => state.booking);
 
-    const [name, setName] = useState(cabin.name);
-    const [beds, setBeds] = useState(cabin.beds);
-    const [total_capacity, setCapacity] = useState(cabin.total_capacity);
-    const [image, setImage] = useState("");
+    const [additional_charges, setAddCharges] = useState(0);
+    const [deposit, setDepos] = useState(false);
+    const [rollover, setRollover] = useState(false);
+    const [amount_paid, setAmtPaid] = useState(0);
 
     useEffect(() => {
-        // console.log("Edit Ranch Modal dispatch of getRanch")
-        showModal && dispatch(getRanch(cabin.ranch_id));
-    }, [dispatch, cabin.ranch_id, showModal]);
+        showModal && dispatch(getInvoice(booking.id));
+    }, [dispatch, booking.id, showModal]);
 
-    const getImage = (e) => {
-        if (e.target.files) {
-            const imgFile = e.target.files[0];
-            setImage(imgFile);
+    const amountDue = (prevTotal, charges, amountPaid) => {
+        return Number(prevTotal) + Number(charges) - Number(amountPaid);
+    };
+
+    const updateDeposit = (e) => {
+        setDepos(e.target.value);
+        if (deposit === true) {
+            setAmtPaid(booking.total / 4);
         } else {
-            console.log("no image")
+            setAmtPaid(0)
         }
     };
 
@@ -30,12 +34,13 @@ const EditCabinModal = ({cabin}) => {
         e.preventDefault();
 
         const formData = new FormData();
-        formData.append("name", name);
-        formData.append("beds", beds);
-        formData.append("total_capacity", total_capacity);
-        formData.append("image", image);
+        formData.append("additional_charges", additional_charges);
+        formData.append("deposit", deposit);
+        formData.append("rollover_payment", rollover);
+        formData.append("amount_paid", amount_paid);
+        formData.append("amount_due", amountDue(booking.total, additional_charges, amount_paid))
 
-        dispatch(editCabin(cabin.id, formData));
+        dispatch(editInvoice(booking.id, invoice.id, formData));
         setShowModal(false);
     };
 
@@ -45,40 +50,32 @@ const EditCabinModal = ({cabin}) => {
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <div className="form-box">
-                        <h3 className="modal-head">Edit Cabin Details</h3>
+                        <h3 className="modal-head">Edit Invoice Details</h3>
                         <form className="modal-form" onSubmit={handleSubmit}>
-                        <label>Cabin or Room Name
-                            <input
-                                type="text"
-                                name="name"
-                                onChange={(e) => setName(e.target.value)}
-                                value={name}
-                                ></input></label>
-                        <label>How Many Beds?
-                            <input
-                                type="number"
-                                name="beds"
-                                onChange={(e) => setBeds(e.target.value)}
-                                value={beds}
-                            ></input></label>
-                        <label>Sleeps How Many People?
-                            <input
-                                type="number"
-                                name="total_capacity"
-                                onChange={(e) => setCapacity(e.target.value)}
-                                value={total_capacity}
-                            ></input></label>
-                        <label>{(cabin.img_url) ? ("Replace Photo--leave blank to keep current file") : ("Add Photo")}
-                            <input
-                                type="file"
-                                name="image"
-                                onChange={getImage}
-                                // value={image}
-                                ></input></label>
-                            <div className="modal-buttons">
-                                <button type="submit">Save</button>
-                                <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
-                            </div>
+                            <label>Total from Booking: ${booking?.total}</label> {/* read only */}
+                            <label>Additional charges:
+                                <input type="number"
+                                value={additional_charges}
+                                onChange={(e) => setAddCharges(e.target.value)}/>
+                            </label>
+                            <label>Deposit: {booking.total / 4}</label> {/* read only: total/4 */}
+                            <label>Deposit Paid?
+                                <input type="checkbox"
+                                value={deposit}
+                                onChange={updateDeposit}/>
+                            </label>
+                            <label>Rollover Payment:
+                                <input type="checkbox"
+                                value={rollover}
+                                onChange={(e) => setRollover(e.target.value)}/>
+                            </label>
+                            <label>Amount Paid:
+                                <input type="number"
+                                value={amount_paid}
+                                onChange={(e) => setAmtPaid(e.target.value)}/>
+                            </label>
+                            <p>Amount Due: ${amountDue(booking.total, additional_charges, amount_paid)}</p>
+                            <button type="submit">Save Invoice</button>
                         </form>
                     </div>
                 </Modal>
@@ -88,4 +85,4 @@ const EditCabinModal = ({cabin}) => {
 
 }
 
-export default EditCabinModal;
+export default EditInvoiceModal;

@@ -5,6 +5,7 @@ import {useParams} from 'react-router-dom';
 import { getOneBooking } from "../../../store/booking-store";
 import { getInvoice, newInvoice } from "../../../store/invoice-store";
 import DeleteInvoiceModal from "./DeleteInvoiceModal";
+import EditInvoiceModal from "./EditInvoiceModal";
 
 const CreateInvoice = () => {
     const dispatch = useDispatch();
@@ -77,6 +78,7 @@ const CreateInvoice = () => {
                     <p>Amount Due: {invoice?.amount_due}</p>
                     <div>
                         <DeleteInvoiceModal invoice={invoice} />
+                        <EditInvoiceModal invoice={invoice} />
                     </div>
                 </div>
             ) : (

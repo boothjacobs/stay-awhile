@@ -95,9 +95,18 @@ def new_invoice(id):
 @login_required
 def edit_invoice(bookId, id):
     invoice = Invoice.query.get(id)
+
+    if request.form["deposit"] == "false":
+        invoice.deposit = False
+    else:
+        invoice.deposit = True
+
+    if request.form["rollover_payment"] == "false":
+        invoice.rollover_payment = False
+    else:
+        invoice.rollover_payment = True
+
     invoice.additional_charges = request.form["additional_charges"],
-    invoice.deposit = request.form["deposit"],
-    invoice.rollover_payment = request.form["rollover_payment"],
     invoice.amount_paid = request.form["amount_paid"],
     invoice.amount_due = request.form["amount_due"]
 
