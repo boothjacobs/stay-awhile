@@ -76,7 +76,7 @@ export const deleteBooking = (id) => async (dispatch) => {
         dispatch(delBooking(data.deleted));
     }
     return data;
-}
+};
 
 const initialState = {};
 
