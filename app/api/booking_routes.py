@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Ranch, Invoice, User, Booking
+from app.models import db, Review, Invoice, User, Booking
 from flask_login import current_user, login_required
 
 booking_routes = Blueprint('booking', __name__)
@@ -121,5 +121,42 @@ def edit_invoice(bookId, id):
 def delete_invoice(bookId, id):
     invoice = Invoice.query.get(id)
     db.session.delete(invoice)
+    db.session.commit()
+    return {"deleted": id}
+
+
+@booking_routes.route("/<bookId>/review", methods=["POST"])
+@login_required
+def new_review():
+    review = Review(
+        guest_id=request.form["guest_id"],
+        booking_id=request.form["booking_id"],
+        content=request.form["content"],
+        stars=request.form["stars"]
+    )
+    db.session.add(review)
+    db.session.commit()
+    return review.to_dict()
+
+
+@booking_routes.route("/<bookId>/review/<id>", methods=["PUT"])
+@login_required
+def edit_review(bookId, id):
+    review = Review.query.get(id)
+    review.content = request.form["content"]
+    review.stars = request.form["stars"]
+
+    db.session.add(review)
+    db.session.commit()
+
+    return review.to_dict()
+
+
+@booking_routes.route("/<bookId>/review/<id>", methods=["DELETE"])
+@login_required
+def delete_review(bookId, id):
+    review = Review.query.get(id)
+
+    db.session.delete(review)
     db.session.commit()
     return {"deleted": id}

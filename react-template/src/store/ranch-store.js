@@ -123,7 +123,7 @@ const initialState = {};
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
-            return {ranch: action.payload};
+            return {...action.payload};
         case FILTER_RANCHES:
             const searchResults = {...action.payload};
             return searchResults;

@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Ranch, Cabin, Invoice
+from app.models import db, Ranch, Cabin, Invoice, Booking
 from app.forms import SignUpForm
 from flask_login import current_user, login_required
 
@@ -47,7 +47,8 @@ def search_ranch():
 @ranch_routes.route('/<id>', methods=['GET'])
 def get_ranch(id):
     ranch = Ranch.query.get(id)
-    return ranch.to_dict()
+    bookings = Booking.query.filter(Booking.ranch_id == id)
+    return {"ranch": ranch.to_dict(), "bookings": [booking.to_dict() for booking in bookings]}
 
 
 @ranch_routes.route('/<id>', methods=["PUT"])
@@ -69,10 +70,10 @@ def edit_ranch(id):
 
 @ranch_routes.route('/<id>/cabins', methods=['GET'])
 def get_cabins(id):
-    print("============================== get_cabins +++++++++++++++++++++++")
+    # print("============================== get_cabins +++++++++++++++++++++++")
     print(id)
     cabins = Cabin.query.filter(Cabin.ranch_id == id)
-    print("::::::::::::::::::::::::::::::::::::::::", cabins)
+    # print("::::::::::::::::::::::::::::::::::::::::", cabins)
     return {"cabins": [cabin.to_dict() for cabin in cabins]}
 
 
@@ -105,7 +106,7 @@ def add_cabin(id):
         ranch_id=ranch.id
         )
     db.session.add(cabin)
-    print("******************", cabin)
+    # print("******************", cabin)
     db.session.commit()
     return cabin.to_dict()
 
@@ -142,8 +143,7 @@ def edit_cabin(cabinId):
 @login_required
 def delete_cabin(cabinId):
     cabin = Cabin.query.get(cabinId)
-    # allCabins = Cabin.query.filter(Cabin.ranch_id.is_(id))
-    print("===========================DELETE ROUTE For Real", cabin)
+    # print("===========================DELETE ROUTE For Real", cabin)
     db.session.delete(cabin)
     db.session.commit()
     return {"yes": "delete successful"}
@@ -155,4 +155,3 @@ def open_invoices(ranchId):
     ranch = Ranch.query.get(ranchId)
     open_invoices = ranch.invoices.filter(Invoice.amount_due > 0)
     return {"open invoices": [invoice.to_dict() for invoice in open_invoices]}
-

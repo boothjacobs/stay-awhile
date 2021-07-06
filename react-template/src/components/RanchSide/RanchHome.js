@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
+import { getOpenInvoices } from "../../store/invoice-store";
 
 import "./ranchSide.css";
 
@@ -10,11 +11,14 @@ const RanchHome = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        // console.log("Ranch Home.js dispatch of getRanch")
-        dispatch(getRanch(user.ranch_id))
-    }, [dispatch, user])
+        console.log("Ranch Home.js dispatch of getRanch")
+        dispatch(getRanch(user.ranch_id));
+        dispatch(getOpenInvoices(user.ranch_id));
+    }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch.ranch);
+    const openInvoices = useSelector(state => state.invoice);
+
     let bookings;
     if (ranch) {
         bookings = Object.values(ranch?.bookings);

@@ -46,6 +46,8 @@ export const newInvoice = (bookingId, formData) => async (dispatch) => {
     const data = await response.json();
     if (response.ok) {
         dispatch(setInvoice(data));
+    } else {
+        console.log(data)
     }
     return data;
 };

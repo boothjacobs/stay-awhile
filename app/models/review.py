@@ -15,6 +15,7 @@ class Review(db.Model):
         return {
             "id": self.id,
             "guest": self.guest.full_name,
+            "booking_id": self.booking_id,
             "booked_ranch": self.booking.ranch.ranch_name,
             "ranch_id": self.booking.ranch_id,
             "content": self.content,

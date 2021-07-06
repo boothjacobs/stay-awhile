@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 import { addBooking } from "../../store/booking-store";
+import AddReviewModal from "./Reviews/AddReviewModal";
+import EditReviewModal from "./Reviews/EditReviewModal";
+import DeleteReviewModal from "./Reviews/DeleteReviewModal";
 
 import "../RanchSide/ranchSide.css";
 
@@ -14,6 +17,14 @@ const RanchProfile = () => {
 
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
+    const myBookings = Object.values(useSelector(state => state.booking));
+    console.log("books", myBookings)
+
+    const ranchId = useParams().id;
+
+    useEffect(() => {
+        dispatch(getRanch(ranchId));
+    }, [dispatch]);
 
     const reviews = [];
     if (ranch) {
@@ -22,17 +33,10 @@ const RanchProfile = () => {
         });
     };
 
-    const ranchId = useParams().id;
-
-    useEffect(() => {
-        dispatch(getRanch(ranchId));
-    }, [dispatch]);
-
     let cabins;
     if (ranch?.cabins) {
         cabins = Object.values(ranch?.cabins);
     }
-    console.log("REVIEWS", reviews)
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");
@@ -143,7 +147,8 @@ const RanchProfile = () => {
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
                 <div className="ranch-profile-reviews">
-                    <button type="button" onClick={(e) => window.alert("This button doesn't do anything right now.")}>Add A Review</button>
+                    {myBookings.includes()}
+                    {/* <AddReviewModal booking={}/> */}
                     {reviews.map((review) => {
                         return (
                             <div className="review-thumbnail">

@@ -1,7 +1,7 @@
 const SET_BOOKING = "booking/SET_BOOKING";
 const ONE_BOOKING = "booking/ONE_BOOKING";
 const ALL_BOOKINGS = "booking/ALL_BOOKINGS";
-const DELETE_BOOKING = "booking/DELETE_BOOKINGS";
+const DELETE_BOOKING = "booking/DELETE_BOOKING";
 
 const thisBooking = (booking) => ({
     type: SET_BOOKING,
