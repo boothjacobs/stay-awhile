@@ -152,5 +152,5 @@ def seed_cabins():
 
 
 def undo_cabins():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE cabins RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -4,6 +4,7 @@ from .ranches import seed_ranches, undo_ranches
 from .cabins import seed_cabins, undo_cabins
 from .bookings import seed_bookings, undo_bookings
 from .invoices import seed_invoices, undo_invoices
+from .reviews import seed_reviews, undo_reviews
 
 # Creates a seed group to hold our commands
 seed_commands = AppGroup('seed')
@@ -16,6 +17,7 @@ def seed():
     seed_cabins()
     seed_bookings()
     seed_invoices()
+    seed_reviews()
     # Add other seed functions here
 
 # Creates the `flask seed undo` command
@@ -26,4 +28,5 @@ def undo():
     undo_cabins()
     undo_bookings()
     undo_invoices()
+    undo_reviews()
     # Add other undo functions here

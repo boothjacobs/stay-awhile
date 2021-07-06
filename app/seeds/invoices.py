@@ -69,5 +69,5 @@ def seed_invoices():
     db.session.commit()
 
 def undo_invoices():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE invoices RESTART IDENTITY CASCADE;')
     db.session.commit()

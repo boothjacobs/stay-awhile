@@ -155,3 +155,4 @@ def open_invoices(ranchId):
     ranch = Ranch.query.get(ranchId)
     open_invoices = ranch.invoices.filter(Invoice.amount_due > 0)
     return {"open invoices": [invoice.to_dict() for invoice in open_invoices]}
+

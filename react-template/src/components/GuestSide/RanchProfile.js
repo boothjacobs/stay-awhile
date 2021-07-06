@@ -15,18 +15,24 @@ const RanchProfile = () => {
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
 
+    const reviews = [];
+    if (ranch) {
+        Object.values(ranch?.bookings).forEach((booking) => {
+            reviews.push(...Object.values(booking.review))
+        });
+    };
+
     const ranchId = useParams().id;
-    // console.log(ranchId)
+
     useEffect(() => {
         dispatch(getRanch(ranchId));
     }, [dispatch]);
 
-    // console.log("variable ranch: ", ranch)
     let cabins;
     if (ranch?.cabins) {
         cabins = Object.values(ranch?.cabins);
     }
-    // console.log("variable cabins", cabins)
+    console.log("REVIEWS", reviews)
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");
@@ -138,18 +144,15 @@ const RanchProfile = () => {
                 </div>
                 <div className="ranch-profile-reviews">
                     <button type="button" onClick={(e) => window.alert("This button doesn't do anything right now.")}>Add A Review</button>
-                    <div className="review-thumbnail">
-                        <p><strong>Username</strong></p>
-                        <p>Placeholder because reviews haven't been seeded yet</p>
-                    </div>
-                    <div className="review-thumbnail">
-                        <p><strong>Username</strong></p>
-                        <p>Placeholder because reviews haven't been seeded yet</p>
-                    </div>
-                    <div className="review-thumbnail">
-                        <p><strong>Username</strong></p>
-                        <p>Placeholder because reviews haven't been seeded yet</p>
-                    </div>
+                    {reviews.map((review) => {
+                        return (
+                            <div className="review-thumbnail">
+                                <p>{review.guest} {review.stars} stars</p>
+                                <p>{review.content}</p>
+                            </div>
+                        )
+                    })}
+
                 </div>
             </div>
         </div>

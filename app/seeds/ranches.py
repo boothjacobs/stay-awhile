@@ -68,5 +68,5 @@ def seed_ranches():
     db.session.commit()
 
 def undo_ranches():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE ranches RESTART IDENTITY CASCADE;')
     db.session.commit()

@@ -84,5 +84,5 @@ def seed_bookings():
     db.session.commit()
 
 def undo_bookings():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute('TRUNCATE bookings RESTART IDENTITY CASCADE;')
     db.session.commit()
