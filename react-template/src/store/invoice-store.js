@@ -21,7 +21,7 @@ export const getInvoice = (bookingId) => async (dispatch) => {
     return data;
 };
 
-export const openInvoices = (ranchId) => async (dispatch) => {
+export const getOpenInvoices = (ranchId) => async (dispatch) => {
     console.log("open invoices thunk", ranchId)
     const invoices = await fetch(`/api/ranch/${ranchId}/invoices`);
     const invoiceData = await invoices.json();
