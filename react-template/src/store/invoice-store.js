@@ -60,7 +60,7 @@ export const editInvoice = (bookId, formData) => async (dispatch) => {
     if (res.ok) {
         dispatch(setInvoice(invData));
     }
-    return bookData;
+    return invData;
 };
 
 export const deleteInvoice = (bookId) => async (dispatch) => {
@@ -82,7 +82,7 @@ export default function reducer(state=initialState, action) {
         case SET_INVOICE:
             return {...action.payload};
         case DELETE_INVOICE:
-            newState = {...state};
+            const newState = {...state};
             delete newState[action.payload];
             return newState;
         case OPEN_INVOICES:

@@ -80,3 +80,7 @@
     margin: auto;
     margin-bottom: 20px;
 }
+
+.invoice-boolean > p {
+    display: inline;
+}
