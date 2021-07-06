@@ -50,9 +50,9 @@ export const newInvoice = (bookingId, formData) => async (dispatch) => {
     return data;
 };
 
-export const editInvoice = (bookId, formData) => async (dispatch) => {
+export const editInvoice = (bookId, id, formData) => async (dispatch) => {
     console.log("edit invoice thunk", bookId)
-    const res = await fetch(`/api/booking/${bookId}/invoice`, {
+    const res = await fetch(`/api/booking/${bookId}/invoice/${id}`, {
         method: "PUT",
         body: formData
     });
@@ -63,8 +63,8 @@ export const editInvoice = (bookId, formData) => async (dispatch) => {
     return invData;
 };
 
-export const deleteInvoice = (bookId) => async (dispatch) => {
-    const res = await fetch(`/api/booking/${bookId}/invoice`, {
+export const deleteInvoice = (bookId, id) => async (dispatch) => {
+    const res = await fetch(`/api/booking/${bookId}/invoice/${id}`, {
         method: "DELETE"
     });
     const data = await res.json();

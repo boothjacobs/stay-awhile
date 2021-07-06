@@ -60,7 +60,10 @@ def delete_booking(id):
 @login_required
 def get_invoice(id):
     invoice = Invoice.query.filter(Invoice.booking_id == id).first()
-    return invoice.to_dict()
+    if invoice:
+        return invoice.to_dict()
+    else:
+        return {0: ""}
 
 
 @booking_routes.route("/<id>/invoice", methods=["POST"])
@@ -88,10 +91,10 @@ def new_invoice(id):
     return invoice.to_dict()
 
 
-@booking_routes.route("/<bookId>/invoice", methods=["PUT"])
+@booking_routes.route("/<bookId>/invoice/<id>", methods=["PUT"])
 @login_required
-def edit_invoice(bookId):
-    invoice = Invoice.query.get(bookId)
+def edit_invoice(bookId, id):
+    invoice = Invoice.query.get(id)
     invoice.additional_charges = request.form["additional_charges"],
     invoice.deposit = request.form["deposit"],
     invoice.rollover_payment = request.form["rollover_payment"],
@@ -104,10 +107,10 @@ def edit_invoice(bookId):
     return invoice.to_dict()
 
 
-@booking_routes.route("/<bookId>/invoice", methods=["DELETE"])
+@booking_routes.route("/<bookId>/invoice/<id>", methods=["DELETE"])
 @login_required
-def delete_invoice(bookId):
-    invoice = Invoice.query.get(bookId)
+def delete_invoice(bookId, id):
+    invoice = Invoice.query.get(id)
     db.session.delete(invoice)
     db.session.commit()
     return {"deleted": id}

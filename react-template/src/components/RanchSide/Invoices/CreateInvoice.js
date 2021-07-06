@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 
 import { getOneBooking } from "../../../store/booking-store";
 import { getInvoice, newInvoice } from "../../../store/invoice-store";
+import DeleteInvoiceModal from "./DeleteInvoiceModal";
 
 const CreateInvoice = () => {
     const dispatch = useDispatch();
@@ -61,19 +62,22 @@ const CreateInvoice = () => {
                 <p>Interests: {booking?.interests}</p>
             </div>
             {/* IF INVOICE EXISTS, RENDER EXISITNG INVOICE WITH EDIT BUTTON INSTEAD OF CREATE FORM */}
-            {invoice ? (
+            {invoice.id ? (
                 <div id="existing-invoice-render">
                     <h4>Invoice Details</h4>
                     <p>Any additional charges: {invoice?.additional_charges}</p>
                     <div className="invoice-boolean">
-                        <p>Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}</p>
+                        Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
                     </div>
                     <div className="invoice-boolean">
-                        <p>Rollover Payment: {invoice?.rollover_payment ? (<p>Applied</p>) : (<p>None</p>)}</p>
+                        Rollover Payment: {invoice?.rollover_payment ? (<p>Applied</p>) : (<p>None</p>)}
                     </div>
                     <p>Subtotal: {invoice?.total}</p>
                     <p>Amount Paid: {invoice?.amount_paid}</p>
                     <p>Amount Due: {invoice?.amount_due}</p>
+                    <div>
+                        <DeleteInvoiceModal invoice={invoice} />
+                    </div>
                 </div>
             ) : (
                 <div id="create-invoice-render">
