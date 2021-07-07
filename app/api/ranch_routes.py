@@ -155,3 +155,4 @@ def delete_cabin(cabinId):
 #     ranch = Ranch.query.get(ranchId)
 #     open_invoices = ranch.invoices.filter(Invoice.amount_due > 0)
 #     return {"open invoices": [invoice.to_dict() for invoice in open_invoices]}
+# Association here is bad, lowercase ranch's to_dict values not available--filter could happen on frontend

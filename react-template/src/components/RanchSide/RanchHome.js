@@ -17,14 +17,13 @@ const RanchHome = () => {
     }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch.ranch);
-    const openInvoices = useSelector(state => state.invoice);
+    // const openInvoices = useSelector(state => state.invoice);
+    // Open invoices will need to be filtered from a different version of invoice store
 
     let bookings;
     if (ranch) {
         bookings = Object.values(ranch?.bookings);
-    }
-    // console.log("from ranch object", ranch?.bookings)
-    // console.log("variable bookings", bookings)
+    };
 
     return (
         <div className="under-nav">

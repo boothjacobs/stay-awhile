@@ -14,15 +14,11 @@ const EditBookingModal = ({booking}) => {
     let sT = sDate.indexOf("T");
     const startDate = sDate.slice(0, sT);
     const [start_date, setStartDate] = useState(startDate);
-    // console.log("****original start value", booking.start_date)
-    // console.log("both start values", sDate, start_date, startDate)
 
     const eDate = (new Date(booking.end_date)).toISOString();
     let eT = eDate.indexOf("T");
     const endDate = eDate.slice(0, eT);
     const [end_date, setEndDate] = useState(endDate);
-    // console.log("original end value", booking.end_date)
-    // console.log("both end values", eDate, end_date, endDate)
 
     const [cabin_id, setCabin] = useState(booking.cabin_id);
     const [interests, setInterests] = useState(booking.interests);
@@ -35,7 +31,6 @@ const EditBookingModal = ({booking}) => {
     }, [dispatch, booking.guest_id, booking.ranch_id, showModal]);
 
     const ranch = useSelector(state => state.ranch.ranch);
-    // console.log("edit modal ranch", ranch)
     let cabins;
     if (ranch) {
         cabins = Object.values(ranch.cabins);
@@ -73,7 +68,7 @@ const EditBookingModal = ({booking}) => {
             if (duration < 1) duration += (31 - start)
         }
         // console.log("result of calculateTotal", duration, bookingStart, bookingEnd)
-        return duration * ranch?.rate * guest_count;
+        return duration * ranch?.rate * guestCount;
     };
 
     const handleSubmit = (e) => {
