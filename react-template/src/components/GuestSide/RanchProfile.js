@@ -147,8 +147,15 @@ const RanchProfile = () => {
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
                 <div className="ranch-profile-reviews">
-                    {myBookings.includes()}
-                    {/* <AddReviewModal booking={}/> */}
+                    {myBookings.map(booking => {
+                        if (booking.ranch_id === Number(ranchId)) {
+                            return (<>
+                            <p>??????</p>
+                            <AddReviewModal booking={booking}/>
+                            </>
+                            )
+                        }
+                    })}
                     {reviews.map((review) => {
                         return (
                             <div className="review-thumbnail">

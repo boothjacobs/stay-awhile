@@ -21,6 +21,7 @@ const AddReviewModal = ({booking}) => {
         const formData = new FormData();
         formData.append("content", content);
         formData.append("stars", stars);
+        formData.append("guest_id", booking.guest_id)
 
         dispatch(addReview(formData, booking.id));
         setShowModal(false);

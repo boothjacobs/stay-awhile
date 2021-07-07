@@ -127,10 +127,10 @@ def delete_invoice(bookId, id):
 
 @booking_routes.route("/<bookId>/review", methods=["POST"])
 @login_required
-def new_review():
+def new_review(bookId):
     review = Review(
         guest_id=request.form["guest_id"],
-        booking_id=request.form["booking_id"],
+        booking_id=bookId,
         content=request.form["content"],
         stars=request.form["stars"]
     )
