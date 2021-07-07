@@ -11,9 +11,9 @@ const AddReviewModal = ({booking}) => {
     const [content, setContent] = useState("");
     const [stars, setStars] = useState("");
 
-    // useEffect(() => {
-    //     showModal && dispatch(getOneBooking(review.booking_id));
-    // }, [dispatch, review.booking_id, showModal]);
+    useEffect(() => {
+        showModal && dispatch(getOneBooking(booking.id));
+    }, [dispatch, booking.id, showModal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

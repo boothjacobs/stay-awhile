@@ -148,10 +148,10 @@ const RanchProfile = () => {
                 </div>
                 <div className="ranch-profile-reviews">
                     {myBookings.map(booking => {
-                        if (booking.ranch_id === Number(ranchId)) {
-                            return (<>
-                            <p>??????</p>
-                            <AddReviewModal booking={booking}/>
+                        if (booking?.ranch_id === Number(ranchId)) {
+                            return (
+                            <>
+                                <AddReviewModal booking={booking}/>
                             </>
                             )
                         }
@@ -161,6 +161,11 @@ const RanchProfile = () => {
                             <div className="review-thumbnail">
                                 <p>{review.guest} {review.stars} stars</p>
                                 <p>{review.content}</p>
+                                {(review.guest === user?.full_name) ?
+                                    (<>
+                                        <EditReviewModal review={review} />
+                                        <DeleteReviewModal review={review} />
+                                    </>) : null}
                             </div>
                         )
                     })}
