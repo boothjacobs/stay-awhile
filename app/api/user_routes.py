@@ -21,6 +21,14 @@ def get_invoices(id):
     return {invoice.id: invoice.to_dict() for invoice in invoices}
 
 
+@user_routes.route("/<id>/invoices/<invId>", methods=["POST"])
+@login_required
+def pay_invoice(id, invId):
+    pass
+    # request = OrdersCreateRequest()
+    # request.headers['prefer'] = 'return=representation'
+
+
 @user_routes.route("/<id>/reviews", methods=["GET"])
 @login_required
 def get_reviews(id):

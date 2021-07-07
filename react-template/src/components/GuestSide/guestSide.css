@@ -176,3 +176,13 @@ h1, h2, h4 {
 .review-thumbnail {
     padding: 10px;
 }
+
+.invoice-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.existing-invoice-render {
+    padding: 10px;
+    margin: 30px;
+}

@@ -37,6 +37,15 @@ export const getOpenInvoices = (ranchId) => async (dispatch) => {
     return invoiceData;
 };
 
+export const getUserInvoices = (userId) => async (dispatch) => {
+    const res = await fetch(`/api/users/${userId}/invoices`);
+    const invoiceData = await res.json();
+    if (res.ok) {
+        dispatch(openInvoices(invoiceData));
+    }
+    return invoiceData;
+};
+
 export const newInvoice = (bookingId, formData) => async (dispatch) => {
     console.log("new invoice thunk", bookingId)
     const response = await fetch(`/api/booking/${bookingId}/invoice`, {
