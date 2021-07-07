@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { logout } from '../../store/session';
+import { logout, demoGuest, demoStaff } from '../../store/session';
 import "./nav.css";
 
 const NavBar = () => {
@@ -11,6 +11,14 @@ const NavBar = () => {
 
     const onLogout = async (e) => {
         dispatch(logout());
+    };
+
+    const loginDemoStaff = async (e) => {
+      dispatch(demoStaff());
+    };
+
+    const loginDemoGuest = async (e) => {
+      dispatch(demoGuest());
     };
 
   return (
@@ -38,6 +46,12 @@ const NavBar = () => {
           <li className="nav-li">
             <button onClick={onLogout}>Logout</button>
           </li>) : (<>
+            <li className="nav-li">
+              <button onClick={loginDemoStaff}>Demo as Staff</button>
+            </li>
+            <li className="nav-li">
+              <button onClick={loginDemoGuest}>Demo as Customer</button>
+            </li>
             <li className="nav-li">
               <NavLink to="/login" exact={true} activeClassName="active">
                 Login

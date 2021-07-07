@@ -7,7 +7,7 @@ export const createOrder = (data, actions) => async (dispatch) => {
     });
     const orderData = await res.json();
     return orderData.id;
-}
+};
 
 
 // Call your server to finalize the transaction
@@ -39,4 +39,4 @@ export const onApprove = (data, actions) => async(dispatch) => {
 
     // Show a success message
     alert('Transaction completed by ' + orderData.payer.name.given_name);
-}
+};

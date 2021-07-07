@@ -85,12 +85,21 @@ def sign_up():
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/demo', methods=['POST'])
-def demo():
+@auth_routes.route('/demo/guest', methods=['GET'])
+def demo_guest():
     """
-    Logs a user in as demo user
+    Logs a user in as demo guest user
     """
-    user = User.query.filter_by(username="Demo1").first()
+    user = User.query.filter_by(id=1).first()
+    login_user(user)
+    return user.to_dict()
+
+@auth_routes.route('/demo/staff', methods=['GET'])
+def demo_staff():
+    """
+    Logs a user in as demo staff user
+    """
+    user = User.query.filter_by(id=3).first()
     login_user(user)
     return user.to_dict()
 
