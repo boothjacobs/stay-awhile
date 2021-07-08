@@ -29,12 +29,7 @@ const RanchProfile = () => {
         dispatch(getRanch(ranchId));
     }, [dispatch]);
 
-    const reviews = [];
-    if (ranch) {
-        Object.values(ranch?.bookings).forEach((booking) => {
-            reviews.push(...Object.values(booking.review))
-        });
-    };
+
 
     let cabins;
     if (ranch?.cabins) {
@@ -149,12 +144,17 @@ const RanchProfile = () => {
                         mattis libero. Nulla tristique arcu orci, a volutpat mi interdum pretium. Aliquam purus nisi,
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
-                <div className="ranch-profile-reviews">
-                    {bookedRanches.includes(Number(ranchId)) ? (
+                </div>
+            </div>
+                )
+}
+
+                {/* <div className="ranch-profile-reviews"> */}
+                    {/* {bookedRanches.includes(Number(ranchId)) ? (
                             <>
                                 Add Review Button
                                 {/* <AddReviewModal booking={null}/> */}
-                            </>
+                            /* </>
                             ) : null}
                     {reviews.map((review) => {
                         return (
@@ -168,13 +168,7 @@ const RanchProfile = () => {
                                     </>) : null}
                             </div>
                         )
-                    })}
-
-                </div>
-            </div>
-        </div>
-    )
-
-}
+                    })} */
+                // </div>
 
 export default RanchProfile;
