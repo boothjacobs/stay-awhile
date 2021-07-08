@@ -18,7 +18,7 @@ const RanchProfile = () => {
 
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
-    const bookings = useSelector(state => state.bookings);
+    const bookings = useSelector(state => state.booking);
 
     const ranchId = useParams().id;
 
@@ -34,8 +34,10 @@ const RanchProfile = () => {
 
     let myBookings;
     if (bookings) {
-        myBookings = Object.values(bookings).filter((booking) => booking.ranch_id === Number(ranchId))
+        myBookings = Object.values(bookings).filter((booking) => booking?.ranch_id === Number(ranchId))
     };
+    console.log("bookings", bookings)
+    console.log(myBookings)
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");

@@ -19,19 +19,10 @@ import { authenticate } from "./store/session";
 
 function App() {
   const dispatch = useDispatch();
-  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    (async() => {
       dispatch(authenticate());
-      //prevents page load if user is unauthorized
-      setLoaded(true);
-    })();
   }, [dispatch]);
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
     <BrowserRouter>

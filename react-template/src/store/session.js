@@ -125,14 +125,14 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
     return userData;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, loaded: false };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_USER:
-            return {user: action.payload}
+            return {user: action.payload, loaded: true}
         case REMOVE_USER:
-            return {user: null}
+            return {user: null, loaded: true}
         case SET_RANCH:
             return {...state, "ranch": action.payload}
         default:

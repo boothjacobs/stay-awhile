@@ -12,7 +12,7 @@ const AddReviewModal = ({booking}) => {
     const [stars, setStars] = useState("");
 
     useEffect(() => {
-        showModal && dispatch(getOneBooking(booking.id));
+        showModal && dispatch(getOneBooking(booking?.id));
     }, [dispatch, booking?.id, showModal]);
 
     const handleSubmit = (e) => {
