@@ -19,14 +19,15 @@ const setRanch = (ranch) => ({
 
 //THUNKS
 export const authenticate = () => async (dispatch) => {
-    const response = await fetch('/api/auth/',{
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+    const response = await fetch('/api/auth'
+    // {
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     }
+    // }
+    );
     const data = await response.json(); //returns user
     if (data.errors) {
-        console.log("Authenticate thunk errors:", data);
         return;
     }
     dispatch(setUser(data));

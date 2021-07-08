@@ -6,15 +6,15 @@ import { login } from "../../store/session";
 const LoginForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const onLogin = async (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
-    console.log("dispatch mystery data WITH AWAIT", data)
-    if (data) { setErrors(data) };
+    dispatch(login(email, password));
+    // console.log("dispatch mystery data WITH AWAIT", data)
+    // if (data) { setErrors(data) };
   };
 
   const updateEmail = (e) => {
@@ -35,9 +35,9 @@ const LoginForm = () => {
         <h3 className="auth-head">Log in to an existing account</h3>
         <form className="auth-form" onSubmit={onLogin}>
           <div>
-            {errors?.map((error) => (
+            {/* {errors?.map((error) => (
               <div>{error}</div>
-            ))}
+            ))} */}
           </div>
             <label htmlFor="email">Email
             <input
