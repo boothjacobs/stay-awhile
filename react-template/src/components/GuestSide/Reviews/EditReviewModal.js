@@ -35,12 +35,11 @@ const EditReviewModal = ({review}) => {
                         <h3 className="modal-head">Edit Review</h3>
                         <form className="modal-form" onSubmit={handleSubmit}>
                         <label>Tell Us About Your Experience...
-                            <input
-                                type="text"
+                            <textarea
                                 name="content"
                                 onChange={(e) => setContent(e.target.value)}
                                 value={content}
-                                ></input></label>
+                                /></label>
                         <label>Rating
                             <input
                                 type="number"

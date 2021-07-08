@@ -1,5 +1,11 @@
+const ALL_REVIEWS = "booking/ALL_REVIEWS";
 const SET_REVIEW = "booking/SET_REVIEW";
 const DELETE_REVIEW = "booking/DELETE_REVIEW";
+
+const get = (reviews) => ({
+    type: ALL_REVIEWS,
+    payload: reviews
+});
 
 const setReview = (review) => ({
     type: SET_REVIEW,
@@ -10,6 +16,15 @@ const delReview = (reviewId) => ({
     type: DELETE_REVIEW,
     payload: reviewId
 });
+
+export const getReviews = (ranchId) => async (dispatch) => {
+    const res = await fetch(`/api/ranch/${ranchId}/review`);
+    const reviewData = await res.json();
+    if (res.ok) {
+        dispatch(get(reviewData));
+    }
+    return reviewData;
+};
 
 export const addReview = (formData, bookId) => async (dispatch) => {
     const res = await fetch(`/api/booking/${bookId}/review`, {
@@ -51,6 +66,8 @@ const initialState = {};
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
+        case ALL_REVIEWS:
+            return {...action.payload};
         case SET_REVIEW:
             const newState = {...state};
             newState[action.payload.id] = action.payload;

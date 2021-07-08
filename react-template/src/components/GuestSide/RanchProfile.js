@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 import { addBooking } from "../../store/booking-store";
+import { getReviews } from "../../store/review-store";
 import AddReviewModal from "./Reviews/AddReviewModal";
 import EditReviewModal from "./Reviews/EditReviewModal";
 import DeleteReviewModal from "./Reviews/DeleteReviewModal";
@@ -17,8 +18,10 @@ const RanchProfile = () => {
 
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
-    const myBookings = Object.values(useSelector(state => state.booking));
-    console.log("books", myBookings)
+    const myBookings = Object.values(state => state.bookings);
+    // console.log("books", myBookings)
+    let bookedRanches = [];
+    myBookings.forEach(booking => bookedRanches.push(booking?.ranch_id));
 
     const ranchId = useParams().id;
 
@@ -147,15 +150,12 @@ const RanchProfile = () => {
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
                 <div className="ranch-profile-reviews">
-                    {myBookings.map(booking => {
-                        if (booking?.ranch_id === Number(ranchId)) {
-                            return (
+                    {bookedRanches.includes(Number(ranchId)) ? (
                             <>
-                                <AddReviewModal booking={booking}/>
+                                Add Review Button
+                                {/* <AddReviewModal booking={null}/> */}
                             </>
-                            )
-                        }
-                    })}
+                            ) : null}
                     {reviews.map((review) => {
                         return (
                             <div className="review-thumbnail">

@@ -4,12 +4,14 @@ import session from "./session"
 import ranch from "./ranch-store";
 import booking from "./booking-store";
 import invoice from "./invoice-store";
+import review from "./review-store";
 
 const rootReducer = combineReducers({
     session,
     ranch,
     booking,
-    invoice
+    invoice,
+    review
 });
 
 

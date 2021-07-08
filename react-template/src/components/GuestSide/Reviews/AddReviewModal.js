@@ -13,7 +13,7 @@ const AddReviewModal = ({booking}) => {
 
     useEffect(() => {
         showModal && dispatch(getOneBooking(booking.id));
-    }, [dispatch, booking.id, showModal]);
+    }, [dispatch, booking?.id, showModal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,12 +36,11 @@ const AddReviewModal = ({booking}) => {
                     <h3 className="modal-head">Add a Review</h3>
                         <form className="modal-form" onSubmit={handleSubmit}>
                         <label>Tell Us About Your Experience...
-                            <input
-                                type="text"
+                            <textarea
                                 name="content"
                                 onChange={(e) => setContent(e.target.value)}
                                 value={content}
-                                ></input></label>
+                                /></label>
                         <label>Rating
                             <input
                                 type="number"

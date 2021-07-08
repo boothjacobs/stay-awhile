@@ -5,7 +5,6 @@ import {useParams} from 'react-router-dom';
 
 import { getBookings } from "../../../store/booking-store";
 import { getInvoice, getUserInvoices } from "../../../store/invoice-store";
-// import { onApprove, createOrder } from "../../../store/paypal-store";
 
 import "../guestSide.css"
 
@@ -63,7 +62,7 @@ const MyInvoices = () => {
                                 <p>Amount Due: {invoice?.amount_due}</p>
 
                                 {/* PAYPAL BOILERPLATE: Set up a container element for the button --> */}
-                                <div id="paypal-button-container"></div>
+                                {/* <div id="paypal-button-container"></div> */}
 
                             </div>
                         </div>
