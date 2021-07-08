@@ -6,6 +6,7 @@ class Invoice(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     guest_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
+    ranch_id = db.Column(db.Integer, db.ForeignKey('ranches.id'))
     additional_charges = db.Column(db.Integer)
     deposit = db.Column(db.Boolean, nullable = False)
     rollover_payment = db.Column(db.Boolean)
@@ -13,6 +14,7 @@ class Invoice(db.Model):
     amount_due = db.Column(db.Integer)
     guest = db.relationship("User", back_populates="invoices")
     booking = db.relationship("Booking", back_populates="invoice")
+    ranch = db.relationship("Ranch", back_populates="invoices")
 
 
     def to_dict(self):

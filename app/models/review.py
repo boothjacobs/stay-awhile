@@ -5,19 +5,17 @@ class Review(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     guest_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    booking_id = db.Column(db.Integer, db.ForeignKey('bookings.id'))
+    ranch_id = db.Column(db.Integer, db.ForeignKey('ranches.id'))
     content = db.Column(db.String(1000))
     stars = db.Column(db.Integer)
     guest = db.relationship("User", back_populates="reviews")
-    booking = db.relationship("Booking", back_populates="review")
+    ranch = db.relationship("Ranch", back_populates="reviews")
 
     def to_dict(self):
         return {
             "id": self.id,
             "guest": self.guest.full_name,
-            "booking_id": self.booking_id,
-            "booked_ranch": self.booking.ranch.ranch_name,
-            "ranch_id": self.booking.ranch_id,
+            "ranch_id": self.ranch_id,
             "content": self.content,
             "stars": self.stars
         }

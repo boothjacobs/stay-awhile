@@ -5,22 +5,22 @@ def seed_reviews():
 
     review1 = Review(
         guest_id='1',
-        booking_id='1',
-        content="Aenean dictum leo elementum, bibendum neque facilisis, interdum mauris. Praesent efficitur maximus arcu, vel tincidunt purus mattis vel. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Pellentesque dictum mauris a nunc venenatis, vel luctus nisi pulvinar.",
+        ranch_id='6',
+        content="Aenean dictum leo elementum, bibendum neque facilisis, interdum mauris.",
         stars='4'
     )
 
     review2 = Review(
         guest_id='1',
-        booking_id='7',
+        ranch_id='6',
         content="Fusce a erat ullamcorper, rhoncus neque ac, pharetra ante. Integer aliquam finibus metus, sed tempor mi egestas eu.",
         stars='5'
     )
 
     review3 = Review(
         guest_id='2',
-        booking_id='8',
-        content="Nullam iaculis ligula ligula, eget finibus urna feugiat a. Phasellus ornare leo quam, eu rhoncus turpis vestibulum at. Etiam lacus leo, fermentum ut congue sed, luctus efficitur dui.",
+        ranch_id='9',
+        content="Nullam iaculis ligula ligula, eget finibus urna feugiat a. Phasellus ornare leo quam, eu rhoncus turpis vestibulum at.",
         stars='3'
     )
 

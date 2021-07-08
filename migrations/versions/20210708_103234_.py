@@ -1,8 +1,8 @@
-"""invoice model edit
+"""empty message
 
-Revision ID: e339c22074df
-Revises:
-Create Date: 2021-07-05 19:37:51.762822
+Revision ID: c75e28a8f4ef
+Revises: 
+Create Date: 2021-07-08 10:32:34.139822
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e339c22074df'
+revision = 'c75e28a8f4ef'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -67,10 +67,21 @@ def upgrade():
     sa.ForeignKeyConstraint(['ranch_id'], ['ranches.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('reviews',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('guest_id', sa.Integer(), nullable=True),
+    sa.Column('ranch_id', sa.Integer(), nullable=True),
+    sa.Column('content', sa.String(length=1000), nullable=True),
+    sa.Column('stars', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['guest_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['ranch_id'], ['ranches.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('invoices',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('guest_id', sa.Integer(), nullable=True),
     sa.Column('booking_id', sa.Integer(), nullable=True),
+    sa.Column('ranch_id', sa.Integer(), nullable=True),
     sa.Column('additional_charges', sa.Integer(), nullable=True),
     sa.Column('deposit', sa.Boolean(), nullable=False),
     sa.Column('rollover_payment', sa.Boolean(), nullable=True),
@@ -78,16 +89,7 @@ def upgrade():
     sa.Column('amount_due', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['booking_id'], ['bookings.id'], ),
     sa.ForeignKeyConstraint(['guest_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
-    )
-    op.create_table('reviews',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('guest_id', sa.Integer(), nullable=True),
-    sa.Column('booking_id', sa.Integer(), nullable=True),
-    sa.Column('content', sa.String(length=1000), nullable=True),
-    sa.Column('stars', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['booking_id'], ['bookings.id'], ),
-    sa.ForeignKeyConstraint(['guest_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['ranch_id'], ['ranches.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     # ### end Alembic commands ###

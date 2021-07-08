@@ -12,6 +12,8 @@ class Ranch(db.Model):
     users = db.relationship("User", back_populates="ranch")
     cabins = db.relationship("Cabin", back_populates="ranch")
     bookings = db.relationship("Booking", back_populates="ranch")
+    invoices = db.relationship("Invoice", back_populates="ranch")
+    reviews = db.relationship("Review", back_populates="ranch")
 
 
     def to_dict(self):
@@ -23,5 +25,6 @@ class Ranch(db.Model):
             "rate": self.nightly_rate,
             "img_url": self.img_url,
             "cabins": {cabin.id: cabin.to_dict() for cabin in self.cabins},
-            "bookings": {booking.id: booking.to_dict() for booking in self.bookings}
+            "bookings": {booking.id: booking.to_dict() for booking in self.bookings},
+            "reviews": {review.id: review.to_dict() for review in self.reviews}
         }

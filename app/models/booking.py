@@ -17,7 +17,6 @@ class Booking(db.Model):
     guest = db.relationship("User", back_populates="bookings")
     cabin = db.relationship("Cabin", back_populates="bookings")
     invoice = db.relationship("Invoice", back_populates="booking")
-    review = db.relationship("Review", back_populates="booking")
 
 
     def to_dict(self):
@@ -33,6 +32,5 @@ class Booking(db.Model):
             "start_date": self.start_date,
             "end_date": self.end_date,
             "guest_count": self.guest_count,
-            "total": self.total,
-            "review": {review.id: review.to_dict() for review in self.review}
+            "total": self.total
         }
