@@ -33,5 +33,6 @@ class Booking(db.Model):
             "start_date": self.start_date,
             "end_date": self.end_date,
             "guest_count": self.guest_count,
-            "total": self.total
+            "total": self.total,
+            # "review": self.review.to_dict(),
         }

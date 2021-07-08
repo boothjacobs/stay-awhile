@@ -129,6 +129,7 @@ def delete_invoice(bookId, id):
 @login_required
 def new_review(bookId):
     review = Review(
+        ranch_id=request.form["ranch_id"],
         guest_id=request.form["guest_id"],
         booking_id=bookId,
         content=request.form["content"],

@@ -9,8 +9,8 @@ user_routes = Blueprint('users', __name__)
 @user_routes.route("/<id>/bookings", methods=["GET"])
 @login_required
 def get_bookings(id):
-    # trying to return in chronological order (getting busted by dictionary?)
-    bookings = Booking.query.filter(Booking.guest_id == id).order_by(desc(Booking.start_date)).all()
+    # would like to return in chronological order (getting busted by dictionary?)
+    bookings = Booking.query.filter(Booking.guest_id == id).all()
     return {booking.id: booking.to_dict() for booking in bookings}
 
 

@@ -19,6 +19,7 @@ const RanchProfile = () => {
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
     const bookings = useSelector(state => state.booking);
+    const reviews = Object.values(useSelector(state => state.review));
 
     const ranchId = useParams().id;
 
@@ -147,21 +148,10 @@ const RanchProfile = () => {
                         mattis libero. Nulla tristique arcu orci, a volutpat mi interdum pretium. Aliquam purus nisi,
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
-                {user && myBookings ? (
-                    <AddReviewModal booking={myBookings[0]} />
-                ) : null }
-                </div>
-            </div>
-                )
-}
-
-                {/* <div className="ranch-profile-reviews"> */}
-                    {/* {bookedRanches.includes(Number(ranchId)) ? (
-                            <>
-                                Add Review Button
-                                {/* <AddReviewModal booking={null}/> */}
-                            /* </>
-                            ) : null}
+                <div>
+                    {/* {user && myBookings ? (
+                        <AddReviewModal booking={myBookings[0]} />
+                    ) : null } */}
                     {reviews.map((review) => {
                         return (
                             <div className="review-thumbnail">
@@ -174,7 +164,19 @@ const RanchProfile = () => {
                                     </>) : null}
                             </div>
                         )
-                    })} */
-                // </div>
+                    })}
+                </div>
+            </div>
+        </div>
+    )
+}
+
+                {/* <div className="ranch-profile-reviews"> */}
+                    {/* {bookedRanches.includes(Number(ranchId)) ? (
+                            <>
+                                Add Review Button
+                                {/* <AddReviewModal booking={null}/> */}
+
+
 
 export default RanchProfile;

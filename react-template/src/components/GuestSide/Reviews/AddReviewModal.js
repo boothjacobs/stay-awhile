@@ -11,9 +11,9 @@ const AddReviewModal = ({booking}) => {
     const [content, setContent] = useState("");
     const [stars, setStars] = useState("");
 
-    useEffect(() => {
-        showModal && dispatch(getOneBooking(booking?.id));
-    }, [dispatch, booking?.id, showModal]);
+    // useEffect(() => {
+    //     showModal && dispatch(getOneBooking(booking?.id));
+    // }, [dispatch, booking?.id, showModal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,7 +21,8 @@ const AddReviewModal = ({booking}) => {
         const formData = new FormData();
         formData.append("content", content);
         formData.append("stars", stars);
-        formData.append("guest_id", booking.guest_id)
+        formData.append("guest_id", booking.guest_id);
+        formData.append("ranch_id", booking.ranch_id);
 
         dispatch(addReview(formData, booking.id));
         setShowModal(false);

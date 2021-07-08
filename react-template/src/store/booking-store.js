@@ -89,7 +89,7 @@ export default function reducer(state=initialState, action) {
         case ALL_BOOKINGS:
             return {...action.payload};
         case ONE_BOOKING:
-            return {...action.payload};
+            return action.payload;
         case DELETE_BOOKING:
             const lessState = {...state};
             delete lessState[action.payload];

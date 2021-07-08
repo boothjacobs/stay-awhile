@@ -14,7 +14,7 @@ const MyReviews = () => {
     }, [dispatch, user.id]);
 
     const bookings = Object.values(useSelector(state => state.booking));
-
+    console.log("bookings on my reviews page", bookings)
     return (
         <div className="under-nav">
             <h1>My Reviews</h1>
@@ -36,6 +36,7 @@ const MyReviews = () => {
                             <p className="dashboard-p">{booking?.ranch}, {booking?.cabin}</p>
                             <p className="dashboard-p">{start?.toDateString()} - {end?.toDateString()}</p>
                             {/* <AddReviewModal booking={booking} /> */}
+                            <p>{booking?.review?.content}</p>
                             {(booking?.review) ? (<p>{thisReview?.content}</p>) : (<AddReviewModal booking={booking} />)}
                         </div>
                     )
