@@ -18,23 +18,24 @@ const RanchProfile = () => {
 
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch.ranch);
-    const myBookings = Object.values(state => state.bookings);
-    // console.log("books", myBookings)
-    let bookedRanches = [];
-    myBookings.forEach(booking => bookedRanches.push(booking?.ranch_id));
+    const bookings = useSelector(state => state.bookings);
 
     const ranchId = useParams().id;
 
     useEffect(() => {
         dispatch(getRanch(ranchId));
+        dispatch(getReviews(ranchId));
     }, [dispatch]);
-
-
 
     let cabins;
     if (ranch?.cabins) {
         cabins = Object.values(ranch?.cabins);
-    }
+    };
+
+    let myBookings;
+    if (bookings) {
+        myBookings = Object.values(bookings).filter((booking) => booking.ranch_id === Number(ranchId))
+    };
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");
@@ -144,6 +145,9 @@ const RanchProfile = () => {
                         mattis libero. Nulla tristique arcu orci, a volutpat mi interdum pretium. Aliquam purus nisi,
                         rutrum at dapibus in, laoreet ac quam. Nunc tincidunt sem a pharetra condimentum. </p>
                 </div>
+                {user && myBookings ? (
+                    <AddReviewModal booking={myBookings[0]} />
+                ) : null }
                 </div>
             </div>
                 )

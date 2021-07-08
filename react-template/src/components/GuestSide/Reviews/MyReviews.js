@@ -35,8 +35,8 @@ const MyReviews = () => {
                         <div className="info-entry" key={booking?.id}>
                             <p className="dashboard-p">{booking?.ranch}, {booking?.cabin}</p>
                             <p className="dashboard-p">{start?.toDateString()} - {end?.toDateString()}</p>
-                            <AddReviewModal booking={booking} />
-                            {/* {(booking?.review) ? (<p>{thisReview?.content}</p>) : (<AddReviewModal booking={booking} />)} */}
+                            {/* <AddReviewModal booking={booking} /> */}
+                            {(booking?.review) ? (<p>{thisReview?.content}</p>) : (<AddReviewModal booking={booking} />)}
                         </div>
                     )
                 }) : null}

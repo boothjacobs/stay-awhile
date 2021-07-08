@@ -17,6 +17,7 @@ class Booking(db.Model):
     guest = db.relationship("User", back_populates="bookings")
     cabin = db.relationship("Cabin", back_populates="bookings")
     invoice = db.relationship("Invoice", back_populates="booking")
+    review = db.relationship("Review", back_populates="booking")
 
 
     def to_dict(self):

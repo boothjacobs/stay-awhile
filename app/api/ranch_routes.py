@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Ranch, Cabin, Invoice, Booking
+from app.models import db, Ranch, Cabin, Invoice, Booking, Review
 from app.forms import SignUpForm
 from flask_login import current_user, login_required
 
@@ -151,13 +151,13 @@ def delete_cabin(cabinId):
 
 @ranch_routes.route('/<id>/review')
 def get_reviews(id):
-    reviews = Review.query.filter()
+    reviews = Review.query.filter(Review.ranch_id == id)
+    return {review.id: review.to_dict() for review in reviews}
 
 
-# @ranch_routes.route('/<ranchId>/invoices', methods=["GET"])
-# @login_required
-# def open_invoices(ranchId):
-#     ranch = Ranch.query.get(ranchId)
-#     open_invoices = ranch.invoices.filter(Invoice.amount_due > 0)
-#     return {"open invoices": [invoice.to_dict() for invoice in open_invoices]}
-# Association here is bad? INVOICES BELONG TO BOOKINGS
+@ranch_routes.route('/<ranchId>/invoices', methods=["GET"])
+@login_required
+def open_invoices(ranchId):
+    ranch = Ranch.query.get(ranchId)
+    open_invoices = ranch.invoices
+    return {"invoices": [invoice.to_dict() for invoice in open_invoices]}
