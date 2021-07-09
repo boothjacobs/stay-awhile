@@ -2,11 +2,11 @@
 
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams, Redirect, useHistory } from 'react-router-dom';
+import { useParams, Redirect, useHistory } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 import { addBooking } from "../../store/booking-store";
 import { getReviews } from "../../store/review-store";
-import AddReviewModal from "./Reviews/AddReviewModal";
+// import AddReviewModal from "./Reviews/AddReviewModal";
 import EditReviewModal from "./Reviews/EditReviewModal";
 import DeleteReviewModal from "./Reviews/DeleteReviewModal";
 
@@ -26,7 +26,7 @@ const RanchProfile = () => {
     useEffect(() => {
         dispatch(getRanch(ranchId));
         dispatch(getReviews(ranchId));
-    }, [dispatch]);
+    }, [dispatch, ranchId]);
 
     let cabins;
     if (ranch?.cabins) {
@@ -170,13 +170,6 @@ const RanchProfile = () => {
         </div>
     )
 }
-
-                {/* <div className="ranch-profile-reviews"> */}
-                    {/* {bookedRanches.includes(Number(ranchId)) ? (
-                            <>
-                                Add Review Button
-                                {/* <AddReviewModal booking={null}/> */}
-
 
 
 export default RanchProfile;

@@ -14,7 +14,7 @@ const CreateInvoice = () => {
     useEffect(() => {
         dispatch(getOneBooking(id));
         dispatch(getInvoice(id));
-    }, [dispatch]);
+    }, [dispatch, id]);
 
     const booking = useSelector(state => state.booking);
     // console.log(booking)

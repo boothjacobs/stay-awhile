@@ -10,7 +10,6 @@ const AddCabin = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        console.log("dispatching getRanch from useEffect", user, ranch, user.ranch_id)
         dispatch(getRanch(user.ranch_id))
     }, [dispatch, user])
 

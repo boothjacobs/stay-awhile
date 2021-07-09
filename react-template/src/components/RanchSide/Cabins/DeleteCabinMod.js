@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCabin, getRanch, getCabins } from "../../../store/ranch-store";
+import { deleteCabin, getCabins } from "../../../store/ranch-store";
 
 const DeleteCabinModal = ({cabin}) => {
     const dispatch = useDispatch();
@@ -9,14 +9,12 @@ const DeleteCabinModal = ({cabin}) => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        console.log("delete cabin modal useEffect", ranch, cabin)
         showModal && dispatch(getCabins(ranch.id));
     }, [dispatch, ranch.id, showModal]);
 
     const deleteButton = (e) => {
         dispatch(deleteCabin(cabin.id));
         setShowModal(false);
-        console.log("delete TEST MODE delete button", cabin);
         dispatch(getCabins(ranch?.id))
     };
 

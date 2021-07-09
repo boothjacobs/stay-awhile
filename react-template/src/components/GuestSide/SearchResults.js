@@ -9,7 +9,7 @@ import "./guestSide.css";
 const SearchResults = () => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const user = useSelector(state => state.session.user);
+    // const user = useSelector(state => state.session.user);
 
     useEffect(() => {
         dispatch(searchRanches(""))
@@ -39,7 +39,7 @@ const SearchResults = () => {
             {ranches?.map((ranch) => {
                 return (
                     <div className="search-result">
-                        <img className="search-result-avatar" src={ranch.img_url} />
+                        <img className="search-result-avatar" src={ranch.img_url} alt={ranch.ranch_name} />
                         <div className="search-result-text">
                             <NavLink to={`/destination/${ranch.id}`} className="search-result-title"><h2>{ranch.ranch_name}</h2></NavLink>
                             <h3 className="search-result-subtitle">{ranch.location}</h3>

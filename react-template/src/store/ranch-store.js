@@ -19,7 +19,7 @@ const setCabins = (cabins) => ({
 });
 
 export const getRanch = (ranchId) => async (dispatch) => {
-    console.log("getRanch thunk", ranchId);
+    // console.log("getRanch thunk", ranchId);
     const response = await fetch(`/api/ranch/${ranchId}`);
     if (response.ok) {
         const ranch = await response.json()
@@ -28,7 +28,7 @@ export const getRanch = (ranchId) => async (dispatch) => {
 };
 
 export const searchRanches = (searchTerm) => async (dispatch) => {
-    console.log("search or browse ranch thunk");
+    // console.log("search or browse ranch thunk");
     const response = await fetch(`/api/ranch/search`, {
         method: "POST",
         headers: {
@@ -62,7 +62,7 @@ export const editRanch = (ranchId, formData) => async (dispatch) => {
 };
 
 export const getCabins = (ranchId) => async (dispatch) => {
-    console.log("getCabins thunk", ranchId)
+    // console.log("getCabins thunk", ranchId)
     const cabinsRes = await fetch(`/api/ranch/${ranchId}/cabins`);
     if (cabinsRes.errors) {
         console.log("getCabins thunk errors from ranch-store: ", cabinsRes);
@@ -103,7 +103,7 @@ export const editCabin = (cabinId, formData) => async (dispatch) => {
 };
 
 export const deleteCabin = (cabinId) => async (dispatch) => {
-    console.log("deleteCabin thunk", cabinId)
+    // console.log("deleteCabin thunk", cabinId)
     const res = await fetch(`/api/ranch/cabins/${cabinId}`, {
         method: "DELETE",
         headers: {

@@ -55,7 +55,7 @@ export const deleteReview = (bookId, id) => async (dispatch) => {
         method: "DELETE"
     });
     const data = await res.json();
-    console.log("delete review thunk: data", data)
+    // console.log("delete review thunk: data", data)
     if (res.ok) {
         dispatch(delReview(data.deleted));
     }

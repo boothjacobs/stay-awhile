@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import {useParams} from 'react-router-dom';
 
-import { getBookings } from "../../../store/booking-store";
-import { getInvoice, getUserInvoices } from "../../../store/invoice-store";
+import { getUserInvoices } from "../../../store/invoice-store";
 
 import "../guestSide.css"
 
@@ -18,7 +15,7 @@ const MyInvoices = () => {
 
     useEffect(() => {
         dispatch(getUserInvoices(user.id));
-    }, [dispatch]);
+    }, [dispatch, user.id]);
 
     const invoices = Object.values(useSelector(state => state.invoice));
     console.log(invoices)

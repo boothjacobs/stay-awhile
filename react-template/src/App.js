@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import Splash from "./components/user-auth/Splash";
@@ -15,6 +15,7 @@ import SearchResults from "./components/GuestSide/SearchResults";
 import BookingsPage from "./components/GuestSide/Bookings/BookingsPage";
 import MyInvoices from "./components/GuestSide/Invoices/MyInvoicesPage";
 import MyReviews from "./components/GuestSide/Reviews/MyReviews";
+import AllInvoices from "./components/RanchSide/Invoices/AllInvoices";
 import { authenticate } from "./store/session";
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/staff/booking/:id/invoice" exact={true}>
           <CreateInvoice />
+        </ProtectedRoute>
+        <ProtectedRoute path="/staff/:id/invoice" exact={true}>
+          <AllInvoices />
         </ProtectedRoute>
         <Route path="/destination/:id" exact={true} >
           <RanchProfile />  {/* guest facing ranch profile page */}

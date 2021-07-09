@@ -1,5 +1,5 @@
 const SET_INVOICE = "invoice/SET_INVOICE";
-const OPEN_INVOICES = "invoice/OPEN_INVOICES";
+const MANY_INVOICES = "invoice/OPEN_INVOICES";
 const DELETE_INVOICE = "invoice/DELETE_INVOICE";
 
 const setInvoice = (invoice) => ({
@@ -7,8 +7,8 @@ const setInvoice = (invoice) => ({
     payload: invoice
 });
 
-const openInvoices = (invoices) => ({
-    type: OPEN_INVOICES,
+const manyInvoices = (invoices) => ({
+    type: MANY_INVOICES,
     payload: invoices
 });
 
@@ -18,7 +18,7 @@ const delInvoice = (id) => ({
 });
 
 export const getInvoice = (bookingId) => async (dispatch) => {
-    console.log("get invoice thunk", bookingId);
+    // console.log("get invoice thunk", bookingId);
     const response = await fetch(`/api/booking/${bookingId}/invoice`);
     const data = await response.json();
     if (response.ok) {
@@ -28,11 +28,11 @@ export const getInvoice = (bookingId) => async (dispatch) => {
 };
 
 export const getOpenInvoices = (ranchId) => async (dispatch) => {
-    console.log("open invoices thunk", ranchId)
+    // console.log("open invoices thunk", ranchId)
     const res = await fetch(`/api/ranch/${ranchId}/invoices`);
     const invoiceData = await res.json();
     if (res.ok) {
-        dispatch(openInvoices(invoiceData));
+        dispatch(manyInvoices(invoiceData));
     }
     return invoiceData;
 };
@@ -41,13 +41,22 @@ export const getUserInvoices = (userId) => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/invoices`);
     const invoiceData = await res.json();
     if (res.ok) {
-        dispatch(openInvoices(invoiceData));
+        dispatch(manyInvoices(invoiceData));
+    }
+    return invoiceData;
+};
+
+export const getAllInvoices = (ranchId) => async (dispatch) => {
+    const res = await fetch(`/api/ranch/${ranchId}/invoices/all`);
+    const invoiceData = await res.json();
+    if (res.ok) {
+        dispatch(manyInvoices(invoiceData));
     }
     return invoiceData;
 };
 
 export const newInvoice = (bookingId, formData) => async (dispatch) => {
-    console.log("new invoice thunk", bookingId)
+    // console.log("new invoice thunk", bookingId)
     const response = await fetch(`/api/booking/${bookingId}/invoice`, {
         method: "POST",
         body: formData
@@ -62,7 +71,7 @@ export const newInvoice = (bookingId, formData) => async (dispatch) => {
 };
 
 export const editInvoice = (bookId, id, formData) => async (dispatch) => {
-    console.log("edit invoice thunk", bookId)
+    // console.log("edit invoice thunk", bookId)
     const res = await fetch(`/api/booking/${bookId}/invoice/${id}`, {
         method: "PUT",
         body: formData
@@ -79,7 +88,7 @@ export const deleteInvoice = (bookId, id) => async (dispatch) => {
         method: "DELETE"
     });
     const data = await res.json();
-    console.log("delete invoice thunk: data", data)
+    // console.log("delete invoice thunk: data", data)
     if (res.ok) {
         dispatch(delInvoice(data.deleted));
     }
@@ -96,7 +105,7 @@ export default function reducer(state=initialState, action) {
             const newState = {...state};
             delete newState[action.payload];
             return newState;
-        case OPEN_INVOICES:
+        case MANY_INVOICES:
             return {...action.payload};
         default:
             return state;

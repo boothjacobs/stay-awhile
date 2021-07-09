@@ -158,6 +158,12 @@ def get_reviews(id):
 @ranch_routes.route('/<ranchId>/invoices', methods=["GET"])
 @login_required
 def open_invoices(ranchId):
-    ranch = Ranch.query.get(ranchId)
-    open_invoices = ranch.invoices
+    open_invoices = Invoice.query.filter(Invoice.ranch_id == ranchId).filter(Invoice.amount_due > 0).all()
     return {"invoices": [invoice.to_dict() for invoice in open_invoices]}
+
+
+@ranch_routes.route('/<ranchId>/invoices/all', methods=["GET"])
+@login_required
+def all_invoices(ranchId):
+    invoices = Invoice.query.filter(Invoice.ranch_id == ranchId).all()
+    return {"invoices": [invoice.to_dict() for invoice in invoices]}

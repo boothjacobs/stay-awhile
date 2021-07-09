@@ -42,6 +42,8 @@
 #dashboard-four {
     grid-area: four;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     padding: 5px;
     border: 5px solid #2B4162;
@@ -79,6 +81,10 @@
 .cabin-form > button {
     margin: auto;
     margin-bottom: 20px;
+}
+
+.existing-invoice-render {
+    padding: 5px;
 }
 
 .invoice-boolean > p {

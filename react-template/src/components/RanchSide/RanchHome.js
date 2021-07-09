@@ -11,18 +11,19 @@ const RanchHome = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        console.log("Ranch Home.js dispatch of getRanch")
+        // console.log("Ranch Home.js dispatch of getRanch")
         dispatch(getRanch(user.ranch_id));
         dispatch(getOpenInvoices(user.ranch_id));
     }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch.ranch);
-    // const openInvoices = useSelector(state => state.invoice);
-    // Open invoices will need to be filtered from a different version of invoice store
+    const openInvoices = useSelector(state => state.invoice.invoices);
 
     let bookings;
+    let cabins;
     if (ranch) {
         bookings = Object.values(ranch?.bookings);
+        cabins = Object.values(ranch?.cabins);
     };
 
     return (
@@ -34,7 +35,7 @@ const RanchHome = () => {
                     <p className="dashboard-p"><NavLink to='/staff/profile'>{ranch?.ranch_name}</NavLink></p>
                 </div>
                 <div id="dashboard-two">
-                    <p>Upcoming Bookings</p>
+                    <h4>Upcoming Bookings</h4>
                     {(bookings) ? bookings?.map((booking) => {
                         let start = new Date(booking?.start_date);
                         let end = new Date(booking?.end_date);
@@ -51,10 +52,25 @@ const RanchHome = () => {
                     }) : null}
                 </div>
                 <div id="dashboard-three">
-                    <p>Open Invoices</p>
+                    <div>
+                        <p>Open Invoices</p>
+                        <NavLink to={`/staff/${ranch.id}/invoice`}>See All Invoices</NavLink>
+                    </div>
+                    {openInvoices?.map((invoice) => {
+                            return (
+                                <div id="existing-invoice-render">
+                                    <h4>Invoice No. {invoice.id}</h4>
+                                    <div className="invoice-boolean">
+                                        Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
+                                    </div>
+                                    <p>Amount Due: {invoice?.amount_due}</p>
+                                </div>
+                            )
+                    })}
                 </div>
                 <div id="dashboard-four">
-                    <p>Available Cabins</p>
+                    <h4>Available Cabins</h4>
+                    {cabins?.map(cabin => <p>{cabin.name}</p>)}
                 </div>
             </div>
         </div>
