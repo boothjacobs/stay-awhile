@@ -37,8 +37,8 @@ const RanchProfile = () => {
     if (bookings) {
         myBookings = Object.values(bookings).filter((booking) => booking?.ranch_id === Number(ranchId))
     };
-    console.log("bookings", bookings)
-    console.log(myBookings)
+    // console.log("bookings", bookings)
+    // console.log(myBookings)
 
     const [bookingStart, setBookingStart] = useState("");
     const [bookingEnd, setBookingEnd] = useState("");

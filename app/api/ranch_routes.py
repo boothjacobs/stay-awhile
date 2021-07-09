@@ -146,7 +146,7 @@ def delete_cabin(cabinId):
     # print("===========================DELETE ROUTE For Real", cabin)
     db.session.delete(cabin)
     db.session.commit()
-    return {"yes": "delete successful"}
+    return {"deleted": cabinId}
 
 
 @ranch_routes.route('/<id>/review')

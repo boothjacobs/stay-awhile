@@ -38,7 +38,7 @@ export const addBooking = (formData) => async (dispatch) => {
 export const getBookings = (userId) => async (dispatch) => {
     const res = await fetch(`/api/users/${userId}/bookings`);
     const bookData = await res.json();
-    console.log("getBookings thunk", bookData);
+    // console.log("getBookings thunk", bookData);
     if (res.ok) {
         dispatch(allBookings(bookData));
     }
@@ -71,7 +71,7 @@ export const deleteBooking = (id) => async (dispatch) => {
         method: "DELETE"
     });
     const data = await res.json();
-    console.log("delete booking thunk: data", data)
+    // console.log("delete booking thunk: data", data)
     if (res.ok) {
         dispatch(delBooking(data.deleted));
     }

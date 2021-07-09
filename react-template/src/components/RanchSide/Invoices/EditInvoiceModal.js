@@ -8,10 +8,10 @@ const EditInvoiceModal = ({invoice}) => {
     const [showModal, setShowModal] = useState(false);
     const booking = useSelector(state => state.booking);
 
-    const [additional_charges, setAddCharges] = useState(0);
-    const [deposit, setDepos] = useState(false);
-    const [rollover, setRollover] = useState(false);
-    const [amount_paid, setAmtPaid] = useState(0);
+    const [additional_charges, setAddCharges] = useState(invoice.additional_charges);
+    const [deposit, setDepos] = useState(invoice.deposit);
+    const [rollover, setRollover] = useState(invoice.rollover);
+    const [amount_paid, setAmtPaid] = useState(invoice.amount_paid);
 
     useEffect(() => {
         showModal && dispatch(getInvoice(booking.id));
@@ -23,7 +23,7 @@ const EditInvoiceModal = ({invoice}) => {
 
     const updateDeposit = (e) => {
         setDepos(e.target.value);
-        if (deposit === true) {
+        if (deposit === "paid") {
             setAmtPaid(booking.total / 4);
         } else {
             setAmtPaid(0)

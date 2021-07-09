@@ -1,6 +1,7 @@
 export const SET_RANCH = "ranch/SET_RANCH";
 const FILTER_RANCHES = "ranch/FILTER_RANCHES";
 const SET_CABINS = "ranch/SET_CABINS";
+const DELETE_CABIN = "ranch/DELETE_CABIN";
 
 
 const setRanch = (ranch) => ({
@@ -16,6 +17,11 @@ const filterRanches = (ranches) => ({
 const setCabins = (cabins) => ({
     type: SET_CABINS,
     payload: cabins
+});
+
+const delCabin = (cabinId) => ({
+    type: SET_CABINS,
+    payload: cabinId
 });
 
 export const getRanch = (ranchId) => async (dispatch) => {
@@ -115,23 +121,27 @@ export const deleteCabin = (cabinId) => async (dispatch) => {
         return;
     }
     const data = await res.json()
+    dispatch(delCabin(data.deleted));
     return data;
 };
 
-const initialState = {};
+const initialState = { loaded: false };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
-            return {...action.payload};
+            return {...action.payload, loaded: true};
         case FILTER_RANCHES:
-            const searchResults = {...action.payload};
-            return searchResults;
+            return {...action.payload, loaded: true};
         case SET_CABINS:
-            const cabinState = {...state};
-            console.log(cabinState, "and payload", action.payload)
+            const cabinState = {...state, loaded: true};
+            // console.log(cabinState, "and payload", action.payload)
             cabinState["cabins"] = action.payload;
             return cabinState;
+        case DELETE_CABIN:
+            const lessCabinState = {...state, loaded: true};
+            delete lessCabinState[action.payload];
+            return lessCabinState;
         default:
             return state;
     }

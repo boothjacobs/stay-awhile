@@ -134,7 +134,7 @@ export default function reducer(state=initialState, action) {
         case REMOVE_USER:
             return {user: null, loaded: true}
         case SET_RANCH:
-            return {...state, "ranch": action.payload}
+            return {...state, "ranch": action.payload, loaded: true}
         default:
             return state;
     }

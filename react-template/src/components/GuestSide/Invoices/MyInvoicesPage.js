@@ -18,7 +18,7 @@ const MyInvoices = () => {
     }, [dispatch, user.id]);
 
     const invoices = Object.values(useSelector(state => state.invoice));
-    console.log(invoices)
+    // console.log(invoices)
 
     // // PAYPAL BOILERPLATE: Render the PayPal button into #paypal-button-container */
     // createOrder(data, actions) {

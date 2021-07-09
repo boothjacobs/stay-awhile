@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { deleteCabin, getCabins } from "../../../store/ranch-store";
 
 const DeleteCabinModal = ({cabin}) => {
     const dispatch = useDispatch();
+    const history = useHistory();
     const ranch = useSelector(state => state.ranch.ranch);
     const [showModal, setShowModal] = useState(false);
 
@@ -14,8 +16,10 @@ const DeleteCabinModal = ({cabin}) => {
 
     const deleteButton = (e) => {
         dispatch(deleteCabin(cabin.id));
+        // dispatch(getCabins(ranch?.id));
+        history.push("/");
+        history.goBack();
         setShowModal(false);
-        dispatch(getCabins(ranch?.id))
     };
 
     return (

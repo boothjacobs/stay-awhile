@@ -8,6 +8,7 @@ const AddCabin = () => {
     const dispatch = useDispatch();
     const ranch = useSelector(state => state.ranch.ranch);
     const user = useSelector(state => state.session.user);
+    const loaded = useSelector(state => state.session.loaded);
 
     useEffect(() => {
         dispatch(getRanch(user.ranch_id))
@@ -15,7 +16,7 @@ const AddCabin = () => {
 
     let cabins;
     if (ranch) {
-        cabins = Object.values(ranch?.cabins);
+        cabins = Object.values(ranch.cabins);
     };
 
     // useEffect(() => {
@@ -58,7 +59,7 @@ const AddCabin = () => {
     //     console.log(e.target.id)
     // }
 
-    return (
+    return loaded && (
         <div className="under-nav">
             <div className="form-box">
                 <h3 className="auth-head">New Lodging</h3>
