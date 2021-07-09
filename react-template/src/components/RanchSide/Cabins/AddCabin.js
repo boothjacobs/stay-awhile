@@ -11,6 +11,7 @@ const AddCabin = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
+        setImageLoading(false);
         dispatch(getRanch(user.ranch_id));
         dispatch(getCabins(user.ranch_id));
     }, [dispatch, user]);

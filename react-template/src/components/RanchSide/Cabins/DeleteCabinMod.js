@@ -16,9 +16,6 @@ const DeleteCabinModal = ({cabin}) => {
 
     const deleteButton = (e) => {
         dispatch(deleteCabin(cabin.id));
-        // dispatch(getCabins(ranch?.id));
-        history.push("/");
-        history.goBack();
         setShowModal(false);
     };
 

@@ -14,7 +14,7 @@ const setOneCabin = (cabin) => ({
 })
 
 const delCabin = (cabinId) => ({
-    type: SET_CABINS,
+    type: DELETE_CABIN,
     payload: cabinId
 });
 
