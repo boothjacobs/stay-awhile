@@ -26,6 +26,8 @@ const BookingsPage = () => {
                 {bookings?.map((booking) => {
                     const startDate = new Date(booking?.start_date);
                     const endDate = new Date(booking?.end_date);
+                    const invoice = booking?.invoice[0]
+
                     if (startDate > Date.now()) {
                         return (
                             <div className="info-entry" key={booking?.id}>
@@ -35,7 +37,9 @@ const BookingsPage = () => {
                                 <p className="dashboard-p"> Depart {endDate.toDateString()}</p>
                                 <p className="dashboard-p">{booking?.guest_count} guests</p>
                                 <p className="dashboard-p">{booking?.interests}</p>
-                                <p>${booking?.total} indicate if unpaid, link to invoice</p>
+                                <p>Remaining Balance: ${invoice?.amount_due} <br />
+                                {invoice?.amount_due > 0 ? (<NavLink to="/guest/invoices">See Invoice</NavLink>) : null}
+                                </p>
                                     <div className="modal-buttons">
                                         <EditBookingModal booking={booking} className="one-modal" />
                                         <DeleteBookingModal booking={booking} className="one-modal" />
@@ -43,8 +47,8 @@ const BookingsPage = () => {
                             </div>
                         )
                     }
-                })
-            }
+                    // console.log(invoice)
+                })}
             </div>
         </div>
     )
