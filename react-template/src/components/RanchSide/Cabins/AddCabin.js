@@ -19,13 +19,11 @@ const AddCabin = () => {
     const cabins = Object.values(useSelector(state => state.cabin));
     console.log("use selecotr cabins", cabins)
 
-
     const [name, setName] = useState("");
     const [beds, setBeds] = useState("");
     const [total_capacity, setCapacity] = useState("");
     const [image, setImage] = useState("");
     const [imageLoading, setImageLoading] = useState(false);
-
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -37,6 +35,11 @@ const AddCabin = () => {
 
         setImageLoading(true);
         dispatch(addCabin(ranch?.id, formData));
+
+        setName("");
+        setBeds("");
+        setCapacity("");
+        setImage("");
         setImageLoading(false);
     };
 
