@@ -17,10 +17,7 @@ const RanchDetails = () => {
 
 
     const ranch = useSelector(state => state.ranch);
-    let cabins;
-    if (ranch) {
-        cabins = Object.values(ranch?.cabins);
-    };
+    let cabins = Object.values(user.ranch.cabins);
     // console.log("cabins from ranh profile.js", cabins)
 
     return (

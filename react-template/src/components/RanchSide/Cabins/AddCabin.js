@@ -12,10 +12,10 @@ const AddCabin = () => {
 
     useEffect(() => {
         dispatch(getRanch(user.ranch_id));
-        // dispatch(getCabins(user.ranch_id));
+        dispatch(getCabins(user.ranch_id));
     }, [dispatch, user]);
 
-    const cabins = Object.values(user.ranch.cabins);
+    const cabins = Object.values(useSelector(state => state.cabin));
     console.log("use selecotr cabins", cabins)
 
 

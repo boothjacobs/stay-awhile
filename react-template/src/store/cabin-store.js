@@ -56,7 +56,7 @@ export const editCabin = (cabinId, formData) => async (dispatch) => {
         console.log("editCabin thunk errors from ranch-store: ", cabinData);
         return;
     }
-    dispatch(setCabins(cabinData));
+    dispatch(setOneCabin(cabinData));
     return cabinData;
 };
 
@@ -82,9 +82,7 @@ const initialState = {};
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_CABINS:
-            const cabinState = {...action.payload};
-            // cabinState["cabins"] = action.payload;
-            return cabinState;
+            return {...action.payload};
         case ONE_CABIN:
             const addCabinState = {...state};
             addCabinState[action.payload.id] = action.payload;

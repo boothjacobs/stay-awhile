@@ -74,7 +74,7 @@ def get_cabins(id):
     print(id)
     cabins = Cabin.query.filter(Cabin.ranch_id == id)
     # print("::::::::::::::::::::::::::::::::::::::::", cabins)
-    return {"cabins": [cabin.to_dict() for cabin in cabins]}
+    return {cabin.id: cabin.to_dict() for cabin in cabins}
 
 
 @ranch_routes.route('/<id>/cabins', methods=["POST"])
