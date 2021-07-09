@@ -36,7 +36,7 @@ const AllInvoices = () => {
                                 </div>
                             </div>
                         )
-                    };
+                    }
             </div>
         </div>
     )

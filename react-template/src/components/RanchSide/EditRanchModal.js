@@ -7,15 +7,14 @@ const EditRanchModal = ({ranch}) => {
     const dispatch = useDispatch();
     const [showModal, setShowModal] = useState(false);
 
-    const [ranch_name, setRanchName] = useState(ranch.ranch_name);
-    const [location, setLocation] = useState(ranch.location);
-    const [description, setDescription] = useState(ranch.description);
-    const [nightly_rate, setRate] = useState(ranch.nightly_rate);
-
     useEffect(() => {
-        // console.log("Edit Ranch Modal dispatch of getRanch")
-        showModal && dispatch(getRanch(ranch.id));
-    }, [dispatch, ranch.id, showModal])
+        showModal && dispatch(getRanch(ranch?.id));
+    }, [dispatch, ranch?.id, showModal])
+
+    const [ranch_name, setRanchName] = useState(ranch?.ranch_name);
+    const [location, setLocation] = useState(ranch?.location);
+    const [description, setDescription] = useState(ranch?.description);
+    const [nightly_rate, setRate] = useState(ranch?.nightly_rate);
 
     const handleSubmit = (e) => {
         // e.preventDefault(); //should be unnecessary

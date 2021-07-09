@@ -54,7 +54,7 @@ const RanchHome = () => {
                 <div id="dashboard-three">
                     <div>
                         <p>Open Invoices</p>
-                        <NavLink to={`/staff/${ranch.id}/invoice`}>See All Invoices</NavLink>
+                        <NavLink to={`/staff/${user.ranch_id}/invoice`}>See All Invoices</NavLink>
                     </div>
                     {openInvoices?.map((invoice) => {
                             return (
