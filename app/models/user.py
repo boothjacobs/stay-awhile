@@ -45,6 +45,22 @@ class User(db.Model, UserMixin):
             "dietary_restrictions": self.dietary_restrictions,
             "emergency_contact": self.emergency_contact,
             "staff": self.staff,
+            "bookings": {booking.id: booking.to_dict() for booking in self.bookings},
+            "invoices": {invoice.id: invoice.to_dict() for invoice in self.invoices},
+            "reviews": {review.id: review.to_dict() for review in self.reviews}
+        }
+
+
+    def to_staff_dict(self):
+        return {
+            "id": self.id,
+            "full_name": self.full_name,
+            "email": self.email,
+            "age": self.age,
+            "phone_number": self.phone_number,
+            "dietary_restrictions": self.dietary_restrictions,
+            "emergency_contact": self.emergency_contact,
+            "staff": self.staff,
             "ranch_id": self.ranch_id,
             "ranch": self.ranch.to_dict(),
             "bookings": {booking.id: booking.to_dict() for booking in self.bookings},
