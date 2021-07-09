@@ -16,7 +16,7 @@ const MyReviews = () => {
     }, [dispatch, user.id]);
 
     const bookings = Object.values(useSelector(state => state.booking));
-    console.log("bookings on my reviews page", bookings)
+    // console.log("bookings on my reviews page", bookings)
     return (
         <div className="under-nav">
             <h1>My Reviews</h1>

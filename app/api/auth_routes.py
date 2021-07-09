@@ -42,8 +42,8 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        if user.staff:
-            return user.to_staff_dict()
+        # if user.staff:
+        #     return user.to_staff_dict()
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
@@ -82,8 +82,8 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        if user.staff:
-            return user.to_staff_dict()
+        # if user.staff:
+        #     return user.to_staff_dict()
         return user.to_dict()
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -105,7 +105,7 @@ def demo_staff():
     """
     user = User.query.filter_by(id=3).first()
     login_user(user)
-    return user.to_staff_dict()
+    return user.to_dict()
 
 
 @auth_routes.route('/unauthorized')

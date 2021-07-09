@@ -17,7 +17,7 @@ const AddCabin = () => {
     }, [dispatch, user]);
 
     const cabins = Object.values(useSelector(state => state.cabin));
-    console.log("use selecotr cabins", cabins)
+    // console.log("use selecotr cabins", cabins)
 
     const [name, setName] = useState("");
     const [beds, setBeds] = useState("");

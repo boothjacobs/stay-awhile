@@ -17,7 +17,8 @@ const RanchDetails = () => {
 
 
     const ranch = useSelector(state => state.ranch);
-    let cabins = Object.values(user.ranch.cabins);
+    // let cabins = Object.values(user.ranch.cabins);
+    const cabins = Object.values(useSelector(state => state.cabin));
     // console.log("cabins from ranh profile.js", cabins)
 
     return (
