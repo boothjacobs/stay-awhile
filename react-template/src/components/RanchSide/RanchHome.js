@@ -17,13 +17,16 @@ const RanchHome = () => {
     }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch.ranch);
+    console.log("RANCH STORE from ranch home", ranch)
     const openInvoices = useSelector(state => state.invoice.invoices);
 
     let bookings;
     let cabins;
     if (ranch) {
         bookings = Object.values(ranch?.bookings);
+        console.log("bookings from ranch", bookings)
         cabins = Object.values(ranch?.cabins);
+        console.log("cabins from ranch", cabins)
     };
 
     return (

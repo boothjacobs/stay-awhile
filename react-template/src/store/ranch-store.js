@@ -84,14 +84,14 @@ export const addCabin = (ranchId, formData) => async (dispatch) => {
         method: "POST",
         body: formData,
     });
-    const ranchData = await ranchResponse.json();
-    if (ranchData.errors) {
-        console.log("addCabin thunk errors from ranch-store: ", ranchData);
+    const cabinData = await ranchResponse.json();
+    if (cabinData.errors) {
+        console.log("addCabin thunk errors from ranch-store: ", cabinData);
         return;
     };
     // because of association, store can be updated with ranch info and that will render cabin changes
-    dispatch(setRanch(ranchData));
-    return ranchData;
+    dispatch(setCabins(cabinData));
+    return cabinData;
 };
 
 export const editCabin = (cabinId, formData) => async (dispatch) => {
@@ -125,21 +125,20 @@ export const deleteCabin = (cabinId) => async (dispatch) => {
     return data;
 };
 
-const initialState = { loaded: false };
+const initialState = { };
 
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_RANCH:
-            return {...action.payload, loaded: true};
+            return {...action.payload};
         case FILTER_RANCHES:
-            return {...action.payload, loaded: true};
+            return {...action.payload};
         case SET_CABINS:
-            const cabinState = {...state, loaded: true};
-            // console.log(cabinState, "and payload", action.payload)
+            const cabinState = {...state};
             cabinState["cabins"] = action.payload;
             return cabinState;
         case DELETE_CABIN:
-            const lessCabinState = {...state, loaded: true};
+            const lessCabinState = {...state};
             delete lessCabinState[action.payload];
             return lessCabinState;
         default:

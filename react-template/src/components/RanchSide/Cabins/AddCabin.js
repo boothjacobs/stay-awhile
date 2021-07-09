@@ -8,11 +8,13 @@ const AddCabin = () => {
     const dispatch = useDispatch();
     const ranch = useSelector(state => state.ranch.ranch);
     const user = useSelector(state => state.session.user);
-    const loaded = useSelector(state => state.session.loaded);
+    const loaded = useSelector(state => state.ranch.loaded);
 
     useEffect(() => {
         dispatch(getRanch(user.ranch_id))
     }, [dispatch, user])
+
+    console.log("RANCH STORE", ranch)
 
     let cabins;
     if (ranch) {
@@ -59,7 +61,7 @@ const AddCabin = () => {
     //     console.log(e.target.id)
     // }
 
-    return loaded && (
+    return (
         <div className="under-nav">
             <div className="form-box">
                 <h3 className="auth-head">New Lodging</h3>
