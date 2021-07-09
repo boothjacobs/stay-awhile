@@ -47,8 +47,8 @@ def search_ranch():
 @ranch_routes.route('/<id>', methods=['GET'])
 def get_ranch(id):
     ranch = Ranch.query.get(id)
-    bookings = Booking.query.filter(Booking.ranch_id == id)
-    return {"ranch": ranch.to_dict(), "bookings": [booking.to_dict() for booking in bookings]}
+    # bookings = Booking.query.filter(Booking.ranch_id == id)
+    return ranch.to_dict()
 
 
 @ranch_routes.route('/<id>', methods=["PUT"])

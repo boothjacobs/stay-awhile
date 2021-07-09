@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { deleteCabin, getCabins } from "../../../store/ranch-store";
+import { deleteCabin, getCabins } from "../../../store/cabin-store";
 
 const DeleteCabinModal = ({cabin}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const ranch = useSelector(state => state.ranch.ranch);
+    const ranch = useSelector(state => state.ranch);
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {

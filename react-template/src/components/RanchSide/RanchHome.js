@@ -9,6 +9,7 @@ import "./ranchSide.css";
 const RanchHome = () => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    const loaded = useSelector(state => state.session.loaded);
 
     useEffect(() => {
         // console.log("Ranch Home.js dispatch of getRanch")
@@ -16,20 +17,20 @@ const RanchHome = () => {
         dispatch(getOpenInvoices(user.ranch_id));
     }, [dispatch]);
 
-    const ranch = useSelector(state => state.ranch.ranch);
-    console.log("RANCH STORE from ranch home", ranch)
+    const ranch = useSelector(state => state.ranch);
+    // console.log("RANCH STORE from ranch home", ranch)
     const openInvoices = useSelector(state => state.invoice.invoices);
 
     let bookings;
     let cabins;
-    if (ranch) {
+    if (ranch.bookings) {
         bookings = Object.values(ranch?.bookings);
-        console.log("bookings from ranch", bookings)
+        // console.log("bookings from ranch", bookings)
         cabins = Object.values(ranch?.cabins);
-        console.log("cabins from ranch", cabins)
+        // console.log("cabins from ranch", cabins)
     };
 
-    return (
+    return loaded && (
         <div className="under-nav">
             <h1>Ranch Dashboard</h1>
             <div className="ranch-dashboard">

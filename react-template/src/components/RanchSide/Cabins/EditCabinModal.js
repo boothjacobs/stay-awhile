@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import { useDispatch } from "react-redux";
-import { editCabin, getRanch } from "../../../store/ranch-store";
+import { editCabin } from "../../../store/cabin-store";
+import { getRanch } from "../../../store/ranch-store";
 
 const EditCabinModal = ({cabin}) => {
     const dispatch = useDispatch();

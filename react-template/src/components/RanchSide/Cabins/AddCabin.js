@@ -1,31 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { addCabin, getRanch } from "../../../store/ranch-store";
+import { addCabin, getCabins } from "../../../store/cabin-store";
+import { getRanch } from "../../../store/ranch-store";
 import DeleteCabinModal from "./DeleteCabinMod";
 import EditCabinModal from "./EditCabinModal";
 
 const AddCabin = () => {
     const dispatch = useDispatch();
-    const ranch = useSelector(state => state.ranch.ranch);
+    const ranch = useSelector(state => state.ranch);
     const user = useSelector(state => state.session.user);
-    const loaded = useSelector(state => state.ranch.loaded);
 
     useEffect(() => {
-        dispatch(getRanch(user.ranch_id))
-    }, [dispatch, user])
+        dispatch(getRanch(user.ranch_id));
+        // dispatch(getCabins(user.ranch_id));
+    }, [dispatch, user]);
 
-    console.log("RANCH STORE", ranch)
+    const cabins = Object.values(user.ranch.cabins);
+    console.log("use selecotr cabins", cabins)
 
-    let cabins;
-    if (ranch) {
-        cabins = Object.values(ranch.cabins);
-    };
-
-    // useEffect(() => {
-    //     dispatch(getRanch(ranch?.id));
-    // }, [dispatch, ranch?.id]);
-    //need this to prevent console errors for api call to ranch/undefined,
-    //but where to get stable ranch id from? add to URL?
 
     const [name, setName] = useState("");
     const [beds, setBeds] = useState("");

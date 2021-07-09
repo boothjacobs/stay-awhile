@@ -16,7 +16,7 @@ const RanchDetails = () => {
     }, [dispatch, user])
 
 
-    const ranch = useSelector(state => state.ranch.ranch);
+    const ranch = useSelector(state => state.ranch);
     let cabins;
     if (ranch) {
         cabins = Object.values(ranch?.cabins);
