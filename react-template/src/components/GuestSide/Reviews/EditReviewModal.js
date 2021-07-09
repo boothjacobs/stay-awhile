@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from "../../../context/Modal";
-import { getOneBooking } from '../../../store/booking-store';
+import { getBookings } from '../../../store/booking-store';
 import { editReview } from "../../../store/review-store";
 
 const EditReviewModal = ({review}) => {
     const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
 
     const [content, setContent] = useState(review.content);
     const [stars, setStars] = useState(review.stars);
-
-    useEffect(() => {
-        showModal && dispatch(getOneBooking(review.booking_id));
-    }, [dispatch, review.booking_id, showModal]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -24,6 +21,7 @@ const EditReviewModal = ({review}) => {
 
         dispatch(editReview(formData, review.booking_id, review.id));
         setShowModal(false);
+        dispatch(getBookings(user?.id));
     };
 
     return (

@@ -27,19 +27,13 @@ const MyReviews = () => {
                     if (Date.parse(start) > Date.now()) {
                         return null;
                     };
-                    console.log("inside bookings map", booking?.reviews)
-                    let thisReview;
-                    if (booking?.reviews.length) {
-                        thisReview = Object.values(booking?.reviews)[0];
-                        console.log("==================", thisReview)
-                    }
 
                     return (
                         <div className="info-entry" key={booking?.id}>
                             <p className="dashboard-p">{booking?.ranch}, {booking?.cabin}</p>
                             <p className="dashboard-p">{start?.toDateString()} - {end?.toDateString()}</p>
 
-                            {(booking?.reviews.length) ? booking?.reviews.map(review =>
+                            {(booking?.reviews?.length) ? booking?.reviews?.map(review =>
                                 (<>
                                 <p>{review.content}</p>
                                 <EditReviewModal review={review} />

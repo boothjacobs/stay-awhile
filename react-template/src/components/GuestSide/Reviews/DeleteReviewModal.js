@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { getOneBooking } from "../../../store/booking-store";
+import { getBookings } from "../../../store/booking-store";
 import { deleteReview } from "../../../store/review-store";
 
 const DeleteReviewModal = ({review}) => {
     const dispatch = useDispatch();
-    const [showModal, setShowModal] = useState(false);
+    const user = useSelector(state => state.session.user);
 
-    useEffect(() => {
-        showModal && dispatch(getOneBooking(review.booking_id));
-    }, [dispatch, review.booking_id, showModal]);
+    const [showModal, setShowModal] = useState(false);
 
     const deleteButton = (e) => {
         dispatch(deleteReview(review.booking_id, review.id));
         setShowModal(false);
-        dispatch(getOneBooking(review.booking_id))
-    };
+        dispatch(getBookings(user?.id));
+        };
 
     return (
         <>
