@@ -73,6 +73,8 @@ const RanchHome = () => {
                     {cabins?.map(cabin => <p>{cabin.name}</p>)}
                 </div>
             </div>
+
+
         </div>
     )
  }

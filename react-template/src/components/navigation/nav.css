@@ -31,3 +31,23 @@ nav {
     color: #EA9C1B;
     border: none;
 }
+
+footer {
+    height: 50px;
+    color: #e7e7e7;
+    background-color: #2B4162;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#about-links {
+    width: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}

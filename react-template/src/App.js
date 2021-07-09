@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import Splash from "./components/user-auth/Splash";
-import LoginForm from "./components/user-auth/LoginForm";
-import SignUpForm from "./components/user-auth/SignUpForm";
 import NavBar from "./components/navigation/NavBar";
+import Footer from "./components/navigation/Footer";
 import ProtectedRoute from "./components/user-auth/ProtectedRoute";
 import Home from "./components/user-auth/Home";
 import RanchDetails from "./components/RanchSide/RanchDetails";
@@ -33,10 +32,10 @@ function App() {
           <Splash />
         </Route>
         <Route path="/login" exact={true}>
-          <LoginForm />
+          <Splash />
         </Route>
         <Route path="/signup" exact={true}>
-          <SignUpForm />
+          <Splash />
         </Route>
         <ProtectedRoute path="/home" exact={true} >
           <Home />
@@ -69,6 +68,7 @@ function App() {
           <MyReviews />
         </ProtectedRoute>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

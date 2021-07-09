@@ -22,6 +22,7 @@ const NavBar = () => {
     };
 
   return (
+    <>
     <nav>
       <ul id="nav-list">
         <li className="nav-li">
@@ -65,6 +66,8 @@ const NavBar = () => {
         </>)}
       </ul>
     </nav>
+
+    </>
   );
 }
 
