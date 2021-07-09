@@ -14,6 +14,8 @@ const GuestHome = () => {
     }, [dispatch, user.id]);
 
     const bookings = Object.values(useSelector(state => state.booking));
+    const invoices = Object.values(user.invoices);
+    console.log("user.invoice", invoices)
 
     return (
         <div className="under-nav">
@@ -61,6 +63,22 @@ const GuestHome = () => {
                 </div>
                 <div id="dashboard-three">
                     <NavLink to="/guest/invoices" className="dashboard-header"><h3>Open Invoices</h3></NavLink>
+                    {invoices?.map((invoice) => {
+                        if (invoice?.amount_due > 0) {
+                            return (
+                            <div className="under-nav">
+                                <div id="existing-invoice-render">
+                                    <h4>Invoice No. {invoice.id}</h4>
+                                    <div className="invoice-boolean">
+                                        Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
+                                    </div>
+                                    <p>Amount Due: {invoice?.amount_due}</p>
+                                </div>
+                            </div>
+                            )
+                        };
+                    })};
+
                 </div>
 
             </div>

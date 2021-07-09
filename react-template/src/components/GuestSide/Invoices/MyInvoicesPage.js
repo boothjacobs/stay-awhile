@@ -45,9 +45,9 @@ const MyInvoices = () => {
             <h1>My Invoices</h1>
             <div className="invoice-list">
                 {invoices.map((invoice) => {
-                    return (
+                    if (invoice?.amount_due > 0) {
+                        return (
                         <div className="under-nav">
-                            {/* {paypal.Buttons().render('body')} */}
                             <div id="existing-invoice-render">
                                 <h4>Invoice Details</h4>
                                 <p>Any additional charges: {invoice?.additional_charges}</p>
@@ -60,13 +60,10 @@ const MyInvoices = () => {
                                 <p>Subtotal: {invoice?.total}</p>
                                 <p>Amount Paid: {invoice?.amount_paid}</p>
                                 <p>Amount Due: {invoice?.amount_due}</p>
-
-                                {/* PAYPAL BOILERPLATE: Set up a container element for the button --> */}
-                                {/* <div id="paypal-button-container"></div> */}
-
                             </div>
                         </div>
                     )
+                    };
                 })}
             </div>
         </div>

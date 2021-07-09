@@ -18,5 +18,6 @@ class Review(db.Model):
             "id": self.id,
             "guest": self.guest.full_name,
             "content": self.content,
-            "stars": self.stars
+            "stars": self.stars,
+            "booking_id": self.booking_id
         }

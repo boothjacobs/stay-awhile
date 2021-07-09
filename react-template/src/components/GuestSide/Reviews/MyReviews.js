@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getBookings } from "../../../store/booking-store"
 
 import AddReviewModal from './AddReviewModal';
+import EditReviewModal from './EditReviewModal';
+import DeleteReviewModal from './DeleteReviewModal';
 import "../guestSide.css";
 
 const MyReviews = () => {
@@ -25,19 +27,26 @@ const MyReviews = () => {
                     if (Date.parse(start) > Date.now()) {
                         return null;
                     };
-                    // console.log("inside bookings map", Object.values(booking.review))
+                    console.log("inside bookings map", booking?.reviews)
                     let thisReview;
-                    if (booking?.review) {
-                        thisReview = Object.values(booking?.review)[0];
+                    if (booking?.reviews.length) {
+                        thisReview = Object.values(booking?.reviews)[0];
+                        console.log("==================", thisReview)
                     }
 
                     return (
                         <div className="info-entry" key={booking?.id}>
                             <p className="dashboard-p">{booking?.ranch}, {booking?.cabin}</p>
                             <p className="dashboard-p">{start?.toDateString()} - {end?.toDateString()}</p>
-                            {/* <AddReviewModal booking={booking} /> */}
-                            <p>{booking?.review?.content}</p>
-                            {(booking?.review) ? (<p>{thisReview?.content}</p>) : (<AddReviewModal booking={booking} />)}
+
+                            {(booking?.reviews.length) ? booking?.reviews.map(review =>
+                                (<>
+                                <p>{review.content}</p>
+                                <EditReviewModal review={review} />
+                                <DeleteReviewModal review={review} />
+                                </>)
+                            ) : (
+                            <AddReviewModal booking={booking} />)}
                         </div>
                     )
                 }) : null}

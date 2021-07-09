@@ -35,10 +35,13 @@ const BookingsPage = () => {
                             <p className="dashboard-p">{booking?.guest_count} guests</p>
                             <p className="dashboard-p">{booking?.interests}</p>
                             <p>${booking?.total} indicate if unpaid, link to invoice</p>
-                            <div className="modal-buttons">
-                                <EditBookingModal booking={booking} className="one-modal" />
-                                <DeleteBookingModal booking={booking} className="one-modal" />
-                            </div>
+                            {startDate > Date.now() ? (
+                                <div className="modal-buttons">
+                                    <EditBookingModal booking={booking} className="one-modal" />
+                                    <DeleteBookingModal booking={booking} className="one-modal" />
+                                </div>
+                            ) : null}
+
                         </div>
                     )
                 })
