@@ -31,10 +31,12 @@ const CreateInvoice = () => {
 
     const updateDeposit = (e) => {
         setDepos(e.target.value);
-        if (deposit === true) {
+        if (e.target.value === "paid") {
             setAmtPaid(booking.total / 4);
+            // console.log(amount_paid)
         } else {
             setAmtPaid(0)
+            // console.log("deposit value false")
         }
     };
 
@@ -93,12 +95,12 @@ const CreateInvoice = () => {
                         <label>Deposit: {booking.total / 4}</label> {/* read only: total/4 */}
                         <label>Deposit Paid?
                             <input type="checkbox"
-                            value={deposit}
+                            value="paid"
                             onChange={updateDeposit}/>
                         </label>
                         <label>Rollover Payment:
                             <input type="checkbox"
-                            value={rollover}
+                            value="paid"
                             onChange={(e) => setRollover(e.target.value)}/>
                         </label>
                         <label>Amount Paid:
