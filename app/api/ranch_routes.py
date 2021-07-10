@@ -29,7 +29,7 @@ def new_ranch():
 
 @ranch_routes.route("/search", methods=['POST'])
 def search_ranch():
-    print("******************************************", request.data)
+    # print("******************************************", request.data)
     ranches = Ranch.query.all()
     # print("==1111111111111111111111111===", ranches)
     # if (request.data):

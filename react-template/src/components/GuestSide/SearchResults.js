@@ -29,12 +29,12 @@ const SearchResults = () => {
         <div className="under-nav">
             <div className="search-header">
                 <h1>Browse Destinations</h1>
-                <input type="search" name="search_term"
+                {/* <input type="search" name="search_term"
                     value={search_term}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     size="75"
                     placeholder="Search by name, location, description, etc" />
-                <button type="button" onClick={search}>Search</button>
+                <button type="button" onClick={search}>Search</button> */}
             </div>
             {ranches?.map((ranch) => {
                 return (

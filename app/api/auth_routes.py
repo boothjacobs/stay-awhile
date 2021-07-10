@@ -67,7 +67,7 @@ def sign_up():
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
-        print("form validated*****************", form['full_name'].data)
+        # print("form validated*****************", form['staff'].data)
         user = User(
             full_name=form['full_name'].data,
             email=form['email'].data,
@@ -78,7 +78,7 @@ def sign_up():
             emergency_contact=form['emergency_contact'].data,
             staff=form['staff'].data
         )
-        print("SignUp Route ============================", user)
+        # print("SignUp Route ============================", user)
         db.session.add(user)
         db.session.commit()
         login_user(user)

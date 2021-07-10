@@ -127,7 +127,7 @@ const SignUpForm = () => {
               type="checkbox"
               name="staff"
               onChange={updateStaff}
-              value={staff}
+              value="True"
             ></input></label>
           {(staff) ? (
             <div className="ranch-fields">
