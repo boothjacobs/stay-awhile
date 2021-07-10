@@ -84,7 +84,7 @@ const RanchHome = () => {
                 </div>
                 <div id="dashboard-four">
                     <h4>Available Cabins</h4>
-                    {cabins?.map(cabin => <p >{cabin.name}</p>)}
+                    {cabins?.map(cabin => <div>{cabin.name}</div>)}
                 </div>
             </div>
 

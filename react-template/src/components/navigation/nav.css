@@ -35,7 +35,7 @@ nav {
 footer {
     height: 50px;
     color: #e7e7e7;
-    background-color: rgba(43, 65, 98, 0.75);
+    background-color: rgba(43, 65, 98, 0.9);
     position: fixed;
     bottom: 0;
     right: 0;
@@ -45,13 +45,15 @@ footer {
     justify-content: space-around;
     align-items: center;
 }
-
+/*
 #footer-title {
     background-color: rgba(43, 65, 98, 0.75);
     height: 40px;
     display: flex;
     align-items: center;
-}
+    padding: 3px;
+    border-radius: 3px;
+} */
 
 #about-links {
     width: 150px;
@@ -59,10 +61,12 @@ footer {
     justify-content: space-around;
     align-items: center;
 }
-
+/*
 #email {
     background-color: rgba(43, 65, 98, 0.75);
     height: 40px;
     display: flex;
     align-items: center;
-}
+    padding: 3px;
+    border-radius: 3px;
+} */
