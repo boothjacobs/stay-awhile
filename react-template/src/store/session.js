@@ -87,22 +87,8 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
                         //extra fields for staff account/Ranch create
                         ranch_name, location, description, nightly_rate) => async (dispatch) => {
 
-    const userResponse = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff}),
-    });
-    const userData = await userResponse.json();
-
-    if (userData.errors) {
-        console.log("SignUp thunk errors from user: ", userData);
-        return userData.errors;
-    };
-
-    dispatch(setUser(userData));
-
+    //create ranch
+    let ranchData;
     if (ranch_name !== "") {
         // console.log("RANCH CONDITIONAL INSIDE SIGNUP THUNK")
         const ranchResponse = await fetch("/api/ranch", {
@@ -112,7 +98,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
             },
             body: JSON.stringify({ranch_name, location, description, nightly_rate}),
         });
-        const ranchData = await ranchResponse.json();
+        ranchData = await ranchResponse.json();
         // console.log("RANCH DATA", ranchData)
         dispatch(setRanch(ranchData));
 
@@ -121,6 +107,31 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
             return ranchData.errors;
         }
     };
+    //assign value for ranch_id on User model
+    let ranch_id;
+    if (ranchData.id) {
+        ranch_id = ranchData.id;
+    } else {
+        ranch_id = 0;
+    };
+
+    //create user
+    const userResponse = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff, ranch_id}),
+    });
+
+    const userData = await userResponse.json();
+
+    if (userData.errors) {
+        console.log("SignUp thunk errors from user: ", userData);
+        return userData.errors;
+    };
+
+    dispatch(setUser(userData));
 
     return userData;
 };

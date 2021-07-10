@@ -17,7 +17,7 @@ const GuestHome = () => {
 
     const bookings = Object.values(useSelector(state => state.booking));
     const invoices = Object.values(useSelector(state => state.invoice));
-    console.log("useSelector invoices", invoices)
+    // console.log("useSelector invoices", invoices)
 
     return (
         <div className="under-nav">

@@ -23,9 +23,9 @@ const RanchHome = () => {
     const openInvoices = useSelector(state => state.invoice.invoices);
     const cabins = Object.values(useSelector(state => state.cabin));
 
-    console.log("RANCH STORE from ranch home", ranch)
-    console.log("USER FROM RANCH HOME", user)
-    console.log("cabins from ranch home", cabins)
+    // console.log("RANCH STORE from ranch home", ranch)
+    // console.log("USER FROM RANCH HOME", user)
+    // console.log("cabins from ranch home", cabins)
 
     let bookings;
     if (ranch.bookings) {
