@@ -16,12 +16,12 @@ const AllInvoices = () => {
     const invoices = useSelector(state => state.invoice.invoices);
 
     return (
-        <div className="under-nav">
+        <div id="all-invoices-js">
             <h1>All Invoices</h1>
             <div className="invoice-list">
                 {invoices?.map((invoice) =>
                             <div className="under-nav">
-                                <div id="existing-invoice-render">
+                                <div className="existing-invoice-render">
                                     <h4>Invoice No. {invoice?.id}</h4>
                                     <p>Any additional charges: {invoice?.additional_charges}</p>
                                     <div className="invoice-boolean">

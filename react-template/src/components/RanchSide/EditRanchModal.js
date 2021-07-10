@@ -11,10 +11,10 @@ const EditRanchModal = ({ranch}) => {
         showModal && dispatch(getRanch(ranch?.id));
     }, [dispatch, ranch?.id, showModal])
 
-    const [ranch_name, setRanchName] = useState(ranch?.ranch_name);
-    const [location, setLocation] = useState(ranch?.location);
-    const [description, setDescription] = useState(ranch?.description);
-    const [nightly_rate, setRate] = useState(ranch?.nightly_rate);
+    const [ranch_name, setRanchName] = useState(ranch.ranch_name);
+    const [location, setLocation] = useState(ranch.location);
+    const [description, setDescription] = useState(ranch.description);
+    const [nightly_rate, setRate] = useState(ranch.nightly_rate);
 
     const handleSubmit = (e) => {
         // e.preventDefault(); //should be unnecessary

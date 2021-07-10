@@ -25,6 +25,7 @@
 .modal-head {
     text-align: center;
     padding: 10px;
+    background-color: #e7e7e7;
 }
 
 .modal-form {
@@ -32,6 +33,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #e7e7e7;
 }
 
 .modal-form label {

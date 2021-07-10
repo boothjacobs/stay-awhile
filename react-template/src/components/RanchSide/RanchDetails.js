@@ -22,7 +22,7 @@ const RanchDetails = () => {
     // console.log("cabins from ranh profile.js", cabins)
 
     return (
-        <div className="under-nav">
+        <div id="ranch-details-js">
             <table id="ranch-detail">
                 <thead>
                     <tr className="detail-table"><th colspan="1"> <h1>{ranch?.ranch_name}</h1> </th></tr>
