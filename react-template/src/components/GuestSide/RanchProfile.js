@@ -18,6 +18,7 @@ const RanchProfile = () => {
 
     const user = useSelector(state => state.session.user);
     const ranch = useSelector(state => state.ranch);
+    
     const bookings = useSelector(state => state.booking);
     const reviews = Object.values(useSelector(state => state.review));
 
@@ -130,7 +131,7 @@ const RanchProfile = () => {
                                 </select>
                             </label>
                             <label>Number of Guests:
-                                <input type="number" value={guestCount}
+                                <input type="number" value={guestCount} required
                                 onChange={updateGuestCount}/>
                             </label>
                         <h3>Rate per night: ${ranch?.rate}</h3>

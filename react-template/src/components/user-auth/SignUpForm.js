@@ -63,28 +63,28 @@ const SignUpForm = () => {
         <form className="auth-form" onSubmit={onSignUp}>
             <label>Full Name
             <input
-              type="text"
+              type="text" required
               name="full_name"
               onChange={updateFullname}
               value={full_name}
             ></input></label>
             <label>Email
             <input
-              type="text"
+              type="text" required
               name="email"
               onChange={updateEmail}
               value={email}
             ></input></label>
             <label>Password
             <input
-              type="password"
+              type="password" required
               name="password"
               onChange={updatePassword}
               value={password}
             ></input></label>
             <label>Confirm Password
             <input
-              type="password"
+              type="password" required
               name="confirm_password"
               onChange={updateConfirmPassword}
               value={confirmPassword}

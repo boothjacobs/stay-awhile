@@ -88,7 +88,7 @@ const CreateInvoice = () => {
                     <form id="create-invoice-form" onSubmit={handleSubmit}>
                         <label>Total from Booking: ${booking?.total}</label> {/* read only */}
                         <label>Additional charges:
-                            <input type="number"
+                            <input type="number" required
                             value={additional_charges}
                             onChange={(e) => setAddCharges(e.target.value)}/>
                         </label>
