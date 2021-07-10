@@ -31,14 +31,10 @@ const SignUpForm = () => {
         ranch_name, location, description, nightly_rate   //conditional fields for staff accounts only, to create Ranch
       ));
     }
+
   };
 
-  const updateFullname = (e) => {
-    // console.log("inside update Full Name function", e.target.value)
-    setFullname(e.target.value)
-    // console.log(fullName, user)
-  };
-
+  const updateFullname = (e) => { setFullname(e.target.value) };
   const updateEmail = (e) => { setEmail(e.target.value) };
   const updatePassword = (e) => { setPassword(e.target.value) };
   const updateConfirmPassword = (e) => { setConfirmPassword(e.target.value) };

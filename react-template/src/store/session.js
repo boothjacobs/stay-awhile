@@ -86,7 +86,6 @@ export const logout = () => async (dispatch) => {
 export const signUp = (full_name, email, password, age, phone_number, dietary_restrictions, emergency_contact, staff,
                         //extra fields for staff account/Ranch create
                         ranch_name, location, description, nightly_rate) => async (dispatch) => {
-
     //create ranch
     let ranchData;
     if (ranch_name !== "") {
@@ -111,6 +110,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
     let ranch_id;
     if (ranchData.id) {
         ranch_id = ranchData.id;
+        console.log(ranchData)
     } else {
         ranch_id = 0;
     };

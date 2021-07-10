@@ -15,17 +15,32 @@ const EditRanchModal = ({ranch}) => {
     const [location, setLocation] = useState(ranch.location);
     const [description, setDescription] = useState(ranch.description);
     const [nightly_rate, setRate] = useState(ranch.nightly_rate);
+    const [image, setImage] = useState("");
+    const [imageLoading, setImageLoading] = useState(false);
 
     const handleSubmit = (e) => {
         // e.preventDefault(); //should be unnecessary
+        setImageLoading(true);
+
         const formData = new FormData();
         formData.append("ranch_name", ranch_name);
         formData.append("location", location);
         formData.append("description", description);
         formData.append("nightly_rate", nightly_rate);
+        formData.append("image", image)
 
         dispatch(editRanch(ranch.id, formData));
+        setImageLoading(false);
         setShowModal(false);
+    };
+
+    const getImage = (e) => {
+        if (e.target.files) {
+            const imgFile = e.target.files[0];
+            setImage(imgFile);
+        } else {
+            console.log("no image")
+        }
     };
 
     return (
@@ -64,6 +79,14 @@ const EditRanchModal = ({ranch}) => {
                             onChange={(e) => setRate(e.target.value)}
                             value={nightly_rate}
                             ></input></label>
+                        <label>Optional Ranch Profile Image
+                            <input
+                            type="file"
+                            name="image"
+                            onChange={getImage}
+                            />
+                            {(imageLoading)&& <p>Uploading file...</p>}
+                            </label>
                             <div className="modal-buttons">
                                 <button type="submit">Save</button>
                                 <button type="button" onClick={() => setShowModal(false)}>Cancel</button>

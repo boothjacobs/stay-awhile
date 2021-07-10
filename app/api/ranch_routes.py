@@ -19,12 +19,12 @@ def new_ranch():
         location=form['location'].data,
         description=form['description'].data,
         nightly_rate=form['nightly_rate'].data,
-        img_url=None
+        img_url=None,
     )
     db.session.add(ranch)
     print(ranch)
     db.session.commit()
-    print("================== RANCH ID =================", ranch.id)
+    print("================== RANCH IMG =================", ranch.img_url)
     return ranch.to_dict()
 
 
@@ -61,8 +61,25 @@ def get_ranch(id):
 @login_required
 def edit_ranch(id):
     ranch = Ranch.query.get(id)
-    # print("****************** edit route", ranch)
-    # print("****************** edit route", request.form["location"])
+
+    if "image" not in request.files:
+        url = None
+        print(request.files.get_json())
+    else:
+        image_file = request.files["image"]
+        if not allowed_file(image_file.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        image_file.filename = get_unique_filename(image_file.filename)
+
+        upload = upload_file_to_s3(image_file)
+        if "url" not in upload:
+            #upload will have its own error messages if it didn't bring back a URL
+            return upload, 400
+
+        url = upload["url"]
+        ranch.img_url = url
+
     ranch.ranch_name = request.form['ranch_name']
     ranch.location = request.form['location']
     ranch.description = request.form['description']
