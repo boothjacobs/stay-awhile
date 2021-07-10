@@ -17,17 +17,18 @@ const RanchProfile = () => {
     const history = useHistory();
 
     const user = useSelector(state => state.session.user);
-    const ranch = useSelector(state => state.ranch);
-    
-    const bookings = useSelector(state => state.booking);
-    const reviews = Object.values(useSelector(state => state.review));
-
     const ranchId = useParams().id;
+
+    // console.log(ranchId)
 
     useEffect(() => {
         dispatch(getRanch(ranchId));
         dispatch(getReviews(ranchId));
     }, [dispatch, ranchId]);
+
+    const ranch = useSelector(state => state.ranch);
+    const bookings = useSelector(state => state.booking);
+    const reviews = Object.values(useSelector(state => state.review));
 
     let cabins;
     if (ranch?.cabins) {

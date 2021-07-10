@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getBookings } from "../../store/booking-store"
+import { getUserInvoices } from '../../store/invoice-store';
 
 import "./guestSide.css";
 
@@ -10,12 +11,13 @@ const GuestHome = () => {
     const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(getBookings(user?.id))
+        dispatch(getBookings(user?.id));
+        dispatch(getUserInvoices(user?.id));
     }, [dispatch, user.id]);
 
     const bookings = Object.values(useSelector(state => state.booking));
-    const invoices = Object.values(user.invoices);
-    // console.log("user.invoice", invoices)
+    const invoices = Object.values(useSelector(state => state.invoice));
+    console.log("useSelector invoices", invoices)
 
     return (
         <div className="under-nav">

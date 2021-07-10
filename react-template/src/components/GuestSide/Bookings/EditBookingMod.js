@@ -30,12 +30,13 @@ const EditBookingModal = ({booking}) => {
         showModal && dispatch(getRanch(booking.ranch_id));
     }, [dispatch, booking.guest_id, booking.ranch_id, showModal]);
 
-    const ranch = useSelector(state => state.ranch.ranch);
+    const ranch = useSelector(state => state.ranch);
     let cabins;
     if (ranch) {
         cabins = Object.values(ranch.cabins);
     };
     // console.log("edit modal cabins", cabins)
+    // console.log("edit modal ranch", ranch)
 
     const updateStartDate = (e) => {
         setStartDate(e.target.value);

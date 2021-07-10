@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, NavLink } from 'react-router-dom';
-import { searchRanches } from '../../store/ranch-store';
+import { searchRanches, getAllRanches } from '../../store/ranch-store';
 
 import "./guestSide.css";
 
@@ -12,18 +12,19 @@ const SearchResults = () => {
     // const user = useSelector(state => state.session.user);
 
     useEffect(() => {
-        dispatch(searchRanches(""))
+        dispatch(getAllRanches())
     }, [dispatch]);
 
     const ranches = Object.values(useSelector(state => state.ranch));
     // console.log(ranches)
-    const [search_term, setSearchTerm] = useState("");
 
-    const search = (e) => {
-        dispatch(searchRanches(search_term));
-        history.push("/");
-        history.goBack();
-    };
+    // const [search_term, setSearchTerm] = useState("");
+
+    // const search = (e) => {
+    //     dispatch(searchRanches(search_term));
+    //     history.push("/");
+    //     history.goBack();
+    // };
 
     return (
         <div className="under-nav">

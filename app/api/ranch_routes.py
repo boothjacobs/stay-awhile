@@ -22,10 +22,16 @@ def new_ranch():
         img_url=None
     )
     db.session.add(ranch)
-    # print(ranch)
+    print(ranch)
     db.session.commit()
+    print("================== RANCH ID =================", ranch.id)
     return ranch.to_dict()
 
+
+@ranch_routes.route("", methods=['GET'])
+def all_ranches():
+    ranches = Ranch.query.all()
+    return {ranch.id: ranch.to_dict() for ranch in ranches}
 
 @ranch_routes.route("/search", methods=['POST'])
 def search_ranch():

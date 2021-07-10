@@ -20,6 +20,15 @@ export const getRanch = (ranchId) => async (dispatch) => {
     }
 };
 
+export const getAllRanches = () => async (dispatch) => {
+    const response = await fetch(`/api/ranch`);
+    if (response.ok) {
+        const ranches = await response.json();
+        dispatch(filterRanches(ranches));
+    }
+    return;
+};
+
 export const searchRanches = (searchTerm) => async (dispatch) => {
     // console.log("search or browse ranch thunk");
     const response = await fetch(`/api/ranch/search`, {

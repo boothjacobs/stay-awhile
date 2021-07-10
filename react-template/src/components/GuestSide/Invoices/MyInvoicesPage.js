@@ -47,6 +47,7 @@ const MyInvoices = () => {
                         <div className="under-nav">
                             <div id="existing-invoice-render">
                                 <h4>Invoice No. {invoice?.id}</h4>
+                                <p>Booking No. {invoice?.booking_id}</p>
                                 <p>Any additional charges: {invoice?.additional_charges}</p>
                                 <div className="invoice-boolean">
                                     Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}

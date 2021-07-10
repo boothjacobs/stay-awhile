@@ -78,7 +78,7 @@ def sign_up():
             emergency_contact=form['emergency_contact'].data,
             staff=form['staff'].data
         )
-        # print("SignUp Route ============================", user)
+        print("SignUp Route ============================", user)
         db.session.add(user)
         db.session.commit()
         login_user(user)

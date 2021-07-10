@@ -21,6 +21,7 @@ class Invoice(db.Model):
         return {
             "id": self.id,
             "guest": self.guest.full_name,
+            "booking_id": self.booking_id,
             "additional_charges": self.additional_charges,
             "deposit": self.deposit,
             "rollover_payment": self.rollover_payment,
