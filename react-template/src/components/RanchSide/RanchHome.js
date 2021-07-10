@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
+import { getCabins } from "../../store/cabin-store";
 import { getOpenInvoices } from "../../store/invoice-store";
 
 import "./ranchSide.css";
@@ -15,20 +16,23 @@ const RanchHome = () => {
         // console.log("Ranch Home.js dispatch of getRanch")
         dispatch(getRanch(user?.ranch_id));
         dispatch(getOpenInvoices(user?.ranch_id));
+        dispatch(getCabins(user?.ranch_id));
     }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch);
-    // console.log("RANCH STORE from ranch home", ranch)
     const openInvoices = useSelector(state => state.invoice.invoices);
+    const cabins = Object.values(useSelector(state => state.cabin));
+
+    console.log("RANCH STORE from ranch home", ranch)
+    console.log("USER FROM RANCH HOME", user)
+    console.log("cabins from ranch home", cabins)
 
     let bookings;
-    let cabins;
     if (ranch.bookings) {
         bookings = Object.values(ranch?.bookings);
         // console.log("bookings from ranch", bookings)
-        cabins = Object.values(ranch?.cabins);
-        // console.log("cabins from ranch", cabins)
     };
+
 
     return loaded && (
         <div className="under-nav">

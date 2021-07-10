@@ -32,8 +32,8 @@ const EditBookingModal = ({booking}) => {
 
     const ranch = useSelector(state => state.ranch);
     let cabins;
-    if (ranch) {
-        cabins = Object.values(ranch?.cabins);
+    if (ranch.cabins) {
+        cabins = Object.values(ranch.cabins);
     };
     // console.log("edit modal cabins", cabins)
     // console.log("edit modal ranch", ranch)
