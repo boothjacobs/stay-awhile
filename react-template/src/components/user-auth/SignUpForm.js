@@ -21,7 +21,7 @@ const SignUpForm = () => {
   const [description, setDescription] = useState("");
   const [nightly_rate, setRate] = useState("");
 
-  const onSignUp = async (e) => {
+  const onSignUp = (e) => {
     e.preventDefault();
     if (password === confirmPassword) {
       dispatch(signUp(full_name,

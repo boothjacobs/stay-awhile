@@ -25,12 +25,6 @@ const NavBar = () => {
     <>
     <nav>
       <ul id="nav-list">
-        <li className="nav-li">
-          <NavLink to="/home" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-
         {(user?.staff) ? (
             <li className="nav-li">
               <NavLink to="/staff/profile" exact={true} activeClassName="active">
@@ -44,9 +38,16 @@ const NavBar = () => {
             )}
 
         {(user !== null) ? (
-          <li className="nav-li">
-            <button onClick={onLogout}>Logout</button>
-          </li>) : (<>
+          <>
+            <li className="nav-li">
+              <NavLink to="/home" exact={true} activeClassName="active">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-li">
+              <button onClick={onLogout}>Logout</button>
+            </li>
+          </>) : (<>
             <li className="nav-li">
               <button onClick={loginDemoStaff}>Demo as Staff</button>
             </li>
@@ -54,15 +55,11 @@ const NavBar = () => {
               <button onClick={loginDemoGuest}>Demo as Customer</button>
             </li>
             <li className="nav-li">
-              <NavLink to="/login" exact={true} activeClassName="active">
-                Login
+              <NavLink to="/" exact={true} activeClassName="active">
+                Login/Sign Up
               </NavLink>
             </li>
-            <li className="nav-li">
-              <NavLink to="/signup" exact={true} activeClassName="active">
-                Sign Up
-              </NavLink>
-            </li>
+
         </>)}
       </ul>
     </nav>

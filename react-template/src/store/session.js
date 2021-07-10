@@ -1,6 +1,7 @@
 import { SET_RANCH } from "./ranch-store";
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const SET_ERRORS = "session/SET_ERRORS";
 
 const setUser = (user) => ({
     type: SET_USER,
@@ -10,6 +11,11 @@ const setUser = (user) => ({
 const removeUser = () => ({
     type: REMOVE_USER
     //no payload needed for the logout action creator
+});
+
+const setErrors = (errors) => ({
+    type: SET_ERRORS,
+    payload: errors
 });
 
 const setRanch = (ranch) => ({
@@ -46,9 +52,10 @@ export const login = (email, password) => async (dispatch)  => {
     });
     const data = await response.json();
     if (data.errors) {
-        return data.errors;
+        dispatch(setErrors(data.errors));
+    } else {
+        dispatch(setUser(data));
     }
-    dispatch(setUser(data));
     return data;
 };
 
@@ -108,7 +115,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
     };
     //assign value for ranch_id on User model
     let ranch_id;
-    if (ranchData.id) {
+    if (ranchData && ranchData.id) {
         ranch_id = ranchData.id;
         console.log(ranchData)
     } else {
@@ -146,6 +153,8 @@ export default function reducer(state=initialState, action) {
             return {user: null, loaded: true}
         case SET_RANCH:
             return {...state, ranch: action.payload, loaded: true}
+        case SET_ERRORS:
+            return { user: null, loaded: {"error": action.payload}}
         default:
             return state;
     }
