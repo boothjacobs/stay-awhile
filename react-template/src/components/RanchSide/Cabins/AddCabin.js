@@ -95,7 +95,7 @@ const AddCabin = () => {
                     {cabins?.map((cabin) => {
                         // console.log("map", cabin);
                         return (
-                            <li key={cabin.id}><h4>{cabin.name}</h4>
+                            <li key={cabin.id}><h2>{cabin.name}</h2>
                             <div className="cabin-entry">
                                     <div>Beds: {cabin.beds}</div>
                                     <div>Capacity: {cabin.total_capacity}</div>
