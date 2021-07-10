@@ -44,14 +44,14 @@ def search_ranch():
     return {ranch.id: ranch.to_dict() for ranch in ranches}
 
 
-@ranch_routes.route('/<id>', methods=['GET'])
+@ranch_routes.route('/<int:id>', methods=['GET'])
 def get_ranch(id):
     ranch = Ranch.query.get(id)
     # bookings = Booking.query.filter(Booking.ranch_id == id)
     return ranch.to_dict()
 
 
-@ranch_routes.route('/<id>', methods=["PUT"])
+@ranch_routes.route('/<int:id>', methods=["PUT"])
 @login_required
 def edit_ranch(id):
     ranch = Ranch.query.get(id)
@@ -68,7 +68,7 @@ def edit_ranch(id):
     return ranch.to_dict()
 
 
-@ranch_routes.route('/<id>/cabins', methods=['GET'])
+@ranch_routes.route('/<int:id>/cabins', methods=['GET'])
 def get_cabins(id):
     # print("============================== get_cabins +++++++++++++++++++++++")
     print(id)
@@ -77,7 +77,7 @@ def get_cabins(id):
     return {cabin.id: cabin.to_dict() for cabin in cabins}
 
 
-@ranch_routes.route('/<id>/cabins', methods=["POST"])
+@ranch_routes.route('/<int:id>/cabins', methods=["POST"])
 @login_required
 def add_cabin(id):
     ranch = Ranch.query.get(id)
@@ -149,20 +149,20 @@ def delete_cabin(cabinId):
     return {"deleted": cabinId}
 
 
-@ranch_routes.route('/<id>/review')
+@ranch_routes.route('/<int:id>/review')
 def get_reviews(id):
     reviews = Review.query.filter(Review.ranch_id == id)
     return {review.id: review.to_dict() for review in reviews}
 
 
-@ranch_routes.route('/<ranchId>/invoices', methods=["GET"])
+@ranch_routes.route('/<int:ranchId>/invoices', methods=["GET"])
 @login_required
 def open_invoices(ranchId):
     open_invoices = Invoice.query.filter(Invoice.ranch_id == ranchId).filter(Invoice.amount_due > 0).all()
     return {"invoices": [invoice.to_dict() for invoice in open_invoices]}
 
 
-@ranch_routes.route('/<ranchId>/invoices/all', methods=["GET"])
+@ranch_routes.route('/<int:ranchId>/invoices/all', methods=["GET"])
 @login_required
 def all_invoices(ranchId):
     invoices = Invoice.query.filter(Invoice.ranch_id == ranchId).all()

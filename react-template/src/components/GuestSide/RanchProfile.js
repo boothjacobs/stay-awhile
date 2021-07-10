@@ -17,7 +17,7 @@ const RanchProfile = () => {
     const history = useHistory();
 
     const user = useSelector(state => state.session.user);
-    const ranch = useSelector(state => state.ranch.ranch);
+    const ranch = useSelector(state => state.ranch);
     const bookings = useSelector(state => state.booking);
     const reviews = Object.values(useSelector(state => state.review));
 

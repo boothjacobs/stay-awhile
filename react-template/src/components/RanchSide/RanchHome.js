@@ -13,8 +13,8 @@ const RanchHome = () => {
 
     useEffect(() => {
         // console.log("Ranch Home.js dispatch of getRanch")
-        dispatch(getRanch(user.ranch_id));
-        dispatch(getOpenInvoices(user.ranch_id));
+        dispatch(getRanch(user?.ranch_id));
+        dispatch(getOpenInvoices(user?.ranch_id));
     }, [dispatch]);
 
     const ranch = useSelector(state => state.ranch);

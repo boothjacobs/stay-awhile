@@ -21,7 +21,6 @@ class Invoice(db.Model):
         return {
             "id": self.id,
             "guest": self.guest.full_name,
-            # "booking": self.booking.to_dict(),
             "additional_charges": self.additional_charges,
             "deposit": self.deposit,
             "rollover_payment": self.rollover_payment,
