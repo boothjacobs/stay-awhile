@@ -52,14 +52,9 @@ const AddCabin = () => {
         }
     };
 
-    // const editButton = (e) => {
-    //     window.alert("This button doesn't do anything yet")
-    //     console.log(e.target.id)
-    // }
-
     return (
-        <div className="under-nav">
-            <div className="form-box">
+        <div id="add-edit-cabin-js">
+            <div className="cabin-form-box" id="add-cabin-form">
                 <h3 className="auth-head">New Lodging</h3>
                 <form className="cabin-form" onSubmit={submitHandler}>
                     <label>Cabin or Room Name
@@ -96,19 +91,23 @@ const AddCabin = () => {
                 </form>
             </div>
             <div className="all-cabin-view">
-                <ul>
+                <ul id="cabin-list">
                     {cabins?.map((cabin) => {
                         // console.log("map", cabin);
-                        return ( <li key={cabin.id}>{cabin.name}
-                            <ul id="cabin-deets">
-                                <li>Beds: {cabin.beds}</li>
-                                <li>Capacity: {cabin.total_capacity}</li>
-                                {cabin.img_url && <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>}
-                                {/* <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li> */}
-                                <li><EditCabinModal cabin={cabin} /></li>
-                                <li><DeleteCabinModal cabin={cabin} /></li>
-                            </ul>
-                        </li> )
+                        return (
+                            <li key={cabin.id}><h4>{cabin.name}</h4>
+                            <div className="cabin-entry">
+                                    <div>Beds: {cabin.beds}</div>
+                                    <div>Capacity: {cabin.total_capacity}</div>
+                                    {cabin.img_url && <li><img className="cabin-thumbnail" src={`${cabin.img_url}`} alt={cabin.name}/></li>}
+                                    {/* <li><button type="button" id={cabin.id} onClick={editButton}>Edit</button></li> */}
+                                    <div>
+                                        <EditCabinModal cabin={cabin} />
+                                        <DeleteCabinModal cabin={cabin} />
+                                    </div>
+                            </div>
+                            </li>
+                        )
                     })}
                 </ul>
             </div>

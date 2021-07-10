@@ -9,7 +9,7 @@ nav {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    background-color: #2B4162;
+    background-color: rgba(43, 65, 98, 0.75);
 }
 
 #nav-list {
@@ -35,7 +35,7 @@ nav {
 footer {
     height: 50px;
     color: #e7e7e7;
-    background-color: #2B4162;
+    background-color: rgba(43, 65, 98, 0.75);
     position: fixed;
     bottom: 0;
     right: 0;
@@ -46,9 +46,23 @@ footer {
     align-items: center;
 }
 
+#footer-title {
+    background-color: rgba(43, 65, 98, 0.75);
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
 #about-links {
     width: 150px;
     display: flex;
     justify-content: space-around;
+    align-items: center;
+}
+
+#email {
+    background-color: rgba(43, 65, 98, 0.75);
+    height: 40px;
+    display: flex;
     align-items: center;
 }

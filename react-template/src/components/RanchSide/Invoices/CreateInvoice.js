@@ -54,7 +54,7 @@ const CreateInvoice = () => {
     };
 
     return (
-        <div className="under-nav">
+        <div id="create-invoice-js">
             <div id="booking-overview">
                 <h2>Booking Details </h2>
                 <p>{booking?.guest}</p>
@@ -66,7 +66,7 @@ const CreateInvoice = () => {
             </div>
             {/* IF INVOICE EXISTS, RENDER EXISITNG INVOICE WITH EDIT BUTTON INSTEAD OF CREATE FORM */}
             {invoice.id ? (
-                <div id="existing-invoice-render">
+                <div className="existing-invoice-render">
                     <h4>Invoice Details</h4>
                     <p>Any additional charges: {invoice?.additional_charges}</p>
                     <div className="invoice-boolean">
@@ -108,7 +108,7 @@ const CreateInvoice = () => {
                             value={amount_paid}
                             onChange={(e) => setAmtPaid(e.target.value)}/>
                         </label>
-                        <p>Amount Due: ${amountDue(booking.total, additional_charges, amount_paid)}</p>
+                        <p id="invoice-amt">Amount Due: ${amountDue(booking.total, additional_charges, amount_paid)}</p>
                         <button type="submit">Create New Invoice</button>
                     </form>
                 </div>
