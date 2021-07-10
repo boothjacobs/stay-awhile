@@ -15,6 +15,7 @@ class Cabin(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "ranch_id": self.ranch_id,
             "name": self.name,
             "beds": self.beds,
             "total_capacity": self.total_capacity,

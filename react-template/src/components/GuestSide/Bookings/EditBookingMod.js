@@ -26,14 +26,14 @@ const EditBookingModal = ({booking}) => {
     const [total, setTotal] = useState(booking.total);
 
     useEffect(() => {
-        showModal && dispatch(getBookings(booking.guest_id));
-        showModal && dispatch(getRanch(booking.ranch_id));
+        showModal && dispatch(getBookings(booking?.guest_id));
+        showModal && dispatch(getRanch(booking?.ranch_id));
     }, [dispatch, booking.guest_id, booking.ranch_id, showModal]);
 
     const ranch = useSelector(state => state.ranch);
     let cabins;
     if (ranch) {
-        cabins = Object.values(ranch.cabins);
+        cabins = Object.values(ranch?.cabins);
     };
     // console.log("edit modal cabins", cabins)
     // console.log("edit modal ranch", ranch)
@@ -87,7 +87,7 @@ const EditBookingModal = ({booking}) => {
         setShowModal(false);
     };
 
-    return (
+    return booking && (
         <>
             <button type="button" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (

@@ -40,7 +40,7 @@ const EditCabinModal = ({cabin}) => {
         setShowModal(false);
     };
 
-    return (
+    return cabin && (
         <>
             <button type="button" onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
