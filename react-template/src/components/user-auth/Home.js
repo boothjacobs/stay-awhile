@@ -6,7 +6,7 @@ import GuestHome from "../GuestSide/GuestHome";
 
 const Home = () => {
     const user = useSelector(state => state.session.user);
-    console.log(user)
+    // console.log(user)
     if (user.staff) {
         return <RanchHome />
     } else if (!user.full_name) {

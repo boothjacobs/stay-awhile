@@ -20,7 +20,8 @@ const GuestHome = () => {
     // console.log("useSelector invoices", invoices)
 
     return (
-        <div id="guest-home-js">
+        <div id="guest-home-background">
+            <div id="guest-home-js">
             <div id="guest-dash-head">
                 <h1>Guest Home</h1>
                 <h2>{user?.full_name}</h2>
@@ -46,7 +47,7 @@ const GuestHome = () => {
                 </div>
                 <div id="dashboard-two">
                 <NavLink to="/guest/reviews" className="dashboard-header"><h3>Your Past Experiences</h3></NavLink>
-                    {/* <div className="info-display"> */}
+                    <div className="info-display">
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
                             let end = new Date(booking?.end_date);
@@ -61,7 +62,7 @@ const GuestHome = () => {
                                 <p className="dashboard-p">{end?.toDateString()}</p>
                             </div> )
                         }) : null}
-                    {/* </div> */}
+                    </div>
                 </div>
                 <div id="dashboard-three">
                     <NavLink to="/guest/invoices" className="dashboard-header"><h3>Open Invoices</h3></NavLink>
@@ -81,6 +82,7 @@ const GuestHome = () => {
 
                 </div>
 
+            </div>
             </div>
         </div>
     )
