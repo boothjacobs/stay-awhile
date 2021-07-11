@@ -45,6 +45,15 @@ export const getBookings = (userId) => async (dispatch) => {
     return bookData;
 };
 
+export const getRanchBookings = ranchId => async (dispatch) => {
+    const res = await fetch(`/api/ranch/${ranchId}/bookings`);
+    const bookData = await res.json();
+    if (res.ok) {
+        dispatch(allBookings(bookData));
+    }
+    return bookData;
+};
+
 export const getOneBooking = (bookingId) => async (dispatch) => {
     const res = await fetch(`/api/booking/${bookingId}`);
     const bookData = await res.json();

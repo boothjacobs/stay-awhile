@@ -12,6 +12,7 @@ import AddCabin from "./components/RanchSide/Cabins/AddCabin";
 import CreateInvoice from "./components/RanchSide/Invoices/CreateInvoice";
 import SearchResults from "./components/GuestSide/SearchResults";
 import BookingsPage from "./components/GuestSide/Bookings/BookingsPage";
+import AllBookings from "./components/RanchSide/AllBookings";
 import MyInvoices from "./components/GuestSide/Invoices/MyInvoicesPage";
 import MyReviews from "./components/GuestSide/Reviews/MyReviews";
 import AllInvoices from "./components/RanchSide/Invoices/AllInvoices";
@@ -45,6 +46,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/staff/lodgings" exact={true}>
           <AddCabin />
+        </ProtectedRoute>
+        <ProtectedRoute path="/staff/:id/bookings" exact={true}>
+          <AllBookings />
         </ProtectedRoute>
         <ProtectedRoute path="/staff/booking/:id/invoice" exact={true}>
           <CreateInvoice />

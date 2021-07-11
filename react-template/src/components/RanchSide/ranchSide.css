@@ -283,3 +283,21 @@ label > select {
     margin-bottom: 20px;
     padding: 3px;
 }
+
+#all-bookings-background {
+    background-image: url(../../background-img/sunrise.jpeg);
+    /* photo my own */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-origin: border-box;
+    background-position: top 40% right 0%;
+}
+
+#all-bookings-background > .under-nav {
+    background-color: rgba(255, 255, 255, 0.5);
+}

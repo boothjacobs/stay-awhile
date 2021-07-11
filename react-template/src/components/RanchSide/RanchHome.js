@@ -47,6 +47,7 @@ const RanchHome = () => {
                 <div id="dashboard-two">
                     <div>
                         <h4>Upcoming Bookings</h4>
+                        <NavLink to={`/staff/${user.ranch_id}/bookings`}>See All Bookings</NavLink>
                     </div>
                     <div id="bookings-grid">
                         {(bookings) ? bookings?.map((booking) => {

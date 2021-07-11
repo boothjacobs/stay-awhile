@@ -177,6 +177,14 @@ def get_reviews(id):
     return {review.id: review.to_dict() for review in reviews}
 
 
+@ranch_routes.route("/<id>/bookings", methods=["GET"])
+@login_required
+def get_bookings(id):
+    # would like to return in chronological order (getting busted by dictionary?)
+    bookings = Booking.query.filter(Booking.ranch_id == id).all()
+    return {booking.id: booking.to_dict() for booking in bookings}
+
+
 @ranch_routes.route('/<int:ranchId>/invoices', methods=["GET"])
 @login_required
 def open_invoices(ranchId):
