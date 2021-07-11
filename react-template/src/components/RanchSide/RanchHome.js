@@ -35,6 +35,8 @@ const RanchHome = () => {
 
 
     return loaded && (
+        <>
+        <div id="ranch-home-background">
         <div id="ranch-home-js">
             <h1>Ranch Dashboard</h1>
             <div className="ranch-dashboard">
@@ -89,9 +91,9 @@ const RanchHome = () => {
                     </div>
                 </div>
             </div>
-
-
         </div>
+        </div>
+        </>
     )
  }
 
