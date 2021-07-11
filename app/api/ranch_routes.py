@@ -64,7 +64,6 @@ def edit_ranch(id):
 
     if "image" not in request.files:
         url = None
-        print(request.files.get_json())
     else:
         image_file = request.files["image"]
         if not allowed_file(image_file.filename):
