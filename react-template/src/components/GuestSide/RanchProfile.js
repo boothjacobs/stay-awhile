@@ -81,17 +81,24 @@ const RanchProfile = () => {
         const start = (new Date(bookingStart)).getDate();
         const end = (new Date(bookingEnd)).getDate();
 
-        duration = end - start;
+        duration = Number(end) - Number(start);
 
-        if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
-            if (duration < 1) duration += (30 - start)
-        } else if ((new Date(bookingStart)).getMonth() === 2) {
-            if (duration < 1) duration += (28 - start)
-        } else {
-            if (duration < 1) duration += (31 - start)
+        if (duration < 1) {
+            if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
+                duration += (30 - start)
+            }
+            if ((new Date(bookingStart)).getMonth() === 2) {
+                duration += (28 - start)
+            }
+            if ((new Date(bookingStart)).getMonth() === (1 || 3 || 5 || 7 || 8 || 10 || 12)) {
+                duration += (31 - start)
+            }
         }
-        // console.log("result of calculateTotal", duration, bookingStart, bookingEnd)
-        return duration * ranch?.rate * guestCount;
+        // console.log("date values of calculateTotal", bookingStart, start, bookingEnd, end,)
+        // console.log("math part", duration, ranch?.rate, guestCount)
+        // console.log("types", typeof duration, typeof ranch?.rate, typeof guestCount)
+        // console.log("result", duration * ranch?.rate * Number(guestCount))
+        return duration * ranch?.rate * Number(guestCount);
     };
 
     return (
