@@ -42,7 +42,7 @@ const BookingsPage = () => {
                                 </p>
                                     <div className="modal-buttons">
                                         <EditBookingModal booking={booking} className="one-modal" />
-                                        <DeleteBookingModal booking={booking} className="one-modal" />
+                                        {invoice ? null : <DeleteBookingModal booking={booking} className="one-modal" />}
                                     </div>
                             </div>
                         )

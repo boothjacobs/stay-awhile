@@ -12,6 +12,15 @@ nav {
     background-color: rgba(43, 65, 98, 0.75);
 }
 
+/* #logo {
+    display: flex;
+    width: auto;
+}
+
+#logo > h1 {
+    justify-self: left;
+} */
+
 #nav-list {
     display: flex;
     justify-content: space-around;

@@ -24,6 +24,9 @@ const NavBar = () => {
   return (
     <>
     <nav>
+      {/* <div id="logo">
+        <h1>Stay awhile</h1>
+      </div> */}
       <ul id="nav-list">
         {(user?.staff) ? (
             <li className="nav-li">

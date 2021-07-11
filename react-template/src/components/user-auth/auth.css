@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-#splash-page {
+#splash-background {
     position: absolute;
     top: 0;
     right: 0;
@@ -17,6 +17,11 @@
     background-image: url(../../background-img/driveway.jpg);
     background-origin: border-box;
     background-size: cover;
+}
+
+#splash-page {
+    display: flex;
+    justify-content: space-around;
 }
 
 .form-box {
