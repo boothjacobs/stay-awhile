@@ -20,15 +20,15 @@ const GuestHome = () => {
     // console.log("useSelector invoices", invoices)
 
     return (
-        <div className="under-nav">
-            <div className="dashboard-header">
+        <div id="guest-home-js">
+            <div id="guest-dash-head">
                 <h1>Guest Home</h1>
                 <h2>{user?.full_name}</h2>
             </div>
             <div className="guest-dashboard">
                 <div id="dashboard-one">
-                    <NavLink to="/guest/bookings" className="dashboard-header"><h3>Upcoming Bookings</h3></NavLink>
                     <div className="info-display">
+                    <NavLink to="/guest/bookings" className="dashboard-header"><h3>Upcoming Bookings</h3></NavLink>
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
                             let end = new Date(booking?.end_date);
@@ -46,7 +46,7 @@ const GuestHome = () => {
                 </div>
                 <div id="dashboard-two">
                 <NavLink to="/guest/reviews" className="dashboard-header"><h3>Your Past Experiences</h3></NavLink>
-                    <div className="info-display">
+                    {/* <div className="info-display"> */}
                         {(bookings) ? bookings?.map((booking) => {
                             let start = new Date(booking?.start_date);
                             let end = new Date(booking?.end_date);
@@ -61,22 +61,20 @@ const GuestHome = () => {
                                 <p className="dashboard-p">{end?.toDateString()}</p>
                             </div> )
                         }) : null}
-                    </div>
+                    {/* </div> */}
                 </div>
                 <div id="dashboard-three">
                     <NavLink to="/guest/invoices" className="dashboard-header"><h3>Open Invoices</h3></NavLink>
                     {invoices?.map((invoice) => {
                         if (invoice?.amount_due > 0) {
                             return (
-                            <div className="under-nav">
-                                <div id="existing-invoice-render">
+                                <div className="info-entry">
                                     <h4>Invoice No. {invoice.id}</h4>
                                     <div className="invoice-boolean">
                                         Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
                                     </div>
                                     <p>Amount Due: {invoice?.amount_due}</p>
                                 </div>
-                            </div>
                             )
                         }
                     })}

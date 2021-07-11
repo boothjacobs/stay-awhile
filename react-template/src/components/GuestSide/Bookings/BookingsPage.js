@@ -18,9 +18,9 @@ const BookingsPage = () => {
     const bookings = Object.values(useSelector(state => state.booking));
 
     return (
-        <div className="under-nav">
+        <div id="bookings-page-js">
             <div className="dashboard-header">
-                <h1>booking details</h1>
+                <h1>Booking Details</h1>
             </div>
             <div className="info-display">
                 {bookings?.map((booking) => {

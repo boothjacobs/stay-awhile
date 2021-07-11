@@ -7,7 +7,7 @@
 }
 
 .ranch-dashboard {
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.5);
     border: 5px solid #2B4162;
     display: grid;
     grid-template-areas: "one one"
@@ -65,6 +65,8 @@
     border: 5px solid #2B4162;
     margin: 5px;
     background-color: white;
+    padding: 10px;
+    margin: 30px;
 }
 
 #dashboard-four {
@@ -75,6 +77,13 @@
     justify-content: center;
     padding: 5px;
     border: 5px solid #2B4162;
+}
+
+#dash-cabin-list {
+    text-align: center;
+    border: 5px solid #2B4162;
+    background-color: white;
+    padding: 20px;
 }
 
 .dashboard-p {
@@ -186,11 +195,9 @@
     /* https://unsplash.com/photos/FpyS8MQv-WQ Photo by Annie Spratt */
     background-size: cover;
     position: absolute;
-    /* top: 0; */
     right: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
     background-origin: border-box;
     background-position: top 70% right 0%;
 }

@@ -38,14 +38,14 @@ const MyInvoices = () => {
     // };
 
     return (
-        <div className="under-nav">
+        <div id="my-invoice-js">
             <h1>My Invoices</h1>
             <div className="invoice-list">
                 {invoices.map((invoice) => {
                     if (invoice?.amount_due > 0) {
                         return (
                         <div className="under-nav">
-                            <div id="existing-invoice-render">
+                            <div className="existing-invoice-render">
                                 <h4>Invoice No. {invoice?.id}</h4>
                                 <p>Booking No. {invoice?.booking_id}</p>
                                 <p>Any additional charges: {invoice?.additional_charges}</p>

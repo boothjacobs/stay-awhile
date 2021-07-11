@@ -53,7 +53,7 @@ const RanchHome = () => {
                             if (Date.parse(start) < Date.now()) {
                                 return null;
                             };
-                            return ( <div className="dash-booking-summary" key={booking?.id}>
+                            return ( <div className="info-entry" key={booking?.id}>
                                 <p className="dashboard-p">{booking?.guest}</p>
                                 <p className="dashboard-p">{booking?.cabin}</p>
                                 <p className="dashboard-p">{start?.toDateString()}</p>
@@ -83,8 +83,10 @@ const RanchHome = () => {
                     </div>
                 </div>
                 <div id="dashboard-four">
-                    <h4>Available Cabins</h4>
-                    {cabins?.map(cabin => <div>{cabin.name}</div>)}
+                    <div id="dash-cabin-list">
+                        <h4>Available Cabins</h4>
+                        {cabins?.map(cabin => <div>{cabin.name}</div>)}
+                    </div>
                 </div>
             </div>
 

@@ -10,6 +10,10 @@ form {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
+h1, h2, h4 {
+    color: #721817;
+}
+
 .guest-dashboard {
     background-color: rgba(255, 255, 255, 0.5);
     border: 5px solid #2B4162;
@@ -17,6 +21,10 @@ form {
     grid-template-areas: "one one"
                             "two three"
                             "four four";
+}
+
+#guest-home-js {
+    margin-top: 70px;
 }
 
 .guest-dashboard h3 {
@@ -59,8 +67,28 @@ form {
     padding-left: 30px;
 }
 
+#my-reviews-js {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-origin: border-box;
+}
+
 .info-display {
     display: flex;
+    /* flex-direction: column; */
+    align-items: center;
     justify-content: space-around;
 }
 
@@ -68,7 +96,8 @@ form {
     box-sizing: border-box;
     margin: 10px;
     padding: 5px;
-    border: 1px solid #2B4162;
+    border: 5px solid #2B4162;
+    background-color: white;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -83,10 +112,6 @@ form {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-h1, h2, h4 {
-    color: #721817;
 }
 
 .search-result {
@@ -182,7 +207,56 @@ h1, h2, h4 {
     flex-wrap: wrap;
 }
 
-.existing-invoice-render {
-    padding: 10px;
-    margin: 30px;
+#my-invoice-js {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-origin: border-box;
+}
+
+#bookings-page-js {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-origin: border-box;
+}
+
+#guest-home-js {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-origin: border-box;
 }
