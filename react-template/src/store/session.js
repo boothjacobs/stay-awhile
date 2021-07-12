@@ -117,7 +117,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
     let ranch_id;
     if (ranchData && ranchData.id) {
         ranch_id = ranchData.id;
-        console.log(ranchData)
+        // console.log(ranchData)
     } else {
         ranch_id = 0;
     };
