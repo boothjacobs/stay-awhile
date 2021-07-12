@@ -99,10 +99,6 @@ const RanchProfile = () => {
         //         duration += (28 - start)
         //     }
         // }
-        console.log("date values of calculateTotal", bookingStart, start, bookingEnd, end,)
-        console.log("math part", duration, ranch?.rate, guestCount)
-        console.log("types", typeof duration, typeof ranch?.rate, typeof guestCount)
-        console.log("result", duration * ranch?.rate * Number(guestCount))
         return duration * ranch?.rate * Number(guestCount);
     };
 
