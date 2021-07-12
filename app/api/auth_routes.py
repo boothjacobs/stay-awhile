@@ -66,6 +66,11 @@ def sign_up():
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
+    if request.json["ranch_id"] == 0:
+        r_id=None
+    else:
+        r_id = request.json["ranch_id"]
+
     if form.validate_on_submit():
         # print("form validated*****************", request.json["ranch_id"])
         user = User(
@@ -77,7 +82,7 @@ def sign_up():
             dietary_restrictions=form['dietary_restrictions'].data,
             emergency_contact=form['emergency_contact'].data,
             staff=form['staff'].data,
-            ranch_id=request.json["ranch_id"]
+            ranch_id=r_id
         )
         # print("SignUp Route ============================", user)
         db.session.add(user)
