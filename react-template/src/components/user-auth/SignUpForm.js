@@ -151,6 +151,7 @@ const SignUpForm = () => {
                 <label>Base Nightly Rate
                     <input
                       type="number"
+                      required
                       name="nightly_rate"
                       onChange={updateRate}
                       value={nightly_rate}

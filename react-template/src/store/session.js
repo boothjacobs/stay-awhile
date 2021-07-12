@@ -109,7 +109,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
         dispatch(setRanch(ranchData));
 
         if (ranchData.errors) {
-            console.log("SignUp thunk errors from ranch: ", ranchData);
+            dispatch(setErrors(ranchData.errors));
             return ranchData.errors;
         }
     };
@@ -134,7 +134,7 @@ export const signUp = (full_name, email, password, age, phone_number, dietary_re
     const userData = await userResponse.json();
 
     if (userData.errors) {
-        console.log("SignUp thunk errors from user: ", userData);
+        dispatch(setErrors(userData.errors));
         return userData.errors;
     };
 
