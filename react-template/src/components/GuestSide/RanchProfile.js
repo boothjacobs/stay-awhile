@@ -75,29 +75,34 @@ const RanchProfile = () => {
     };
 
     const calculateTotal = (guestCount) => {
+        //this DOES NOT WORK for bookings that cross the end of a month???
         if (!bookingEnd || !bookingStart) return 0;
 
         let duration;
-        const start = (new Date(bookingStart)).getDate();
-        const end = (new Date(bookingEnd)).getDate();
+        //bug caused by the rounding error here? getDate() seems to be returning the number below expected
+        // const start = (new Date(bookingStart)).getDate();
+        // const end = (new Date(bookingEnd)).getDate();
+        const start = (new Date(bookingStart)).getTime();
+        const end = (new Date(bookingEnd)).getTime();
 
-        duration = Number(end) - Number(start);
+        // duration = Number(end) - Number(start);
+        duration = (Number(end) - Number(start)) / (1000 * 3600 * 24);
 
-        if (duration < 1) {
-            if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
-                duration += (30 - start)
-            }
-            if ((new Date(bookingStart)).getMonth() === 2) {
-                duration += (28 - start)
-            }
-            if ((new Date(bookingStart)).getMonth() === (1 || 3 || 5 || 7 || 8 || 10 || 12)) {
-                duration += (31 - start)
-            }
-        }
-        // console.log("date values of calculateTotal", bookingStart, start, bookingEnd, end,)
-        // console.log("math part", duration, ranch?.rate, guestCount)
-        // console.log("types", typeof duration, typeof ranch?.rate, typeof guestCount)
-        // console.log("result", duration * ranch?.rate * Number(guestCount))
+        // if (duration < 1) {
+        //     console.log("negative duration", duration, (new Date(bookingStart)).getMonth())
+        //     if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
+        //         duration += (30 - start)
+        //     } else if ((new Date(bookingStart)).getMonth() === (1 || 3 || 5 || 7 || 8 || 10 || 12)) {
+        //         duration += (31 - start)
+        //     } else {
+        //     // if ((new Date(bookingStart)).getMonth() === 2)
+        //         duration += (28 - start)
+        //     }
+        // }
+        console.log("date values of calculateTotal", bookingStart, start, bookingEnd, end,)
+        console.log("math part", duration, ranch?.rate, guestCount)
+        console.log("types", typeof duration, typeof ranch?.rate, typeof guestCount)
+        console.log("result", duration * ranch?.rate * Number(guestCount))
         return duration * ranch?.rate * Number(guestCount);
     };
 
