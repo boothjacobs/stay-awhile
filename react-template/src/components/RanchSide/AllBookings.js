@@ -29,11 +29,11 @@ const AllBookings = () => {
                         if (Date.parse(start) < Date.now()) {
                             return null;
                         };
-                        return ( <div className="info-entry" key={booking?.id}>
-                            <p className="dashboard-p">{booking?.guest}</p>
-                            <p className="dashboard-p">{booking?.cabin}</p>
-                            <p className="dashboard-p">{start?.toDateString()}</p>
-                            <p className="dashboard-p">{end?.toDateString()}</p>
+                        return ( <div className="bookkeep-entry" key={booking?.id}>
+                            <p className="booking-list-sm">{booking?.guest}</p>
+                            <p className="booking-list-sm">{booking?.cabin}</p>
+                            <p className="booking-list-sm">{start?.toDateString()}</p>
+                            <p className="booking-list-sm">{end?.toDateString()}</p>
                             <NavLink to={`/staff/booking/${booking?.id}/invoice`}>View or Create Invoice</NavLink>
                         </div> )
                     }) : null}
@@ -46,11 +46,11 @@ const AllBookings = () => {
                         if (Date.parse(start) > Date.now()) {
                             return null;
                         };
-                        return ( <div className="info-entry" key={booking?.id}>
-                            <p className="dashboard-p">{booking?.guest}</p>
-                            <p className="dashboard-p">{booking?.cabin}</p>
-                            <p className="dashboard-p">{start?.toDateString()}</p>
-                            <p className="dashboard-p">{end?.toDateString()}</p>
+                        return ( <div className="bookkeep-entry" key={booking?.id}>
+                            <p className="booking-list-sm">{booking?.guest}</p>
+                            <p className="booking-list-sm">{booking?.cabin}</p>
+                            <p className="booking-list-sm">{start?.toDateString()}</p>
+                            <p className="booking-list-sm">{end?.toDateString()}</p>
                             <NavLink to={`/staff/booking/${booking?.id}/invoice`}>View Invoice</NavLink>
                         </div> )
                     }) : null}

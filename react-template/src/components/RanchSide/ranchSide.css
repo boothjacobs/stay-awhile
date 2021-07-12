@@ -293,11 +293,28 @@ label > select {
     right: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-origin: border-box;
     background-position: top 40% right 0%;
 }
 
 #all-bookings-background > .under-nav {
     background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* something needs to be done to make these lines more compact */
+.booking-list-sm {
+    padding: 3px;
+}
+
+.bookkeep-entry {
+    box-sizing: border-box;
+    margin: 10px;
+    padding: 5px;
+    border: 5px solid #2B4162;
+    background-color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
 }

@@ -7,6 +7,10 @@ import "./auth.css";
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
+  const loaded = useSelector(state => state.session.loaded);
+
+  const [errors, setErrors] = useState([]);
+
   const [full_name, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,7 +35,9 @@ const SignUpForm = () => {
         ranch_name, location, description, nightly_rate   //conditional fields for staff accounts only, to create Ranch
       ));
     }
-
+    if (loaded.error) {
+      setErrors(loaded.error)
+    };
   };
 
   const updateFullname = (e) => { setFullname(e.target.value) };
@@ -57,6 +63,11 @@ const SignUpForm = () => {
       <div className="form-box">
         <h3 className="auth-head">Sign up for an account</h3>
         <form className="auth-form" onSubmit={onSignUp}>
+          <div>
+            {errors?.map((error) => (
+              <div>{error}</div>
+            ))}
+          </div>
             <label>Full Name
             <input
               type="text" required
