@@ -17,7 +17,6 @@ const CreateInvoice = () => {
     }, [dispatch, id]);
 
     const booking = useSelector(state => state.booking);
-    // console.log(booking)
     const invoice = useSelector(state => state.invoice);
 
     const [additional_charges, setAddCharges] = useState(0);
@@ -54,6 +53,7 @@ const CreateInvoice = () => {
     };
 
     return (
+        <div id="create-inv-background">
         <div id="create-invoice-js">
             <div id="booking-overview">
                 <h2>Booking Details </h2>
@@ -113,6 +113,7 @@ const CreateInvoice = () => {
                     </form>
                 </div>
             )}
+        </div>
         </div>
     )
 }
