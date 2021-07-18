@@ -19,7 +19,7 @@ Clicking on "Your Past Experiences" on the dashboard brings a user to the "My Re
 
 ## Staff Experience
 ![ranch dashboard screenshot](https://github.com/boothjacobs/stay-awhile/blob/main/notes/Screen%20Shot%202021-07-11%20at%206.15.42%20PM.png?raw=true)
-When a Staff user logs in, they are directed to the Ranch Dashboard page (the Staff side of the site has a bit more variety in imagery because the content is all paperwork :( ) This dashboard provides access to upcoming bookings, open invoices, and a link to the ranch details page to edit the ranch profile.
+When a Staff user logs in, they are directed to the Ranch Dashboard page. This dashboard provides access to upcoming bookings, open invoices, and a link to the ranch details page to edit the ranch profile.
 "Available Cabins" currently only renders the full list of cabins/rooms associated with the ranch profile (which can be managed via the "Your Ranch" page), but would eventually dynamically render only the cabins not booked on that day. "See All Invoices" renders a page with thumbnail versions of all past or upcoming bookings, for recordkeeping purposes.
 
 ![booking/create invoice screenshot](https://github.com/boothjacobs/stay-awhile/blob/main/notes/Screen%20Shot%202021-07-11%20at%206.16.01%20PM.png?raw=true)

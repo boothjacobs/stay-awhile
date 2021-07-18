@@ -1,6 +1,6 @@
 SCORECARD LINK https://docs.google.com/spreadsheets/d/1NnieVfXQaC5dUOMG5ZU9adaF30H3kCMKH_ZgEwCRxTs/edit#gid=122240886
 
-
+(Material UI for stars on reviews???)
 
 StayAwhile is a browser-based, intuitive update of Lodge-ical
 

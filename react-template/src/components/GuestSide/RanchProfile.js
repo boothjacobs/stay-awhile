@@ -75,7 +75,6 @@ const RanchProfile = () => {
     };
 
     const calculateTotal = (guestCount) => {
-        //this DOES NOT WORK for bookings that cross the end of a month???
         if (!bookingEnd || !bookingStart) return 0;
 
         let duration;
@@ -89,6 +88,7 @@ const RanchProfile = () => {
         duration = (Number(end) - Number(start)) / (1000 * 3600 * 24);
 
         // if (duration < 1) {
+            // this version of handling date ranges that crossed the end of a month was super buggy
         //     console.log("negative duration", duration, (new Date(bookingStart)).getMonth())
         //     if ((new Date(bookingStart)).getMonth() === (9 || 4 || 6 || 11)) {
         //         duration += (30 - start)

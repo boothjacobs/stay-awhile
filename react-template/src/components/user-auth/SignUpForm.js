@@ -8,8 +8,7 @@ const SignUpForm = () => {
   const dispatch = useDispatch();
   const user = useSelector(state => state.session.user);
   const loaded = useSelector(state => state.session.loaded);
-
-  const [errors, setErrors] = useState([]);
+  const authErrors = useSelector(state => state.session.loaded.error);
 
   const [full_name, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -34,10 +33,9 @@ const SignUpForm = () => {
         age, phone, dietary_restrictions, eContact, staff, //nullable fields
         ranch_name, location, description, nightly_rate   //conditional fields for staff accounts only, to create Ranch
       ));
+    } else {
+      window.alert("Passwords do not match");
     }
-    if (loaded.error) {
-      setErrors(loaded.error)
-    };
   };
 
   const updateFullname = (e) => { setFullname(e.target.value) };
@@ -64,7 +62,7 @@ const SignUpForm = () => {
         <h3 className="auth-head">Sign up for an account</h3>
         <form className="auth-form" onSubmit={onSignUp}>
           <div>
-            {errors?.map((error) => (
+            {authErrors?.map((error) => (
               <div>{error}</div>
             ))}
           </div>
