@@ -1,17 +1,35 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from "../../../context/Modal";
-import { getUserInvoices } from '../../../store/invoice-store';
+import { getUserInvoices, userPayInvoice } from '../../../store/invoice-store';
 
 const PayInvoiceModal = ({invoice}) => {
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
     const [showModal, setShowModal] = useState(false);
+    const [formButton, setFormButton] = useState(true);
+
+    const [payment_amount, setPaymentAmount] = useState(0);
+
+    const formReveal = (e) => {
+        setFormButton(false);
+    };
+
+    const updateDeposit = (e) => {
+        if (e.target.value === "add-deposit") {
+            setPaymentAmount(invoice.total / 4);
+        } else {
+            setPaymentAmount(0);
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const formData = new FormData();
+        formData.append("payment_amount", payment_amount);
+
+        dispatch(userPayInvoice(user?.id, invoice.id, formData));
 
         setShowModal(false);
         dispatch(getUserInvoices(user?.id));
@@ -34,7 +52,21 @@ const PayInvoiceModal = ({invoice}) => {
                     <p>Subtotal: ${invoice?.total}<br/>
                     Amount Paid: ${invoice?.amount_paid}</p>
                     <p className="amount-due">Amount Due: ${invoice?.amount_due}</p>
-                    <button type="button">Make Payment</button>
+                    {formButton ? <button type="button" onClick={formReveal}>Make Payment</button> : (
+                        <form onSubmit={handleSubmit}>
+                            {invoice?.deposit ? null : (<label>
+                                Pay Deposit Only: ${invoice?.deposit}
+                                <input type="checkbox" value="add-deposit"
+                                onChange={updateDeposit} />
+                            </label>)}
+                            <label>Amount to Pay:
+                                <input type="number"
+                                value={payment_amount}
+                                onChange={(e) => setPaymentAmount(e.target.value)}/>
+                            </label>
+                            <button>Submit Payment</button>
+                        </form>
+                    )}
                 </div>
             </Modal>
         )}

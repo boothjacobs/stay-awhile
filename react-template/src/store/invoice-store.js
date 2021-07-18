@@ -1,9 +1,15 @@
 const SET_INVOICE = "invoice/SET_INVOICE";
+const PAY_INVOICE = "invoice/PAY_INVOICE";
 const MANY_INVOICES = "invoice/OPEN_INVOICES";
 const DELETE_INVOICE = "invoice/DELETE_INVOICE";
 
 const setInvoice = (invoice) => ({
     type: SET_INVOICE,
+    payload: invoice
+});
+
+const payInvoice = (invoice) => ({
+    type: PAY_INVOICE,
     payload: invoice
 });
 
@@ -82,6 +88,21 @@ export const editInvoice = (bookId, id, formData) => async (dispatch) => {
     }
     return invData;
 };
+
+export const userPayInvoice = (userId, invoiceId, formData) => async (dispatch) => {
+    console.log("***********INSIDE PAY INVOICE THUNK*********")
+    const res = await fetch(`/api/users/${userId}/invoices/${invoiceId}`, {
+        method: "PUT",
+        body: formData
+    });
+    const paidInvoice = await res.json();
+    if (res.ok) {
+        dispatch(payInvoice(paidInvoice));
+    } else {
+        console.error(res)
+    }
+    return paidInvoice;
+}
 
 export const deleteInvoice = (bookId, id) => async (dispatch) => {
     const res = await fetch(`/api/booking/${bookId}/invoice/${id}`, {
