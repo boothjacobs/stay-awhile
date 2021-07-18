@@ -1,24 +1,32 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { getUserInvoices } from "../../../store/invoice-store";
-
+import PayInvoiceModal from "./PayInvoiceModal";
 import "../guestSide.css"
 
 const MyInvoices = () => {
-
     // boilerplate PayPal button code from https://developer.paypal.com/demo/checkout/#/pattern/server
     // const PayPalButton = paypal.Buttons.driver("react", { React, ReactDOM });
 
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
 
+    const [details, setDetails] = useState(false);
+
     useEffect(() => {
         dispatch(getUserInvoices(user.id));
     }, [dispatch, user.id]);
 
     const invoices = Object.values(useSelector(state => state.invoice));
-    // console.log(invoices)
+
+    const showDetails = (e) => {
+        if (details) {
+            setDetails(false);
+        } else {
+            setDetails(true);
+        }
+    };
 
     // // PAYPAL BOILERPLATE: Render the PayPal button into #paypal-button-container */
     // createOrder(data, actions) {
@@ -38,34 +46,25 @@ const MyInvoices = () => {
     // };
 
     return (
+        <div id="my-invoice-background">
         <div id="my-invoice-js">
             <h1>My Invoices</h1>
             <div className="invoice-list">
                 {invoices.map((invoice) => {
                     if (invoice?.amount_due > 0) {
                         return (
-                        <div className="under-nav">
                             <div className="existing-invoice-render">
                                 <h4>Invoice No. {invoice?.id}</h4>
-                                <p>Booking No. {invoice?.booking_id}</p>
-                                <p>Any additional charges: {invoice?.additional_charges}</p>
-                                <div className="invoice-boolean">
-                                    Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
-                                </div>
-                                <div className="invoice-boolean">
-                                    Rollover Payment: {invoice?.rollover_payment ? (<p>Applied</p>) : (<p>None</p>)}
-                                </div>
-                                <p>Subtotal: {invoice?.total}</p>
-                                <p>Amount Paid: {invoice?.amount_paid}</p>
-                                <p>Amount Due: {invoice?.amount_due}</p>
+                                <p>{invoice?.guest} <br />
+                                Booking No. {invoice?.booking_id}</p>
+                                <PayInvoiceModal invoice={invoice} />
                             </div>
-                        </div>
-                    )
+                        )
                     };
                 })}
             </div>
         </div>
-
+        </div>
     )
 }
 

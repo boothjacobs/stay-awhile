@@ -205,13 +205,8 @@ h1, h2, h4 {
     flex-wrap: wrap;
 }
 
-#my-invoice-js {
-    margin-top: 70px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+#my-invoice-background {
+    background-image: url(../../background-img/fade-background.jpg);
     /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
     background-size: cover;
     position: absolute;
@@ -221,6 +216,25 @@ h1, h2, h4 {
     width: 100vw;
     height: 100vh;
     background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#my-invoice-js {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pay-invoice-modal-content {
+    background-color: white;
+    padding: 20px;
+}
+
+.amount-due {
+    color: rgb(190, 3, 3);
 }
 
 #bookings-page-js {
