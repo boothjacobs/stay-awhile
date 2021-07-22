@@ -102,8 +102,8 @@ export default function reducer(state=initialState, action) {
         case SET_INVOICE:
             return {...action.payload};
         case DELETE_INVOICE:
-            const newState = {...state};
-            delete newState[action.payload];
+            const newState = {};
+            // delete newState[action.payload];
             return newState;
         case MANY_INVOICES:
             return {...action.payload};

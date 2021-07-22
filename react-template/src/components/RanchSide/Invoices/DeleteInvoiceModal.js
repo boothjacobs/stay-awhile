@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { getInvoice, deleteInvoice } from "../../../store/invoice-store";
+import { getOneBooking } from "../../../store/booking-store";
 
 const DeleteInvoiceModal = ({invoice}) => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ const DeleteInvoiceModal = ({invoice}) => {
     const deleteButton = (e) => {
         dispatch(deleteInvoice(booking.id, invoice.id));
         setShowModal(false);
-        dispatch(getInvoice(booking.id));
+        dispatch(getOneBooking(booking.id));
     };
 
     return (
