@@ -28,6 +28,10 @@ def pay_invoice(id, invId):
     print("************************************ inside pay", request.form['payment_amount'])
     invoice.amount_paid += int(request.form['payment_amount'])
     invoice.amount_due -= int(request.form['payment_amount'])
+
+    db.session.add(invoice)
+    db.session.commit()
+
     return invoice.to_dict()
     # request = OrdersCreateRequest()
     # request.headers['prefer'] = 'return=representation'

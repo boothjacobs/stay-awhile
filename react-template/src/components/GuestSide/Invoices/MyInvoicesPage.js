@@ -53,11 +53,25 @@ const MyInvoices = () => {
                 {invoices.map((invoice) => {
                     if (invoice?.amount_due > 0) {
                         return (
-                            <div className="existing-invoice-render">
+                            <div className="existing-invoice-render" key={invoice?.id}>
                                 <h4>Invoice No. {invoice?.id}</h4>
                                 <p>{invoice?.guest} <br />
                                 Booking No. {invoice?.booking_id}</p>
                                 <PayInvoiceModal invoice={invoice} />
+                            </div>
+                        )
+                    };
+                })}
+            </div>
+                <h2>Paid Invoices</h2>
+            <div className="invoice-list">
+                {invoices.map((invoice) => {
+                    if (invoice?.amount_due === 0) {
+                        return (
+                            <div className="existing-invoice-render" key={invoice?.id}>
+                                <h4>Invoice No. {invoice?.id}</h4>
+                                <p>{invoice?.guest} <br />
+                                Booking No. {invoice?.booking_id}</p>
                             </div>
                         )
                     };

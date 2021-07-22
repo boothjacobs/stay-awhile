@@ -90,7 +90,7 @@ export const editInvoice = (bookId, id, formData) => async (dispatch) => {
 };
 
 export const userPayInvoice = (userId, invoiceId, formData) => async (dispatch) => {
-    console.log("***********INSIDE PAY INVOICE THUNK*********")
+    // console.log("***********INSIDE PAY INVOICE THUNK*********")
     const res = await fetch(`/api/users/${userId}/invoices/${invoiceId}`, {
         method: "PUT",
         body: formData
@@ -121,6 +121,8 @@ const initialState = {};
 export default function reducer(state=initialState, action) {
     switch (action.type) {
         case SET_INVOICE:
+            return {...action.payload};
+        case PAY_INVOICE:
             return {...action.payload};
         case DELETE_INVOICE:
             const newState = {...state};

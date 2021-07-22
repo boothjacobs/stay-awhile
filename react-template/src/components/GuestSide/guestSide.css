@@ -233,6 +233,11 @@ h1, h2, h4 {
     padding: 20px;
 }
 
+.invoice-list {
+    background-color:rgba(255, 255, 255, 0.5);
+    margin: 20px;
+}
+
 .amount-due {
     color: rgb(190, 3, 3);
 }
