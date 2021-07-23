@@ -71,7 +71,7 @@ h1, h2, h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    background-image: url(../../background-img/fade-background.jpg);
     /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
     background-size: cover;
     position: absolute;
@@ -79,15 +79,17 @@ h1, h2, h4 {
     right: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
     background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .info-display {
     display: flex;
-    /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    /* flex-wrap: wrap; */
 }
 
 .info-entry {

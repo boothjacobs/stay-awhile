@@ -6,7 +6,6 @@ import { useParams, Redirect, useHistory } from 'react-router-dom';
 import { getRanch } from '../../store/ranch-store';
 import { addBooking } from "../../store/booking-store";
 import { getReviews } from "../../store/review-store";
-// import AddReviewModal from "./Reviews/AddReviewModal";
 import EditReviewModal from "./Reviews/EditReviewModal";
 import DeleteReviewModal from "./Reviews/DeleteReviewModal";
 
@@ -58,20 +57,22 @@ const RanchProfile = () => {
 
     const handleBooking = (e) => {
         e.preventDefault();
-        if (!user) return <Redirect to="/login" />
+        if (user === null) {
+            history.push("/login");
+        } else {
+            let formData = new FormData();
+            formData.append("ranch_id", ranchId);
+            formData.append("guest_id", user.id);
+            formData.append("cabin_id", cabin_id);
+            formData.append("interests", interests);
+            formData.append("start_date", bookingStart);
+            formData.append("end_date", bookingEnd);
+            formData.append("guest_count", guestCount);
+            formData.append("total", total);
 
-        let formData = new FormData();
-        formData.append("ranch_id", ranchId);
-        formData.append("guest_id", user.id);
-        formData.append("cabin_id", cabin_id);
-        formData.append("interests", interests);
-        formData.append("start_date", bookingStart);
-        formData.append("end_date", bookingEnd);
-        formData.append("guest_count", guestCount);
-        formData.append("total", total);
-
-        dispatch(addBooking(formData));
-        history.push("/home");
+            dispatch(addBooking(formData));
+            history.push("/home");
+        }
     };
 
     const calculateTotal = (guestCount) => {
