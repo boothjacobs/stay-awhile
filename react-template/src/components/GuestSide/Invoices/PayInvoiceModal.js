@@ -32,7 +32,6 @@ const PayInvoiceModal = ({invoice}) => {
         dispatch(userPayInvoice(user?.id, invoice.id, formData));
 
         setShowModal(false);
-        dispatch(getUserInvoices(user?.id));
     };
 
     return (

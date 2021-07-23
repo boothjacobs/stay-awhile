@@ -123,7 +123,9 @@ export default function reducer(state=initialState, action) {
         case SET_INVOICE:
             return {...action.payload};
         case PAY_INVOICE:
-            return {...action.payload};
+            const paidState = {...state};
+            paidState[action.payload.id] = action.payload;
+            return paidState;
         case DELETE_INVOICE:
             const newState = {...state};
             delete newState[action.payload];
