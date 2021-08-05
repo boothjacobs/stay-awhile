@@ -24,7 +24,7 @@ def new_ranch():
     db.session.add(ranch)
     print(ranch)
     db.session.commit()
-    print("================== RANCH IMG =================", ranch.img_url)
+    # print("================== RANCH IMG =================", ranch.img_url)
     return ranch.to_dict()
 
 

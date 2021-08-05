@@ -32,10 +32,8 @@ const CreateInvoice = () => {
         setDepos(e.target.value);
         if (e.target.value === "paid") {
             setAmtPaid(booking.total / 4);
-            // console.log(amount_paid)
         } else {
             setAmtPaid(0)
-            // console.log("deposit value false")
         }
     };
 
