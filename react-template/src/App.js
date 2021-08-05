@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+//include Stripe throughout the site for security functionality
+import '@stripe/stripe-js';
+
 import Splash from "./components/user-auth/Splash";
 import NavBar from "./components/navigation/NavBar";
 import Footer from "./components/navigation/Footer";
