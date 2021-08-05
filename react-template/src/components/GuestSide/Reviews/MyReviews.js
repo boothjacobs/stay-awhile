@@ -18,6 +18,7 @@ const MyReviews = () => {
     const bookings = Object.values(useSelector(state => state.booking));
     // console.log("bookings on my reviews page", bookings)
     return (
+        <div id="my-reviews-background">
         <div id="my-reviews-js">
             <h1>My Reviews</h1>
             <div className="info-display">
@@ -43,8 +44,9 @@ const MyReviews = () => {
                             <AddReviewModal booking={booking} />)}
                         </div>
                     )
-                }) : null}
+                }) : <div className="info-entry">You haven't been anywhere yet!</div>}
             </div>
+        </div>
         </div>
     )
 };

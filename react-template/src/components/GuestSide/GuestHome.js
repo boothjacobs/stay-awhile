@@ -21,7 +21,7 @@ const GuestHome = () => {
 
     return (
         <div id="guest-home-background">
-            <div id="guest-home-js">
+        <div id="guest-home-js">
             <div id="guest-dash-head">
                 <h1>Guest Home</h1>
                 <h2>{user?.full_name}</h2>
@@ -74,7 +74,7 @@ const GuestHome = () => {
                                     <div className="invoice-boolean">
                                         Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
                                     </div>
-                                    <p>Amount Due: {invoice?.amount_due}</p>
+                                    <p className="dashboard-p">Amount Due: {invoice?.amount_due}</p>
                                 </div>
                             )
                         }
@@ -83,7 +83,7 @@ const GuestHome = () => {
                 </div>
 
             </div>
-            </div>
+        </div>
         </div>
     )
 }

@@ -4,6 +4,7 @@ import { useHistory, NavLink } from 'react-router-dom';
 import { searchRanches, getAllRanches } from '../../store/ranch-store';
 
 import "./guestSide.css";
+import placeholder from "../placeholder-img.jpeg"
 
 //browse destinations or search results
 const SearchResults = () => {
@@ -40,7 +41,12 @@ const SearchResults = () => {
             {ranches?.map((ranch) => {
                 return (
                     <div className="search-result">
-                        <img className="search-result-avatar" src={ranch?.img_url} alt={ranch?.ranch_name} />
+                        <div>
+                        <NavLink to={`/destination/${ranch?.id}`}>
+                            {ranch?.img_url ? <img className="search-result-avatar" src={ranch?.img_url} alt={ranch?.ranch_name} />
+                                : <img className="search-result-avatar" src={placeholder} alt={ranch?.ranch_name} />}
+                        </NavLink>
+                        </div>
                         <div className="search-result-text">
                             <NavLink to={`/destination/${ranch?.id}`} className="search-result-title"><h2>{ranch?.ranch_name}</h2></NavLink>
                             <h3 className="search-result-subtitle">{ranch?.location}</h3>

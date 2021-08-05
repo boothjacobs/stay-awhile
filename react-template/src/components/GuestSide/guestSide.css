@@ -15,6 +15,7 @@ h1, h2, h4 {
 }
 
 .guest-dashboard {
+    min-width: 70%;
     background-color: rgba(255, 255, 255, 0.5);
     border: 5px solid #2B4162;
     display: grid;
@@ -61,8 +62,22 @@ h1, h2, h4 {
     padding: 5px;
 }
 
-.dashboard-header {
+/* .dashboard-header {
     padding-left: 30px;
+} */
+#my-reviews-background {
+    background-image: url(../../background-img/fade-background.jpg);
+    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #my-reviews-js {
@@ -71,17 +86,10 @@ h1, h2, h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-image: url(../../background-img/fade-background.jpg);
-    /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100vw;
-    background-origin: border-box;
-    background-position: center;
-    background-repeat: no-repeat;
+}
+
+#my-reviews-js > .info-display {
+    padding: 10px;
 }
 
 .info-display {
@@ -89,7 +97,8 @@ h1, h2, h4 {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    /* flex-wrap: wrap; */
+    max-height: 600px;
+    overflow: scroll;
 }
 
 .info-entry {
@@ -105,7 +114,10 @@ h1, h2, h4 {
 }
 
 .dashboard-p {
-    margin: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 4px;
+    margin-bottom: 4px;
 }
 
 .modal-buttons {
@@ -124,7 +136,13 @@ h1, h2, h4 {
 
 .search-result-avatar {
     width: 300px;
+    height: 200px;
+    object-fit: cover;
     grid-area: image;
+}
+
+.image-link:hover {
+    box-shadow: 5px 5px 5px gray;
 }
 
 .search-result-text {
@@ -271,15 +289,15 @@ h1, h2, h4 {
 }
 
 #guest-home-background {
-    background-image: url(https://images.unsplash.com/photo-1606471136721-eda4cfd18a88?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80);
+    background-image: url(../../background-img/fade-background.jpg);
     /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
     background-size: cover;
-    position: relative;
-    /* top: 0;
-    bottom: 0;
+    position: absolute;
+    top: 0;
     right: 0;
-    left: 0; */
-    /* width: 100vw;
-    height: 100vh; */
-    /* background-origin: border-box; */
+    left: 0;
+    width: 100vw;
+    background-origin: border-box;
+    background-position: center;
+    background-repeat: no-repeat;
 }

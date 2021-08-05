@@ -10,11 +10,28 @@ a {
     text-decoration: none;
 }
 
+a > h2 {
+    color: #FA9F42;
+}
+
+a:hover {
+    /* text-decoration: underline; */
+    color: #FA9F42;
+}
+
+a:visited {
+    color: #2B4162;
+}
+
 button {
     font-family:  'Uchen', serif;
-    background-color: #0b6e4f;
+    background-color: #00724e;
     color: #F8F1F1;
     border: none;
-    padding: 3px;
+    padding: 6px;
     margin: 3px;
+}
+
+button:hover {
+    box-shadow: 5px 5px 5px gray;
 }
