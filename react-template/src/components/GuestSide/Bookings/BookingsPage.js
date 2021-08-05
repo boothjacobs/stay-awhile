@@ -47,7 +47,6 @@ const BookingsPage = () => {
                             </div>
                         )
                     }
-                    // console.log(invoice)
                 })}
             </div>
         </div>
