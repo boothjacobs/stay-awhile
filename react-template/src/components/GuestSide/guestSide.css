@@ -132,7 +132,7 @@ h1, h2, h4 {
     display: grid;
     grid-template-columns: 350px auto;
     grid-template-areas: "image text"
-                        "image text";
+                        "image .";
     padding: 10px;
     width: 600px;
 }
