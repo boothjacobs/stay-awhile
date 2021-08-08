@@ -44,7 +44,7 @@ const RanchHome = () => {
                     <p className="dashboard-p"><NavLink to='/staff/profile'>{ranch?.ranch_name}</NavLink></p>
                 </div>
                 <div id="dashboard-two">
-                    <div>
+                    <div id="ranch-dashboard-two">
                         <h4>Upcoming Bookings</h4>
                         <NavLink to={`/staff/${user.ranch_id}/bookings`}>See All Bookings</NavLink>
                     </div>

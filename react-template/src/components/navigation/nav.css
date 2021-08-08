@@ -12,15 +12,6 @@ nav {
     background-color: rgba(43, 65, 98, 0.75);
 }
 
-/* #logo {
-    display: flex;
-    width: auto;
-}
-
-#logo > h1 {
-    justify-self: left;
-} */
-
 #nav-list {
     display: flex;
     justify-content: space-around;
@@ -40,10 +31,14 @@ nav {
     color: #EA9C1B;
     border: none;
     padding: 0px;
+    box-shadow: none;
+}
+
+.nav-li > a {
+    text-shadow: none;
 }
 
 .nav-li > button:hover {
-    box-shadow: none;
     cursor: pointer;
 }
 
@@ -60,15 +55,10 @@ footer {
     justify-content: space-around;
     align-items: center;
 }
-/*
-#footer-title {
-    background-color: rgba(43, 65, 98, 0.75);
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    border-radius: 3px;
-} */
+
+footer a {
+    text-shadow: none;
+}
 
 #about-links {
     width: 150px;
@@ -76,12 +66,3 @@ footer {
     justify-content: space-around;
     align-items: center;
 }
-/*
-#email {
-    background-color: rgba(43, 65, 98, 0.75);
-    height: 40px;
-    display: flex;
-    align-items: center;
-    padding: 3px;
-    border-radius: 3px;
-} */

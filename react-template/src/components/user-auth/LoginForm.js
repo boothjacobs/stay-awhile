@@ -26,7 +26,7 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="under-nav">
+    // <div className="under-nav">
       <div className="form-box">
         <h3 className="auth-head">Log in to your account</h3>
         <form className="auth-form" onSubmit={onLogin}>
@@ -54,7 +54,7 @@ const LoginForm = () => {
             <button type="submit">Login</button>
         </form>
       </div>
-    </div>
+    // </div>
   );
 };
 

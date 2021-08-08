@@ -15,7 +15,7 @@ const Splash = () => {
 
     return (
         <div id="splash-background">
-        <div className="under-nav">
+        {/* <div className="under-nav"> */}
             <div id="splash-page">
                 <div id="login">
                     <LoginForm />
@@ -24,7 +24,7 @@ const Splash = () => {
                     <SignUpForm />
                 </div>
             </div>
-        </div>
+        {/* </div> */}
         </div>
     )
 }

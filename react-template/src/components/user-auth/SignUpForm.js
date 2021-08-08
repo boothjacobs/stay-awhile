@@ -57,7 +57,7 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="under-nav">
+    // <div className="under-nav">
       <div className="form-box">
         <h3 className="auth-head">Sign up for an account</h3>
         <form className="auth-form" onSubmit={onSignUp}>
@@ -170,7 +170,7 @@ const SignUpForm = () => {
           <button type="submit">Sign Up</button>
         </form>
       </div>
-    </div>
+    // </div>
   );
 };
 

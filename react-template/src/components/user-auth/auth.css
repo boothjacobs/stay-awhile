@@ -1,29 +1,21 @@
-.under-nav {
-    margin: 70px 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
 #splash-background {
+    background-image: url(../../background-img/driveway.jpg);
+    background-size: cover;
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: space-around;
     width: 100vw;
     height: 100vh;
-    background-image: url(../../background-img/driveway.jpg);
     background-origin: border-box;
-    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 #splash-page {
     display: flex;
     justify-content: space-around;
+    padding-bottom: 50px;
 }
 
 .form-box {
@@ -67,4 +59,12 @@ label > select {
     margin-left: 20px;
     margin-bottom: 20px;
     padding: 3px;
+}
+
+#login {
+    margin-right: 5px;
+}
+
+#signup {
+    margin-left: 5px;
 }

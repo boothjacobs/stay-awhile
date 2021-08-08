@@ -8,24 +8,17 @@ body {
 a {
     color: #FA9F42;
     text-decoration: none;
+    text-shadow: #ffffff 1px 0 10px;
 }
 
 a > h2 {
     color: #FA9F42;
 }
 
-a:hover {
-    /* text-decoration: underline; */
-    color: #FA9F42;
-}
-
-/* a:visited {
-    color: #2B4162;
-} */
-
 button {
     font-family:  'Uchen', serif;
     background-color: #00724e;
+    box-shadow: 5px 5px 5px gray;
     color: #F8F1F1;
     border: none;
     padding: 6px;
@@ -34,5 +27,5 @@ button {
 }
 
 button:hover {
-    box-shadow: 5px 5px 5px gray;
+    background-color: #FA9F42;
 }

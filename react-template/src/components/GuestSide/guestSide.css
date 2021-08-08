@@ -12,6 +12,7 @@ form {
 
 h1, h2, h4 {
     color: #721817;
+    /* text-align: center; */
 }
 
 .guest-dashboard {
@@ -22,14 +23,6 @@ h1, h2, h4 {
     grid-template-areas: "one one"
                             "two three"
                             "four four";
-}
-
-.guest-dashboard h3 {
-    margin-right: 10px;
-}
-
-.dashboard-header {
-    margin-left: 50px;
 }
 
 #dashboard-one {
@@ -62,9 +55,6 @@ h1, h2, h4 {
     padding: 5px;
 }
 
-/* .dashboard-header {
-    padding-left: 30px;
-} */
 #my-reviews-background {
     background-image: url(../../background-img/fade-background.jpg);
     /* https://unsplash.com/photos/_6hL8jhBOaY Photo by Stefano Zocca */
@@ -81,12 +71,15 @@ h1, h2, h4 {
 }
 
 #my-reviews-js {
+    margin: auto;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 80%;
     padding: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #my-reviews-js > .info-display {
@@ -248,11 +241,14 @@ h1, h2, h4 {
 }
 
 #my-invoice-js {
+    margin: auto;
     margin-top: 70px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color:rgba(255, 255, 255, 0.5);
+    width: 80%;
 }
 
 #pay-invoice-modal-content {
@@ -261,7 +257,7 @@ h1, h2, h4 {
 }
 
 .invoice-list {
-    background-color:rgba(255, 255, 255, 0.5);
+    /* background-color:rgba(255, 255, 255, 0.5); */
     margin: 20px;
 }
 
@@ -293,6 +289,7 @@ h1, h2, h4 {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #guest-home-background {

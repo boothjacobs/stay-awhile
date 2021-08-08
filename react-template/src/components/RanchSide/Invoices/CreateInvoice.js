@@ -50,6 +50,9 @@ const CreateInvoice = () => {
         dispatch(newInvoice(id, formData));
     };
 
+    const startDate = new Date(booking?.start_date);
+    const endDate = new Date(booking?.end_date);
+
     return (
         <div id="create-inv-background">
         <div id="create-invoice-js">
@@ -57,8 +60,8 @@ const CreateInvoice = () => {
                 <h2>Booking Details </h2>
                 <p>{booking?.guest}</p>
                 <p>{booking?.cabin}</p>
-                <p>{booking?.start_date}</p>
-                <p>{booking?.end_date}</p>
+                <p>{startDate.toDateString()}</p>
+                <p>{endDate.toDateString()}</p>
                 <p>Guests: {booking?.guest_count}</p>
                 <p>Interests: {booking?.interests}</p>
             </div>

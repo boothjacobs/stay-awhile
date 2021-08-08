@@ -4,6 +4,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .ranch-dashboard {
@@ -13,6 +14,10 @@
     grid-template-areas: "one one"
                             "two three"
                             "four four";
+}
+
+#ranch-dashboard-two {
+    text-align: center;
 }
 
 #dashboard-one {
@@ -205,6 +210,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 #all-invoices-js {
@@ -242,11 +248,16 @@
 }
 
 #create-invoice-js {
+    margin: auto;
     margin-top: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 80%;
 }
 
 #booking-overview {

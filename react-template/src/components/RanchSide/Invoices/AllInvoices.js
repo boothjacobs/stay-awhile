@@ -17,26 +17,26 @@ const AllInvoices = () => {
 
     return (
         <div id="all-invoices-js">
+            <div className="under-nav">
             <h1>All Invoices</h1>
             <div className="invoice-list">
                 {invoices?.map((invoice) =>
-                            <div className="under-nav">
-                                <div className="existing-invoice-render">
-                                    <h4>Invoice No. {invoice?.id}</h4>
-                                    <p>Any additional charges: {invoice?.additional_charges}</p>
-                                    <div className="invoice-boolean">
-                                        Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
-                                    </div>
-                                    <div className="invoice-boolean">
-                                        Rollover Payment: {invoice?.rollover_payment ? (<p>Applied</p>) : (<p>None</p>)}
-                                    </div>
-                                    <p>Subtotal: {invoice?.total}</p>
-                                    <p>Amount Paid: {invoice?.amount_paid}</p>
-                                    <p>Amount Due: {invoice?.amount_due}</p>
-                                </div>
-                            </div>
+                    <div className="existing-invoice-render">
+                        <h4>Invoice No. {invoice?.id}</h4>
+                        <p>Any additional charges: {invoice?.additional_charges}</p>
+                        <div className="invoice-boolean">
+                            Deposit: {invoice?.deposit ? (<p>Paid</p>) : (<p>Unpaid</p>)}
+                        </div>
+                        <div className="invoice-boolean">
+                            Rollover Payment: {invoice?.rollover_payment ? (<p>Applied</p>) : (<p>None</p>)}
+                        </div>
+                        <p>Subtotal: {invoice?.total}</p>
+                        <p>Amount Paid: {invoice?.amount_paid}</p>
+                        <p>Amount Due: {invoice?.amount_due}</p>
+                    </div>
                         )
                     }
+                    </div>
             </div>
         </div>
     )
