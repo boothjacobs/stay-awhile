@@ -31,8 +31,8 @@ const MyReviews = () => {
 
                     return (
                         <div className="info-entry" key={booking?.id}>
-                            <p className="dashboard-p">{booking?.ranch}, {booking?.cabin}</p>
-                            <p className="dashboard-p">{start?.toDateString()} - {end?.toDateString()}</p>
+                            <p className="review-head">{booking?.ranch}, {booking?.cabin}</p>
+                            <p className="review-head">{start?.toDateString()} - {end?.toDateString()}</p>
 
                             {(booking?.reviews?.length) ? booking?.reviews?.map(review =>
                                 (<>

@@ -11,7 +11,7 @@ form {
 }
 
 h1, h2, h4 {
-    color: #721817;
+    color: #98211F;
     /* text-align: center; */
 }
 
@@ -84,6 +84,12 @@ h1, h2, h4 {
 
 #my-reviews-js > .info-display {
     padding: 10px;
+}
+
+.review-head {
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 1.1em;
 }
 
 .info-display {

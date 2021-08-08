@@ -36,7 +36,8 @@ const MyInvoices = () => {
                         return (
                             <div className="existing-invoice-render" key={invoice?.id}>
                                 <h4>Invoice No. {invoice?.id}</h4>
-                                <p>{invoice?.guest} <br />
+                                <p>$$$$$${invoice?.ranch_name}</p>
+                                <p>${invoice?.amount_due} <br />
                                 Booking No. {invoice?.booking_id}</p>
                                 <PayInvoiceModal invoice={invoice} />
                             </div>
