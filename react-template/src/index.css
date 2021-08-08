@@ -19,9 +19,9 @@ a:hover {
     color: #FA9F42;
 }
 
-a:visited {
+/* a:visited {
     color: #2B4162;
-}
+} */
 
 button {
     font-family:  'Uchen', serif;
@@ -30,6 +30,7 @@ button {
     border: none;
     padding: 6px;
     margin: 3px;
+    cursor: pointer;
 }
 
 button:hover {

@@ -39,6 +39,12 @@ nav {
     background-color: transparent;
     color: #EA9C1B;
     border: none;
+    padding: 0px;
+}
+
+.nav-li > button:hover {
+    box-shadow: none;
+    cursor: pointer;
 }
 
 footer {

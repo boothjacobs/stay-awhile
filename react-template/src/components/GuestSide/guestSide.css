@@ -130,10 +130,15 @@ h1, h2, h4 {
 
 .search-result {
     display: grid;
+    grid-template-columns: 350px auto;
     grid-template-areas: "image text"
                         "image text";
     padding: 10px;
     width: 600px;
+}
+
+.search-result-image {
+    width: 320px;
 }
 
 .search-result-avatar {

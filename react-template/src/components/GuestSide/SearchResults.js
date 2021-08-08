@@ -41,7 +41,7 @@ const SearchResults = () => {
             {ranches?.map((ranch) => {
                 return (
                     <div className="search-result">
-                        <div>
+                        <div className="search-result-image">
                         <NavLink to={`/destination/${ranch?.id}`}>
                             {ranch?.img_url ? <img className="search-result-avatar" src={ranch?.img_url} alt={ranch?.ranch_name} />
                                 : <img className="search-result-avatar" src={placeholder} alt={ranch?.ranch_name} />}
