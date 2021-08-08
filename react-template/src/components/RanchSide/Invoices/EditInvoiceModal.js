@@ -75,7 +75,10 @@ const EditInvoiceModal = ({invoice}) => {
                                 onChange={(e) => setAmtPaid(e.target.value)}/>
                             </label>
                             <p>Amount Due: ${amountDue(booking.total, additional_charges, amount_paid)}</p>
-                            <button type="submit">Save Invoice</button>
+                            <div className="modal-buttons">
+                                <button type="submit">Save</button>
+                                <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+                            </div>
                         </form>
                     </div>
                 </Modal>
